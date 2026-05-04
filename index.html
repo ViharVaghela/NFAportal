@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMNS India — NFA Portal v4</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════
+   ROOT TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --navy:    #091929; --navy2: #0F2338; --navy3: #163352;
+  --blue:    #1251C8; --blue2: #1A62E8; --blt: #E6EFFF; --bxlt: #F2F7FF;
+  --teal:    #006E78; --tlt: #E0F4F6;
+  --green:   #186830; --glt: #E6F4EA;
+  --amber:   #A84C00; --alt: #FFF0E0;
+  --red:     #A81818; --rlt: #FDEAEA;
+  --gold:    #C87800;
+  --bg:      #EEF1F8; --bg2: #E4E8F2; --bg3: #D8DEEE;
+  --white:   #FFFFFF;
+  --t1: #091929; --t2: #2E4566; --t3: #647A99; --t4: #9EB0CC;
+  --border:  #C8D4E8; --blt2: #DDE6F4;
+  --sh1: 0 1px 3px rgba(9,25,41,.07);
+  --sh2: 0 3px 12px rgba(9,25,41,.10);
+  --sh3: 0 8px 32px rgba(9,25,41,.14);
+  --sh4: 0 20px 60px rgba(9,25,41,.20);
+  --r:8px; --rsm:5px; --rlg:12px;
+  --topH:52px; --sbW:212px; --rpW:272px;
+  --font:'IBM Plex Sans','Segoe UI',Calibri,sans-serif;
+  --mono:'IBM Plex Mono','Courier New',monospace;
+  --serif:'IBM Plex Serif',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-family:var(--font);font-size:13.5px;line-height:1.55;}
+button,input,select,textarea{font-family:var(--font);}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* ═══════════════ TOPBAR ═══════════════ */
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--topH);background:var(--navy);display:flex;align-items:center;padding:0 16px;gap:12px;z-index:300;border-bottom:1px solid rgba(255,255,255,.06);}
+.tb-logo{display:flex;align-items:center;gap:9px;text-decoration:none;}
+.tb-mark{width:28px;height:28px;background:linear-gradient(135deg,#2876FF,#00BCD4);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;}
+.tb-name{font-size:13px;font-weight:700;color:#fff;}
+.tb-sub{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:.7px;text-transform:uppercase;}
+.tb-sep{width:1px;height:26px;background:rgba(255,255,255,.1);}
+.tb-ctx{flex:1;font-size:11.5px;color:rgba(255,255,255,.45);display:flex;align-items:center;gap:6px;}
+.tb-ctx b{color:rgba(255,255,255,.78);}
+.tb-right{display:flex;align-items:center;gap:8px;}
+.tb-badge{padding:3px 10px;border-radius:20px;font-size:10.5px;font-weight:700;cursor:pointer;border:none;transition:.15s;}
+.rb-buyer   {background:rgba(18,81,200,.35);color:#8BB4FF;border:1px solid rgba(139,180,255,.25);}
+.rb-approver{background:rgba(0,110,120,.35);color:#7DD4DB;border:1px solid rgba(125,212,219,.25);}
+.rb-admin   {background:rgba(91,45,140,.35);color:#C8A8EF;border:1px solid rgba(200,168,239,.25);}
+.tb-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.6);padding:5px 10px;border-radius:6px;cursor:pointer;font-size:12px;position:relative;transition:.15s;}
+.tb-btn:hover{background:rgba(255,255,255,.13);}
+.notif-dot{position:absolute;top:3px;right:3px;width:8px;height:8px;background:#F44336;border-radius:50%;border:1.5px solid var(--navy);}
+.tb-user{font-size:12px;font-weight:600;color:rgba(255,255,255,.7);}
+.tb-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;cursor:pointer;}
+
+/* ═══════════════ LAYOUT ═══════════════ */
+.shell{display:flex;height:100vh;padding-top:var(--topH);}
+.sidebar{width:var(--sbW);background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
+.main{flex:1;min-width:0;overflow-y:auto;overflow-x:hidden;}
+
+/* ═══════════════ SIDEBAR ═══════════════ */
+.sb-grp{padding:10px 8px 3px;}
+.sb-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.9px;color:var(--t4);padding:3px 8px 5px;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:6px;cursor:pointer;transition:.1s;position:relative;user-select:none;}
+.nav-item:hover{background:var(--bxlt);}
+.nav-item.act{background:var(--blt);}
+.nav-item.act::before{content:'';position:absolute;left:0;top:5px;bottom:5px;width:3px;background:var(--blue);border-radius:0 3px 3px 0;}
+.nav-ic{font-size:14px;width:17px;text-align:center;opacity:.65;}
+.nav-item.act .nav-ic{opacity:1;}
+.nav-txt{font-size:12.5px;font-weight:600;color:var(--t2);flex:1;}
+.nav-item.act .nav-txt{color:var(--blue);}
+.nav-cnt{font-size:9px;font-weight:700;padding:1px 6px;border-radius:10px;}
+.cnt-r{background:var(--red);color:#fff;}
+.cnt-a{background:var(--amber);color:#fff;}
+.cnt-b{background:var(--blue);color:#fff;}
+.cnt-g{background:var(--green);color:#fff;}
+.sb-divider{height:1px;background:var(--blt2);margin:5px 12px;}
+.sb-foot{margin-top:auto;padding:11px 14px;border-top:1px solid var(--blt2);font-size:10.5px;color:var(--t3);}
+.sb-sync{color:var(--green);font-weight:700;}
+
+/* ═══════════════ SCREENS ═══════════════ */
+.screen{display:none;padding:20px 22px;animation:fadeUp .18s ease;}
+.screen.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.detail-screen{display:none;flex-direction:row;height:calc(100vh - var(--topH));overflow:hidden;}
+.detail-screen.active{display:flex;}
+
+/* ═══════════════ PAGE HEADER ═══════════════ */
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;}
+.ph h1{font-size:19px;font-weight:700;color:var(--t1);}
+.ph p{font-size:12px;color:var(--t3);margin-top:2px;}
+.ph-right{display:flex;gap:7px;align-items:center;}
+
+/* ═══════════════ BUTTONS ═══════════════ */
+.btn{padding:7px 14px;border-radius:var(--rsm);font-size:12.5px;font-weight:600;cursor:pointer;transition:.14s;border:none;display:inline-flex;align-items:center;gap:5px;}
+.btn-p{background:var(--blue);color:#fff;}.btn-p:hover{background:#0E40A8;}
+.btn-g{background:var(--white);border:1.5px solid var(--border);color:var(--t2);}.btn-g:hover{border-color:var(--blue);color:var(--blue);}
+.btn-ok{background:var(--green);color:#fff;}.btn-ok:hover{background:#125228;}
+.btn-bad{background:var(--white);border:1.5px solid var(--red);color:var(--red);}.btn-bad:hover{background:var(--rlt);}
+.btn-warn{background:var(--white);border:1.5px solid var(--amber);color:var(--amber);}.btn-warn:hover{background:var(--alt);}
+.btn-sm{padding:5px 11px;font-size:12px;}
+.btn-xs{padding:3px 8px;font-size:11px;}
+
+/* ═══════════════ CARDS ═══════════════ */
+.card{background:var(--white);border:1px solid var(--blt2);border-radius:var(--r);box-shadow:var(--sh1);}
+.ch{padding:12px 16px;border-bottom:1px solid var(--blt2);display:flex;align-items:center;justify-content:space-between;}
+.ch-t{font-size:13px;font-weight:700;}
+.ch-s{font-size:11px;color:var(--t3);margin-top:1px;}
+.cb{padding:16px;}
+
+/* ═══════════════ KPI ═══════════════ */
+.kpi-g{display:grid;gap:11px;margin-bottom:16px;}
+.kpi-g.g4{grid-template-columns:repeat(4,1fr);}
+.kpi-g.g3{grid-template-columns:repeat(3,1fr);}
+.kpi-g.g2{grid-template-columns:repeat(2,1fr);}
+.kpi{background:var(--white);border:1px solid var(--blt2);border-radius:var(--r);padding:14px 15px;position:relative;overflow:hidden;box-shadow:var(--sh1);}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;}
+.kpi.b::after{background:linear-gradient(90deg,var(--blue),#5B98FF);}
+.kpi.t::after{background:linear-gradient(90deg,var(--teal),#26C6DA);}
+.kpi.g::after{background:linear-gradient(90deg,var(--green),#43A858);}
+.kpi.a::after{background:linear-gradient(90deg,var(--amber),var(--gold));}
+.kpi.r::after{background:linear-gradient(90deg,var(--red),#EF5350);}
+.kl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);margin-bottom:5px;}
+.kv{font-size:21px;font-weight:700;color:var(--t1);font-family:var(--mono);letter-spacing:-.5px;line-height:1.2;}
+.ks{font-size:11px;color:var(--t3);margin-top:3px;}
+.kd{display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:10px;margin-top:5px;}
+.dg{background:var(--glt);color:var(--green);}
+.da{background:var(--alt);color:var(--amber);}
+.dr{background:var(--rlt);color:var(--red);}
+
+/* ═══════════════ CHIPS ═══════════════ */
+.chip{display:inline-flex;align-items:center;gap:3px;padding:2px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
+.c-draft   {background:#F0F2F5;color:#556;}
+.c-review  {background:var(--blt);color:var(--blue);}
+.c-rm      {background:#EAF0FF;color:#2255C0;}
+.c-sod     {background:#EEF2FF;color:#3045C0;}
+.c-cfo     {background:#F2EEF8;color:#5030A0;}
+.c-ceo     {background:#F8EEFF;color:#6828B0;}
+.c-approved{background:var(--glt);color:var(--green);}
+.c-rejected{background:var(--rlt);color:var(--red);}
+.c-sendback{background:var(--alt);color:var(--amber);}
+.c-sla     {background:var(--rlt);color:var(--red);animation:blink 1.6s infinite;}
+.c-green   {background:var(--glt);color:var(--green);}
+.c-amber   {background:var(--alt);color:var(--amber);}
+.c-red     {background:var(--rlt);color:var(--red);}
+.c-blue    {background:var(--blt);color:var(--blue);}
+.c-teal    {background:var(--tlt);color:var(--teal);}
+.c-capex   {background:#EDE7F6;color:#4527A0;}
+.c-opex    {background:#E3F2FD;color:#0D47A1;}
+.c-service {background:#FFF8E1;color:#A05000;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.55}}
+
+/* ═══════════════ TABLE ═══════════════ */
+.tw{overflow-x:auto;border-radius:var(--r);box-shadow:var(--sh1);}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--white);}
+thead th{background:var(--navy);color:rgba(255,255,255,.8);padding:9px 12px;text-align:left;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;}
+thead th:first-child{border-radius:8px 0 0 0;}
+thead th:last-child{border-radius:0 8px 0 0;}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--blt2);vertical-align:middle;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr{cursor:pointer;transition:.1s;}
+tbody tr:hover td{background:var(--bxlt);}
+.tid{font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--blue);}
+.tval{font-family:var(--mono);font-weight:600;}
+.age-ok{color:var(--green);font-weight:700;}
+.age-warn{color:var(--amber);font-weight:700;}
+.age-crit{color:var(--red);font-weight:700;}
+
+/* ═══════════════ FILTER BAR ═══════════════ */
+.fbar{display:flex;gap:7px;margin-bottom:13px;align-items:center;flex-wrap:wrap;}
+.fsrch{padding:7px 12px 7px 33px;border:1.5px solid var(--border);border-radius:var(--rsm);font-size:12.5px;color:var(--t1);outline:none;transition:.14s;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23647A99' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E") no-repeat 9px center;width:220px;}
+.fsrch:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(18,81,200,.1);}
+.fsel{padding:7px 28px 7px 10px;border:1.5px solid var(--border);border-radius:var(--rsm);font-size:12.5px;color:var(--t1);outline:none;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23647A99'/%3E%3C/svg%3E") no-repeat right 9px center;appearance:none;cursor:pointer;}
+.fsel:focus{border-color:var(--blue);}
+.fcnt{font-size:11.5px;color:var(--t3);font-weight:600;margin-left:auto;}
+
+/* ═══════════════ DETAIL LAYOUT ═══════════════ */
+.dm{flex:1;overflow-y:auto;padding:18px 20px;}
+.dp{width:var(--rpW);background:var(--white);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto;flex-shrink:0;}
+
+/* ═══════════════ SEC TABS ═══════════════ */
+.stabs{display:flex;gap:4px;margin-bottom:15px;overflow-x:auto;padding-bottom:2px;}
+.stabs::-webkit-scrollbar{height:0;}
+.stab{padding:6px 13px;border-radius:20px;border:1.5px solid var(--border);cursor:pointer;font-size:12px;font-weight:600;color:var(--t2);white-space:nowrap;transition:.12s;background:var(--white);}
+.stab:hover{border-color:var(--blue);color:var(--blue);}
+.stab.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+.stab.flag{border-color:var(--amber);color:var(--amber);}
+.stab.flag.active{background:var(--amber);border-color:var(--amber);color:#fff;}
+.nsec{display:none;animation:fadeUp .15s ease;}
+.nsec.active{display:block;}
+
+/* ═══════════════ FORM FIELDS ═══════════════ */
+.fg{display:grid;gap:11px;margin-bottom:13px;}
+.fg.c2{grid-template-columns:1fr 1fr;}
+.fg.c3{grid-template-columns:1fr 1fr 1fr;}
+.fg.c4{grid-template-columns:1fr 1fr 1fr 1fr;}
+.full{grid-column:1/-1;}
+.fl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t2);margin-bottom:4px;display:flex;align-items:center;gap:5px;}
+.req{color:var(--red);}
+.fi{width:100%;padding:7px 11px;border:1.5px solid var(--border);border-radius:var(--rsm);font-size:13px;font-family:var(--font);color:var(--t1);outline:none;transition:.14s;background:var(--white);}
+.fi:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(18,81,200,.1);}
+.fi-ro{background:var(--bg);color:var(--teal);font-family:var(--mono);font-size:12px;font-weight:600;cursor:default;}
+.fi-lock{background:var(--bg2);color:var(--t2);cursor:not-allowed;}
+.fi-sel{appearance:none;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23647A99'/%3E%3C/svg%3E") no-repeat right 10px center;padding-right:28px;}
+.fi-ta{resize:vertical;min-height:70px;}
+.atag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;background:var(--tlt);color:var(--teal);padding:1px 6px;border-radius:3px;}
+.rtag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;background:var(--alt);color:var(--amber);padding:1px 6px;border-radius:3px;}
+.radio-g{display:flex;gap:6px;flex-wrap:wrap;}
+.rpill{padding:5px 13px;border-radius:20px;border:1.5px solid var(--border);cursor:pointer;font-size:12px;font-weight:600;color:var(--t2);transition:.12s;background:var(--white);}
+.rpill:hover{border-color:var(--blue);color:var(--blue);}
+.rpill.sel{border-color:var(--blue);background:var(--blt);color:var(--blue);}
+.rpill.sel.r{border-color:var(--red);background:var(--rlt);color:var(--red);}
+.rpill.sel.a{border-color:var(--amber);background:var(--alt);color:var(--amber);}
+.rpill.sel.g{border-color:var(--green);background:var(--glt);color:var(--green);}
+
+/* ═══════════════ RIGHT PANEL ═══════════════ */
+.ps{padding:13px;border-bottom:1px solid var(--blt2);}
+.pl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--t4);margin-bottom:9px;}
+.doa-pill{background:linear-gradient(135deg,var(--navy2),var(--navy3));border-radius:var(--rsm);padding:11px 13px;margin-bottom:9px;}
+.doa-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.7px;color:rgba(255,255,255,.4);font-weight:700;margin-bottom:2px;}
+.doa-v{font-size:14px;font-weight:700;color:#fff;}
+.doa-s{font-size:10.5px;color:rgba(255,255,255,.4);margin-top:2px;}
+.ir{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px;}
+.ik{font-size:11.5px;color:var(--t3);}
+.iv{font-size:12px;font-weight:700;color:var(--t1);text-align:right;max-width:155px;}
+.iv.g{color:var(--green);}
+.iv.b{color:var(--blue);}
+.iv.r{color:var(--red);}
+.iv.a{color:var(--amber);}
+.iv.m{font-family:var(--mono);}
+.slaw{margin:7px 0;}
+.slab{height:5px;background:var(--bg2);border-radius:3px;overflow:hidden;}
+.slaf{height:100%;border-radius:3px;transition:.3s;}
+.slok{background:linear-gradient(90deg,var(--green),#43A858);}
+.slwarn{background:linear-gradient(90deg,var(--amber),var(--gold));}
+.slcrit{background:linear-gradient(90deg,var(--red),#EF5350);}
+.slat{font-size:10px;color:var(--t3);margin-top:3px;}
+.ag{display:flex;flex-direction:column;gap:7px;}
+.ab{width:100%;padding:9px;border-radius:var(--rsm);font-size:12.5px;font-weight:700;cursor:pointer;transition:.14s;border:none;display:flex;align-items:center;justify-content:center;gap:6px;}
+.ab-ok {background:var(--green);color:#fff;}.ab-ok:hover{background:#125228;}
+.ab-fw {background:var(--blt);color:var(--blue);border:1.5px solid var(--blue);}.ab-fw:hover{background:var(--blue);color:#fff;}
+.ab-sb {background:var(--white);border:1.5px solid var(--amber);color:var(--amber);}.ab-sb:hover{background:var(--alt);}
+.ab-rej{background:var(--white);border:1.5px solid var(--red);color:var(--red);}.ab-rej:hover{background:var(--rlt);}
+.ab-dis{opacity:.38;cursor:not-allowed!important;pointer-events:none;}
+.cbox{width:100%;padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--rsm);font-size:12px;font-family:var(--font);resize:none;min-height:62px;outline:none;margin-top:7px;transition:.14s;}
+.cbox:focus{border-color:var(--blue);}
+
+/* ═══════════════ APPROVAL TIMELINE ═══════════════ */
+.atl-step{display:flex;gap:9px;margin-bottom:12px;position:relative;}
+.atl-step:not(:last-child)::after{content:'';position:absolute;left:10px;top:24px;bottom:-12px;width:1.5px;background:var(--blt2);}
+.atl-step.sdone:not(:last-child)::after{background:var(--green);}
+.atl-step.ssb:not(:last-child)::after{background:var(--amber);}
+.atl-step.srej:not(:last-child)::after{background:var(--red);}
+.adot{width:22px;height:22px;border-radius:50%;flex-shrink:0;z-index:1;display:flex;align-items:center;justify-content:center;font-size:10px;margin-top:2px;font-weight:700;}
+.adot-done{background:var(--green);color:#fff;}
+.adot-curr{background:var(--blue);color:#fff;box-shadow:0 0 0 4px rgba(18,81,200,.14);}
+.adot-wait{background:var(--bg);border:1.5px solid var(--border);color:var(--t3);}
+.adot-skip{background:var(--bg);border:1.5px dashed var(--border);color:var(--t4);}
+.adot-sb  {background:var(--amber);color:#fff;}
+.adot-rej {background:var(--red);color:#fff;}
+.ai{flex:1;}
+.ar{font-size:11.5px;font-weight:700;}
+.an{font-size:11px;color:var(--t2);}
+.ats{font-size:10px;color:var(--t3);font-family:var(--mono);}
+.atag2{font-size:9.5px;font-weight:700;padding:1.5px 7px;border-radius:10px;display:inline-block;margin-top:3px;letter-spacing:.3px;}
+.atag2.tdone{background:var(--glt);color:var(--green);}
+.atag2.tcurr{background:var(--blt);color:var(--blue);}
+.atag2.twait{background:var(--bg2);color:var(--t3);}
+.atag2.tsb  {background:var(--alt);color:var(--amber);}
+.atag2.trej {background:var(--rlt);color:var(--red);}
+.acmt{font-size:10.5px;color:var(--t2);font-style:italic;margin-top:3px;background:rgba(0,0,0,.03);padding:4px 7px;border-radius:4px;border-left:2px solid var(--border);}
+
+/* ═══════════════ COMMENT THREAD ═══════════════ */
+.ct-wrap{display:flex;flex-direction:column;gap:9px;}
+.ct-card{padding:10px 12px;border:1px solid var(--blt2);border-radius:var(--rsm);background:var(--white);}
+.ct-card.t-sub{border-left:3px solid var(--blue);}
+.ct-card.t-appr{border-left:3px solid var(--green);}
+.ct-card.t-rej{border-left:3px solid var(--red);background:var(--rlt);}
+.ct-card.t-sb{border-left:3px solid var(--amber);background:var(--alt);}
+.ct-card.t-note{border-left:3px solid var(--border);}
+.ct-hd{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.ct-av{width:25px;height:25px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;color:#fff;flex-shrink:0;}
+.ct-who{font-size:12px;font-weight:700;}
+.ct-role{font-size:10.5px;color:var(--t3);}
+.ct-ts{font-size:10px;color:var(--t4);margin-left:auto;font-family:var(--mono);}
+.ct-body{font-size:12.5px;color:var(--t2);line-height:1.5;}
+.ct-in-wrap{display:flex;gap:8px;margin-top:13px;align-items:flex-start;}
+.ct-in{flex:1;padding:8px 11px;border:1.5px solid var(--border);border-radius:var(--rsm);font-size:12.5px;font-family:var(--font);resize:none;outline:none;min-height:54px;transition:.14s;}
+.ct-in:focus{border-color:var(--blue);}
+
+/* ═══════════════ AUDIT ═══════════════ */
+.audit-hdr{display:grid;grid-template-columns:112px 100px 80px 1fr 56px;gap:7px;padding:8px 13px;background:var(--navy);border-radius:var(--r) var(--r) 0 0;}
+.audit-hdr span{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:rgba(255,255,255,.45);}
+.audit-row{display:grid;grid-template-columns:112px 100px 80px 1fr 56px;gap:7px;padding:7px 13px;border-bottom:1px solid var(--blt2);align-items:center;transition:.1s;}
+.audit-row:last-child{border-bottom:none;}
+.audit-row:hover{background:var(--bg);}
+.audit-row.fresh{animation:freshRow .6s ease;}
+@keyframes freshRow{0%{background:rgba(18,81,200,.12)}100%{background:transparent}}
+.at{font-family:var(--mono);font-size:10.5px;color:var(--t3);}
+.au{font-size:11.5px;font-weight:700;}
+.an2{font-family:var(--mono);font-size:10.5px;color:var(--blue);}
+.aa{font-size:11.5px;color:var(--t2);}
+.av{font-family:var(--mono);font-size:10.5px;color:var(--blue);text-align:right;}
+
+/* ═══════════════ VERSION HISTORY ═══════════════ */
+.vi{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--blt2);}
+.vi:last-child{border-bottom:none;}
+.vn{width:36px;height:20px;border-radius:3px;background:var(--blt);color:var(--blue);font-size:10px;font-weight:700;font-family:var(--mono);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.vi-who{font-size:11.5px;font-weight:700;}
+.vi-ts{font-size:10px;color:var(--t3);font-family:var(--mono);}
+.vi-ch{font-size:11.5px;color:var(--t2);margin-top:1px;}
+
+/* ═══════════════ CHARTS ═══════════════ */
+.bchart{display:flex;align-items:flex-end;gap:11px;height:125px;padding:0 6px;}
+.bcg{display:flex;flex-direction:column;align-items:center;flex:1;}
+.bcv{font-size:10px;font-family:var(--mono);font-weight:700;color:var(--t2);margin-bottom:3px;}
+.bcb{width:100%;max-width:44px;border-radius:4px 4px 0 0;transition:height .5s cubic-bezier(.25,1,.5,1);}
+.bcb:hover{filter:brightness(1.07);}
+.bcl{font-size:10px;color:var(--t3);text-align:center;margin-top:4px;line-height:1.3;}
+.pr-row{display:flex;align-items:center;gap:9px;margin-bottom:7px;}
+.pr-nm{width:112px;font-size:11.5px;color:var(--t2);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pr-bar{flex:1;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;}
+.pr-fill{height:100%;border-radius:3px;transition:.4s;}
+.pf-b{background:linear-gradient(90deg,var(--blue),#5B98FF);}
+.pf-g{background:linear-gradient(90deg,var(--green),#43A858);}
+.pf-a{background:linear-gradient(90deg,var(--amber),var(--gold));}
+.pf-t{background:linear-gradient(90deg,var(--teal),#26C6DA);}
+.pf-r{background:linear-gradient(90deg,var(--red),#EF5350);}
+.pr-val{font-size:11px;font-family:var(--mono);color:var(--t3);width:52px;text-align:right;}
+
+/* ═══════════════ COMPARISON TABLE ═══════════════ */
+.ctab{width:100%;border-collapse:collapse;font-size:12.5px;}
+.ctab th{background:var(--navy);color:rgba(255,255,255,.8);padding:8px 11px;text-align:left;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap;}
+.ctab th:first-child{border-radius:8px 0 0 0;}.ctab th:last-child{border-radius:0 8px 0 0;}
+.ctab td{padding:8px 11px;border-bottom:1px solid var(--blt2);vertical-align:middle;}
+.ctab tr:last-child td{border-bottom:none;}
+.ctab tbody tr:hover td{background:var(--bxlt);}
+.ctab .rrow td{background:var(--glt)!important;}
+.rf{font-family:var(--mono);font-weight:600;}
+.rf-best{color:var(--green);font-weight:700;}
+.rk1{width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.rk2{width:22px;height:22px;border-radius:50%;background:#D06000;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.rk3{width:22px;height:22px;border-radius:50%;background:var(--t3);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+.rk4{width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
+
+/* ═══════════════ INFO GRID ═══════════════ */
+.ig{display:grid;gap:9px;margin-bottom:13px;}
+.ig.g3{grid-template-columns:repeat(3,1fr);}
+.ig.g6{grid-template-columns:repeat(6,1fr);}
+.ic{background:var(--bg);border:1px solid var(--blt2);border-radius:var(--rsm);padding:10px 12px;}
+.ic-l{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--t3);margin-bottom:3px;}
+.ic-v{font-size:13.5px;font-weight:700;color:var(--t1);}
+.ic-s{font-size:10.5px;color:var(--t3);margin-top:1px;}
+
+/* ═══════════════ DEV CARDS ═══════════════ */
+.dc{border:1.5px solid;border-radius:var(--r);padding:13px;margin-bottom:11px;}
+.dc.r{border-color:rgba(168,24,24,.25);background:var(--rlt);}
+.dc.a{border-color:rgba(168,76,0,.25);background:var(--alt);}
+.dc-t{font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px;margin-bottom:5px;}
+.dc-t.r{color:var(--red);}.dc-t.a{color:var(--amber);}
+.dc-b{font-size:12px;color:var(--t2);margin-bottom:9px;line-height:1.55;}
+
+/* ═══════════════ WORKFLOW VIS ═══════════════ */
+.wfv{display:flex;align-items:center;padding:9px 0;overflow-x:auto;}
+.wfn{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:82px;}
+.wfc{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid var(--border);background:var(--white);position:relative;z-index:1;transition:.25s;}
+.wfc.wdone{border-color:var(--green);background:var(--glt);}
+.wfc.wcurr{border-color:var(--blue);background:var(--blt);box-shadow:0 0 0 5px rgba(18,81,200,.11);}
+.wfc.wskip{border-style:dashed;opacity:.4;}
+.wfc.wrej{border-color:var(--red);background:var(--rlt);}
+.wfa{flex-shrink:0;color:var(--border);font-size:15px;margin-bottom:14px;padding:0 1px;}
+.wfl{font-size:9.5px;color:var(--t3);text-align:center;margin-top:5px;font-weight:600;line-height:1.3;}
+.wfl.wca{color:var(--blue);}
+.wfb{position:absolute;top:-3px;right:-3px;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;border:1.5px solid var(--white);}
+.wfb-d{background:var(--green);color:#fff;}
+.wfb-c{background:var(--blue);color:#fff;}
+
+/* ═══════════════ CALLOUT ═══════════════ */
+.clt{display:flex;align-items:flex-start;gap:9px;padding:10px 13px;border-radius:var(--rsm);margin-bottom:12px;}
+.clt.b{background:var(--bxlt);border-left:3px solid var(--blue);}
+.clt.a{background:var(--alt);border-left:3px solid var(--amber);}
+.clt.r{background:var(--rlt);border-left:3px solid var(--red);}
+.clt.g{background:var(--glt);border-left:3px solid var(--green);}
+.clt p{font-size:12px;line-height:1.5;}
+.clt.b p{color:var(--blue);}
+.clt.a p{color:var(--amber);}
+.clt.r p{color:var(--red);}
+.clt.g p{color:var(--green);}
+
+/* ═══════════════ DECISION BLOCK ═══════════════ */
+.db{background:linear-gradient(135deg,#F0FFF4,#E6F4EA);border:2px solid rgba(24,104,48,.2);border-radius:var(--r);padding:17px;margin-bottom:13px;}
+.db-vn{font-size:21px;font-weight:700;color:var(--green);font-family:var(--serif);margin-bottom:2px;}
+.db-vs{font-size:12px;color:var(--t2);}
+.db-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:13px;}
+.db-c{background:var(--white);border-radius:var(--rsm);padding:10px;text-align:center;}
+.db-cl{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--t3);margin-bottom:3px;}
+.db-cv{font-size:15px;font-weight:700;font-family:var(--mono);color:var(--t1);}
+
+/* ═══════════════ ATTACHMENT ═══════════════ */
+.att{display:flex;align-items:center;gap:9px;padding:8px 11px;border:1px solid var(--blt2);border-radius:var(--rsm);margin-bottom:6px;cursor:pointer;transition:.12s;}
+.att:hover{border-color:var(--blue);background:var(--bxlt);}
+.att-ic{width:29px;height:29px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.ic-pdf{background:#FFEBEE;}.ic-xlsx{background:var(--glt);}.ic-docx{background:var(--blt);}
+.att-n{font-size:12.5px;font-weight:700;}.att-m{font-size:10.5px;color:var(--t3);}
+.drop-z{border:2px dashed var(--border);border-radius:var(--r);padding:19px;text-align:center;cursor:pointer;transition:.14s;margin-top:7px;}
+.drop-z:hover{border-color:var(--blue);background:var(--bxlt);}
+
+/* ═══════════════ MODAL ═══════════════ */
+.mov{position:fixed;inset:0;background:rgba(9,25,41,.55);z-index:500;display:none;align-items:center;justify-content:center;}
+.mov.open{display:flex;animation:fadeUp .18s ease;}
+.modal{background:var(--white);border-radius:var(--rlg);box-shadow:var(--sh4);width:460px;max-width:95vw;overflow:hidden;animation:scaleUp .2s cubic-bezier(.34,1.56,.64,1);}
+@keyframes scaleUp{from{transform:scale(.93);opacity:0}to{transform:scale(1);opacity:1}}
+.mh{padding:16px 19px;border-bottom:1px solid var(--blt2);display:flex;align-items:center;justify-content:space-between;}
+.mt{font-size:15px;font-weight:700;}
+.mx{cursor:pointer;color:var(--t3);font-size:17px;line-height:1;}
+.mb{padding:17px 19px;}
+.mf{padding:11px 19px;border-top:1px solid var(--blt2);display:flex;justify-content:flex-end;gap:7px;}
+
+/* ═══════════════ TOAST ═══════════════ */
+.tw2{position:fixed;bottom:20px;right:20px;z-index:600;display:flex;flex-direction:column;gap:7px;pointer-events:none;}
+.toast{padding:10px 15px;border-radius:var(--r);font-size:12.5px;font-weight:700;color:#fff;box-shadow:var(--sh3);pointer-events:all;display:flex;align-items:center;gap:8px;max-width:320px;animation:toIn .25s cubic-bezier(.34,1.56,.64,1);}
+@keyframes toIn{from{transform:translateX(110%);opacity:0}to{transform:translateX(0);opacity:1}}
+.toast.g{background:var(--green);}
+.toast.b{background:var(--blue);}
+.toast.r{background:var(--red);}
+.toast.a{background:var(--amber);}
+
+/* ═══════════════ ALERT PANEL ═══════════════ */
+.alp{position:fixed;top:var(--topH);right:0;width:312px;background:var(--white);border-left:1px solid var(--border);box-shadow:var(--sh3);z-index:250;display:none;overflow-y:auto;max-height:calc(100vh - var(--topH));}
+.alp.open{display:block;animation:slideR .18s ease;}
+@keyframes slideR{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.alh{padding:11px 13px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);}
+.alh-t{font-size:13px;font-weight:700;}
+.al-x{cursor:pointer;color:var(--t3);font-size:15px;}
+.ali{padding:10px 13px;border-bottom:1px solid var(--blt2);cursor:pointer;transition:.12s;}
+.ali:hover{background:var(--bxlt);}
+.ali.u-sla{border-left:3px solid var(--red);}
+.ali.u-pend{border-left:3px solid var(--blue);}
+.ali.u-warn{border-left:3px solid var(--amber);}
+.ali.u-done{border-left:3px solid var(--green);}
+.ali-t{font-size:12.5px;font-weight:700;}
+.ali-b{font-size:11.5px;color:var(--t2);margin-top:2px;line-height:1.4;}
+.ali-m{font-size:10px;color:var(--t4);margin-top:3px;font-family:var(--mono);}
+
+/* ═══════════════ COMPACT ═══════════════ */
+body.cmode .cb{padding:10px 13px!important;}
+body.cmode .kpi{padding:11px 12px!important;}
+body.cmode .kv{font-size:17px!important;}
+body.cmode .fg{gap:8px!important;}
+.cmpbtn{font-size:11px;font-weight:700;color:var(--t3);cursor:pointer;padding:4px 8px;border-radius:4px;border:1px solid var(--border);background:var(--white);transition:.12s;}
+.cmpbtn:hover{border-color:var(--blue);color:var(--blue);}
+
+/* ═══════════════ PDF / PRINT ═══════════════ */
+@media print {
+  .topbar,.sidebar,.dp,.stabs,.ph-right,.fbar,
+  .alp,.mov,.tw2,.ag,.cbox,.cmpbtn,.ct-in-wrap,
+  .btn,.drop-z{display:none!important;}
+  .screen.active,.detail-screen.active{display:block!important;height:auto!important;overflow:visible!important;}
+  .dm{overflow:visible!important;padding:0!important;}
+  .nsec{display:block!important;break-inside:avoid;margin-bottom:22px;}
+  body{overflow:visible!important;font-size:11pt!important;}
+  .card{break-inside:avoid;box-shadow:none!important;border:1px solid #ccc!important;}
+  .ctab th,.audit-hdr{background:#1251C8!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  #pdfHeader{display:flex!important;}
+  #pdfFooter{display:block!important;}
+  #sigSection{display:block!important;}
+}
+#pdfHeader{display:none;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:3px solid #1251C8;margin-bottom:16px;}
+#pdfFooter{display:none;padding:8px 20px;border-top:1px solid #ccc;font-size:9pt;color:#666;margin-top:16px;}
+#sigSection{display:none;margin-top:24px;}
+.sdiv{height:1px;background:var(--blt2);margin:13px 0;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ PDF HEADER/FOOTER (print only) ══════════════ -->
+<div id="pdfHeader">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <div style="width:30px;height:30px;background:linear-gradient(135deg,#2876FF,#00BCD4);border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;color:#fff;">AM</div>
+    <div><div style="font-size:14pt;font-weight:700;font-family:'IBM Plex Serif',serif;">ArcelorMittal Nippon Steel India Ltd</div><div style="font-size:9pt;color:#666;">Note for Approval — Procurement &amp; Contracts</div></div>
+  </div>
+  <div style="text-align:right;font-size:9pt;color:#666;"><div id="pdf-nfa-h">NFA-2026-CP-0047</div><div id="pdf-date-h">Generated: —</div><div>CONFIDENTIAL</div></div>
+</div>
+<div id="pdfFooter">
+  <div style="display:flex;justify-content:space-between;">
+    <span>AMNS India — Confidential — For Internal Approval Only</span>
+    <span id="pdf-ver-h">v1.0</span>
+  </div>
+</div>
+
+<!-- ══════════════ TOPBAR ══════════════ -->
+<header class="topbar">
+  <div class="tb-logo">
+    <div class="tb-mark">AM</div>
+    <div><div class="tb-name">AMNS India</div><div class="tb-sub">NFA Portal · v4</div></div>
+  </div>
+  <div class="tb-sep"></div>
+  <div class="tb-ctx" id="topCtx"><b>Dashboard</b></div>
+  <div class="tb-right">
+    <button class="tb-badge rb-buyer" id="roleBtn" onclick="cycleRole()">👤 Buyer — Vihar Vaghela</button>
+    <button class="tb-btn" onclick="toggleAlerts()" id="alertBtn">🔔 Alerts<span class="notif-dot" id="notifDot"></span></button>
+    <div class="tb-av" id="tbAv" style="background:var(--blue);">VV</div>
+  </div>
+</header>
+
+<!-- ══════════════ ALERT PANEL ══════════════ -->
+<div class="alp" id="alertPanel">
+  <div class="alh"><div class="alh-t">🔔 Notifications</div><span class="al-x" onclick="toggleAlerts()">✕</span></div>
+  <div id="alertItems"></div>
+</div>
+
+<!-- ══════════════ SHELL ══════════════ -->
+<div class="shell">
+  <!-- SIDEBAR -->
+  <nav class="sidebar">
+    <div class="sb-grp">
+      <div class="sb-lbl">Main</div>
+      <div class="nav-item act" data-s="dashboard" onclick="nav('dashboard',this)"><span class="nav-ic">📊</span><span class="nav-txt">Dashboard</span></div>
+      <div class="nav-item" data-s="listing" onclick="nav('listing',this)"><span class="nav-ic">📋</span><span class="nav-txt">All NFAs</span><span class="nav-cnt cnt-b" id="sb-all">12</span></div>
+      <div class="nav-item" data-s="my-nfas" onclick="nav('my-nfas',this)"><span class="nav-ic">📁</span><span class="nav-txt">My NFAs</span><span class="nav-cnt cnt-a" id="sb-mine">4</span></div>
+      <div class="nav-item" data-s="approvals" onclick="nav('approvals',this)"><span class="nav-ic">✅</span><span class="nav-txt">Pending Approvals</span><span class="nav-cnt cnt-r" id="sb-appr">4</span></div>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-grp">
+      <div class="sb-lbl">Actions</div>
+      <div class="nav-item" data-s="new-nfa" onclick="nav('new-nfa',this)"><span class="nav-ic">➕</span><span class="nav-txt">Initiate NFA</span></div>
+      <div class="nav-item" data-s="doa-config" onclick="nav('doa-config',this)"><span class="nav-ic">⚙️</span><span class="nav-txt">DOA Config</span></div>
+    </div>
+    <div class="sb-divider"></div>
+    <div class="sb-grp">
+      <div class="sb-lbl">Reports</div>
+      <div class="nav-item" data-s="analytics" onclick="nav('analytics',this)"><span class="nav-ic">📈</span><span class="nav-txt">Analytics</span></div>
+      <div class="nav-item" data-s="audit-log" onclick="nav('audit-log',this)"><span class="nav-ic">🗂️</span><span class="nav-txt">Audit Log</span></div>
+    </div>
+    <div class="sb-foot">
+      <div>Procol: <span class="sb-sync">● Live</span></div>
+      <div style="font-family:var(--mono);font-size:10px;margin-top:2px;" id="syncTick">Loading…</div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="main" id="mainArea">
+    <div id="screen-dashboard" class="screen active"></div>
+    <div id="screen-listing" class="screen"></div>
+    <div id="screen-my-nfas" class="screen"></div>
+    <div id="screen-approvals" class="screen"></div>
+    <div id="screen-new-nfa" class="screen"></div>
+    <div id="screen-doa-config" class="screen"></div>
+    <div id="screen-analytics" class="screen"></div>
+    <div id="screen-audit-log" class="screen"></div>
+    <div id="screen-nfa-detail" class="detail-screen">
+      <div class="dm" id="ndm"></div>
+      <div class="dp" id="ndp"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ MODALS ══════════════ -->
+<div class="mov" id="m-approve">
+  <div class="modal">
+    <div class="mh"><div class="mt">✅ Confirm Approval</div><span class="mx" onclick="closeModal('approve')">✕</span></div>
+    <div class="mb">
+      <p style="font-size:13px;margin-bottom:8px;">Approving <strong id="ma-id">—</strong> at <strong id="ma-val">—</strong>.</p>
+      <p style="font-size:12px;color:var(--t2);margin-bottom:13px;" id="ma-next">—</p>
+      <div class="fl">Your Comment (optional)</div>
+      <textarea class="fi fi-ta" id="ma-cmt" rows="3" placeholder="Add your review note…"></textarea>
+    </div>
+    <div class="mf"><button class="btn btn-g btn-sm" onclick="closeModal('approve')">Cancel</button><button class="btn btn-ok btn-sm" onclick="execApprove()">✅ Confirm Approval</button></div>
+  </div>
+</div>
+<div class="mov" id="m-reject">
+  <div class="modal">
+    <div class="mh"><div class="mt" style="color:var(--red);">✗ Reject NFA</div><span class="mx" onclick="closeModal('reject')">✕</span></div>
+    <div class="mb">
+      <p style="font-size:13px;margin-bottom:13px;">Rejecting <strong id="mr-id">—</strong>. The initiator will be notified.</p>
+      <div class="fl">Rejection Reason <span class="req">*</span></div>
+      <textarea class="fi fi-ta" id="mr-cmt" rows="3" placeholder="State the specific reason for rejection…"></textarea>
+    </div>
+    <div class="mf"><button class="btn btn-g btn-sm" onclick="closeModal('reject')">Cancel</button><button class="btn btn-bad btn-sm" onclick="execReject()">✗ Confirm Rejection</button></div>
+  </div>
+</div>
+<div class="mov" id="m-sendback">
+  <div class="modal">
+    <div class="mh"><div class="mt" style="color:var(--amber);">↩ Send Back</div><span class="mx" onclick="closeModal('sendback')">✕</span></div>
+    <div class="mb">
+      <p style="font-size:13px;margin-bottom:13px;">Sending <strong id="ms-id">—</strong> back to previous stage.</p>
+      <div class="fl">Revision Instructions <span class="req">*</span></div>
+      <textarea class="fi fi-ta" id="ms-cmt" rows="3" placeholder="Specify what needs to be revised…"></textarea>
+    </div>
+    <div class="mf"><button class="btn btn-g btn-sm" onclick="closeModal('sendback')">Cancel</button><button class="btn btn-warn btn-sm" onclick="execSendback()">↩ Confirm Send Back</button></div>
+  </div>
+</div>
+
+<div class="tw2" id="toastWrap"></div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CORE ENGINE
+══════════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   1. CONSTANTS & USER REGISTRY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const USERS = {
+  VV:{ name:'Vihar Vaghela',  title:'CPO',           dept:'C&P',      role:'buyer',    color:'#1251C8', av:'VV' },
+  AM:{ name:'Anand Mehta',    title:'VP Operations', dept:'Ops',      role:'approver', color:'#186830', av:'AM' },
+  PN:{ name:'Prashant Nair',  title:'Head C&P',      dept:'C&P',      role:'approver', color:'#006E78', av:'PN' },
+  SG:{ name:'Sumit Ghosh',    title:'CFO',           dept:'Finance',  role:'approver', color:'#A84C00', av:'SG' },
+  RK:{ name:'Rajesh Kumar',   title:'CEO',           dept:'Corp',     role:'approver', color:'#A81818', av:'RK' },
+  MP:{ name:'Manish Patil',   title:'Sr. Manager',   dept:'Maint.',   role:'buyer',    color:'#1251C8', av:'MP' },
+  RS:{ name:'Ravi Sharma',    title:'Manager',       dept:'Capital',  role:'buyer',    color:'#1251C8', av:'RS' },
+  KD:{ name:'Kavita Desai',   title:'Sr. Manager',   dept:'Sourcing', role:'buyer',    color:'#006E78', av:'KD' },
+  PS:{ name:'Preeti Singh',   title:'Manager',       dept:'IT',       role:'buyer',    color:'#5B2D8E', av:'PS' },
+  SYS:{ name:'System',        title:'Auto',          dept:'Procol',   role:'system',   color:'#647A99', av:'SY' },
+};
+const ROLES = ['buyer','approver','admin'];
+const ROLE_USERS = { buyer:'VV', approver:'PN', admin:'VV' };
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   2. DOA ENGINE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const DOA = [
+  { label:'≤ ₹10 L',    max:1000000,   std:['AM','PN'],         dev:['AM','PN','SG'],         single:['AM','PN','SG'],         sla:3  },
+  { label:'₹10L–₹1Cr', max:10000000,  std:['AM','PN'],         dev:['AM','PN','SG'],         single:['AM','PN','SG'],         sla:5  },
+  { label:'₹1Cr–₹5Cr', max:50000000,  std:['AM','PN','SG'],   dev:['AM','PN','SG'],         single:['AM','PN','SG','RK'],   sla:7  },
+  { label:'>₹5Cr',      max:Infinity,  std:['AM','PN','SG','RK'], dev:['AM','PN','SG','RK'], single:['AM','PN','SG','RK'],   sla:10 },
+];
+const STAGE_USER = { rm:'AM', sod:'PN', cfo:'SG', ceo:'RK', initiator:'VV' };
+const STAGE_LABELS = { initiator:'Initiator', rm:'Reporting Manager', sod:'SOD/C&P', cfo:'CFO', ceo:'CEO', approved:'Approved', rejected:'Rejected', sendback:'Sent Back', draft:'Draft' };
+
+function doaRule(val){ return DOA.find(r => val <= r.max) || DOA[DOA.length-1]; }
+
+function computeChain(nfa){
+  const rule = doaRule(nfa.value);
+  let approvers;
+  if(nfa.modality==='single'||nfa.modality==='prop') approvers = rule.single;
+  else if(nfa.flags.includes('l1-deviation')) approvers = rule.dev;
+  else approvers = rule.std;
+  const stageOf = { AM:'rm', PN:'sod', SG:'cfo', RK:'ceo' };
+  return ['initiator', ...approvers.map(u => stageOf[u])];
+}
+
+function computeNextStage(nfa){
+  const chain = computeChain(nfa);
+  const i = chain.indexOf(nfa.stage);
+  return i >= 0 && i < chain.length-1 ? chain[i+1] : 'approved';
+}
+
+function computePrevStage(nfa){
+  const chain = computeChain(nfa);
+  const i = chain.indexOf(nfa.stage);
+  return i > 0 ? chain[i-1] : 'initiator';
+}
+
+function getSla(nfa){ return doaRule(nfa.value).sla; }
+
+function doaLabel(nfa){
+  const rule = doaRule(nfa.value);
+  const chain = computeChain(nfa);
+  const last = chain[chain.length-1];
+  return `${rule.label} · Final: ${STAGE_LABELS[last]} · SLA: ${rule.sla}d`;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   3. STORAGE ENGINE (localStorage)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const LS_KEY = 'amns_nfa_v4';
+const LS_AUDIT = 'amns_audit_v4';
+
+function saveData(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(DB)); }
+  catch(e){ console.warn('localStorage save failed:', e); }
+}
+function loadData(){
+  try{
+    const s = localStorage.getItem(LS_KEY);
+    if(s){ const d = JSON.parse(s); Object.assign(DB, d); return true; }
+  }catch(e){ console.warn('localStorage load failed:', e); }
+  return false;
+}
+function saveAudit(){ try{ localStorage.setItem(LS_AUDIT, JSON.stringify(AUDIT_LOG)); }catch(e){} }
+function loadAudit(){ try{ const s=localStorage.getItem(LS_AUDIT); if(s){ AUDIT_LOG.length=0; JSON.parse(s).forEach(e=>AUDIT_LOG.push(e)); return true; } }catch(e){} return false; }
+function clearStorage(){ localStorage.removeItem(LS_KEY); localStorage.removeItem(LS_AUDIT); location.reload(); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   4. MASTER DATASET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const AUDIT_LOG = [];
+
+function makeTimeline(chain, doneUpTo, rejectAt, sendbackAt){
+  return chain.map((s,i)=>{
+    let status='waiting', ts='Pending', comment='';
+    if(s==='initiator'){status='done';ts='03 May, 08:52';}
+    else if(rejectAt===s){status='rejected';ts='03 May';}
+    else if(sendbackAt===s){status='sendback';ts='03 May';}
+    else if(doneUpTo&&chain.slice(0,chain.indexOf(s)).every(x=>doneUpTo.includes(x))){status='done';ts='03 May';}
+    if(status==='done'&&s==='rm')comment='Shutdown critical. Support D&H Secheron.';
+    return {stage:s,user:STAGE_USER[s]||'VV',ts,status,comment};
+  });
+}
+
+const DB = {
+  nfas: {
+    'NFA-2026-CP-0047':{
+      id:'NFA-2026-CP-0047',buyer:'VV',desc:'Alloy Welding Electrodes (E7018, 3.15mm)',type:'Capex',modality:'L1',
+      value:26728400,budget:26900000,dept:'Maintenance',location:'Hazira — Steel Plant',
+      rfq:'RFQ-2026-0381',vendor:'D&H Secheron Electrodes Ltd',vendorCode:'VND-00412',
+      stage:'sod',prevStage:'rm',status:'review',age:0,
+      flags:['l1-deviation','limited-competition'],
+      created:'10 Apr 2026',submitted:'03 May 2026',
+      riskJust:'Lincoln Electric 22d lead time incompatible with BF#2 shutdown (18 May). D&H 12d delivery. ₹3.74L premium justified vs ₹1.2–1.8Cr/day downtime risk.',
+      limitJust:'Superon (capacity) and Gedik (lead time) documented as non-respondents. Auction mechanism ensured competitive pricing.',
+      bizJust:'Procurement of alloy welding electrodes for BF#2 blast furnace scheduled maintenance shutdown. Stock at critical levels (<3d buffer). Shutdown: 18–24 May 2026.',
+      urgency:'Critical',impact:'High',reqDelivery:'15 May 2026',
+      modalityDetail:'L1 Based',modalityJust:'D&H Secheron selected over L1 on delivery criticality.',
+      recNote:'Recommend award to D&H Secheron at ₹2,67,28,400. L2 over L1 justified on delivery. Proven track record at AMNS Hazira. Request CFO approval per DOA.',
+      savings:2171600,finalValue:26728400,deliveryDays:12,paymentTerms:'Net 30 Days',warranty:'12 Months',
+      locked:false,
+      versions:[
+        {ver:'v1.4',who:'SYS',ts:'03 May 09:41',changes:'Auction data synced, prices finalized'},
+        {ver:'v1.3',who:'VV',ts:'03 May 09:15',changes:'Risk justification added, deviation noted'},
+        {ver:'v1.2',who:'VV',ts:'02 May 15:12',changes:'Commercial comparison completed'},
+        {ver:'v1.1',who:'SYS',ts:'01 May 16:00',changes:'Post-auction bid data ingested'},
+        {ver:'v0.1',who:'VV',ts:'10 Apr 11:30',changes:'NFA draft created'},
+      ],
+      timeline:[
+        {stage:'initiator',user:'VV',ts:'03 May, 08:52',status:'done',comment:'NFA submitted.'},
+        {stage:'rm',user:'AM',ts:'03 May, 10:15',status:'done',comment:'Shutdown critical. Support D&H Secheron.'},
+        {stage:'sod',user:'PN',ts:'Pending',status:'current',comment:''},
+        {stage:'cfo',user:'SG',ts:'Waiting',status:'waiting',comment:''},
+      ],
+      comments:[
+        {id:'c1',user:'VV',ts:'03 May 08:52',type:'submission',text:'NFA submitted with all supporting documents. L1 deviation justified on delivery grounds.'},
+        {id:'c2',user:'AM',ts:'03 May 10:15',type:'approval',text:'Approved. Shutdown is mission-critical. D&H Secheron delivery aligns with plant requirements.'},
+      ],
+      vendors:[
+        {name:'Lincoln Electric India',rank:1,unitPrice:1782,basic:22096800,gst:3977424,freight:280000,tcl:26354224,vsL1:0,   tech:'Qualified',   auction:true, rec:false},
+        {name:'D&H Secheron Electrodes',rank:2,unitPrice:1810,basic:22444000,gst:4039920,freight:244480,tcl:26728400,vsL1:1.42,tech:'Qualified',   auction:true, rec:true},
+        {name:'Ador Welding Ltd',       rank:3,unitPrice:1840,basic:22816000,gst:4106880,freight:310000,tcl:27232880,vsL1:3.33,tech:'Qualified',   auction:true, rec:false},
+        {name:'ESAB India Ltd',         rank:4,unitPrice:1930,basic:23932000,gst:4307760,freight:275000,tcl:28514760,vsL1:8.19,tech:'Conditional',auction:false,rec:false},
+      ],
+      attachments:[
+        {name:'Comparative Statement — RFQ-2026-0381',type:'xlsx',size:'284 KB',date:'02 May',by:'Procol Auto'},
+        {name:'Technical Evaluation Report',type:'pdf',size:'1.1 MB',date:'23 Apr',by:'R. Krishnamurthy'},
+        {name:'D&H Secheron — Final Quotation',type:'pdf',size:'420 KB',date:'30 Apr',by:'Vendor'},
+        {name:'Plant Maintenance Endorsement',type:'pdf',size:'215 KB',date:'02 May',by:'R. Krishnamurthy'},
+        {name:'Reverse Auction Log — 01 May',type:'xlsx',size:'95 KB',date:'01 May',by:'Procol Auto'},
+      ],
+    },
+    'NFA-2026-CP-0042':{id:'NFA-2026-CP-0042',buyer:'VV',desc:'Overhead Crane Upgrade — BF#2 Bay',type:'Capex',modality:'L1',value:51000000,budget:53000000,dept:'Capital Projects',location:'Hazira',rfq:'RFQ-2026-0371',vendor:'Konecranes India Ltd',vendorCode:'VND-00198',stage:'cfo',prevStage:'sod',status:'review',age:9,flags:['sla-breach'],created:'22 Apr',submitted:'24 Apr',riskJust:'',limitJust:'',bizJust:'Replacement of aging BF#2 overhead crane. Safety compliance mandate.',urgency:'High',impact:'High',reqDelivery:'30 Jun',modalityDetail:'L1 Based',modalityJust:'L1 procurement.',recNote:'Konecranes India at ₹5.1 Cr — L1, technically superior.',savings:2000000,finalValue:51000000,deliveryDays:60,paymentTerms:'30% Advance, 70% Delivery',warranty:'24 Months',locked:false,versions:[{ver:'v1.0',who:'VV',ts:'24 Apr',changes:'NFA submitted'}],timeline:[{stage:'initiator',user:'VV',ts:'24 Apr 09:00',status:'done',comment:'Submitted.'},{stage:'rm',user:'AM',ts:'24 Apr 14:00',status:'done',comment:'Approved. Safety mandate.'},{stage:'sod',user:'PN',ts:'26 Apr',status:'done',comment:'Approved.'},{stage:'cfo',user:'SG',ts:'Pending 9 days',status:'current',comment:''},{stage:'ceo',user:'RK',ts:'Waiting',status:'waiting',comment:''}],comments:[{id:'c1',user:'VV',ts:'24 Apr',type:'submission',text:'Safety compliance — aging crane beyond service life.'}],vendors:[],attachments:[],},
+    'NFA-2026-OP-0039':{id:'NFA-2026-OP-0039',buyer:'VV',desc:'Conveyor Belt Maintenance Annual Contract',type:'Opex',modality:'rate',value:8420000,budget:9000000,dept:'Maintenance',location:'Hazira',rfq:'RFQ-2026-0360',vendor:'Fenner India Ltd',vendorCode:'VND-00315',stage:'rm',prevStage:'initiator',status:'review',age:6,flags:['sla-warning'],created:'27 Apr',submitted:'27 Apr',riskJust:'',limitJust:'',bizJust:'Annual AMC for conveyor belts. Rate contract renewal.',urgency:'Planned',impact:'Medium',reqDelivery:'01 Jun',modalityDetail:'Rate Contract',modalityJust:'Rate contract under pre-approved rates.',recNote:'Renew Fenner India AMC at ₹84.2 L — 6.4% reduction.',savings:580000,finalValue:8420000,deliveryDays:0,paymentTerms:'Quarterly',warranty:'N/A',locked:false,versions:[],timeline:[{stage:'initiator',user:'VV',ts:'27 Apr',status:'done',comment:'Rate contract renewal.'},{stage:'rm',user:'AM',ts:'Pending 6 days',status:'current',comment:''}],comments:[],vendors:[],attachments:[],},
+    'NFA-2026-SV-0051':{id:'NFA-2026-SV-0051',buyer:'MP',desc:'Refractory Lining Material — OEM Only',type:'Capex',modality:'single',value:12000000,budget:13000000,dept:'Maintenance',location:'Hazira',rfq:'N/A',vendor:'Vesuvius India Ltd',vendorCode:'VND-00422',stage:'sod',prevStage:'rm',status:'review',age:3,flags:['single-vendor'],created:'30 Apr',submitted:'30 Apr',riskJust:'OEM holds exclusive design rights. No alternate vendor qualified.',limitJust:'',bizJust:'BF#1 relining campaign. OEM material required.',urgency:'High',impact:'High',reqDelivery:'20 May',modalityDetail:'Single Vendor (OEM)',modalityJust:'Proprietary OEM material. No approved alternate.',recNote:'Single vendor — Vesuvius India. OEM justified.',savings:1000000,finalValue:12000000,deliveryDays:18,paymentTerms:'Net 45',warranty:'12 Months',locked:false,versions:[],timeline:[{stage:'initiator',user:'MP',ts:'30 Apr',status:'done',comment:'OEM procurement.'},{stage:'rm',user:'AM',ts:'01 May',status:'done',comment:'Approved — OEM justified.'},{stage:'sod',user:'PN',ts:'Pending 3 days',status:'current',comment:''},{stage:'cfo',user:'SG',ts:'Waiting',status:'waiting',comment:''}],comments:[],vendors:[],attachments:[],},
+    'NFA-2026-CP-0044':{id:'NFA-2026-CP-0044',buyer:'RS',desc:'Transformer Replacement — Substation 3',type:'Capex',modality:'L1',value:48000000,budget:50000000,dept:'Capital Projects',location:'Hazira',rfq:'RFQ-2026-0350',vendor:'Siemens India Ltd',vendorCode:'VND-00055',stage:'approved',prevStage:'ceo',status:'approved',age:0,flags:[],created:'10 Apr',submitted:'12 Apr',riskJust:'',limitJust:'',bizJust:'Critical substation transformer beyond service life.',urgency:'High',impact:'High',reqDelivery:'15 Jul',modalityDetail:'L1 Based',modalityJust:'L1 selection.',recNote:'Siemens India — L1 best commercial and technical offer.',savings:2000000,finalValue:48000000,deliveryDays:90,paymentTerms:'30/70',warranty:'24 Months',locked:true,versions:[{ver:'v2.0',who:'RK',ts:'21 Apr',changes:'CEO final approval — NFA locked'}],timeline:[{stage:'initiator',user:'RS',ts:'12 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'13 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'15 Apr',status:'done',comment:'Approved.'},{stage:'cfo',user:'SG',ts:'18 Apr',status:'done',comment:'Within budget.'},{stage:'ceo',user:'RK',ts:'21 Apr',status:'done',comment:'CEO approved. Proceed.'}],comments:[],vendors:[],attachments:[],},
+    'NFA-2026-SV-0048':{id:'NFA-2026-SV-0048',buyer:'KD',desc:'HVAC Maintenance Annual Contract',type:'Service',modality:'rate',value:6250000,budget:6500000,dept:'Facilities',location:'Corporate',rfq:'RFQ-2026-0345',vendor:'Blue Star Ltd',vendorCode:'VND-00184',stage:'approved',prevStage:'rm',status:'approved',age:0,flags:[],created:'05 Apr',submitted:'06 Apr',riskJust:'',limitJust:'',bizJust:'Annual HVAC AMC renewal.',urgency:'Planned',impact:'Low',reqDelivery:'01 May',modalityDetail:'Rate Contract',modalityJust:'Pre-approved rate.',recNote:'Recommend Blue Star — satisfactory performance.',savings:250000,finalValue:6250000,deliveryDays:0,paymentTerms:'Monthly',warranty:'N/A',locked:true,versions:[],timeline:[{stage:'initiator',user:'KD',ts:'06 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'07 Apr',status:'done',comment:'Approved.'}],comments:[],vendors:[],attachments:[],},
+    'NFA-2026-OP-0035':{id:'NFA-2026-OP-0035',buyer:'VV',desc:'Hydraulic Hose & Fittings — Bulk',type:'Opex',modality:'L1',value:1840000,budget:2000000,dept:'Maintenance',location:'Hazira',rfq:'RFQ-2026-0340',vendor:'Parker Hannifin India',vendorCode:'VND-00271',stage:'initiator',prevStage:'rm',status:'sendback',age:2,flags:['sendback'],created:'28 Apr',submitted:'29 Apr',riskJust:'',limitJust:'',bizJust:'Bulk hydraulic hoses purchase.',urgency:'Planned',impact:'Medium',reqDelivery:'20 May',modalityDetail:'L1 Based',modalityJust:'',recNote:'',savings:160000,finalValue:1840000,deliveryDays:7,paymentTerms:'Net 30',warranty:'6 Months',locked:false,versions:[],timeline:[{stage:'initiator',user:'VV',ts:'29 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'30 Apr',status:'sendback',comment:'Justification inadequate. Attach comparative quotes for 3 vendors.'}],comments:[{id:'c1',user:'AM',ts:'30 Apr 14:20',type:'sendback',text:'Justification inadequate. Please attach comparative quotes for at least 3 vendors.'}],vendors:[],attachments:[],},
+    'NFA-2026-CP-0033':{id:'NFA-2026-CP-0033',buyer:'RS',desc:'Cooling Tower Pumps — 500 kW',type:'Capex',modality:'L1',value:19000000,budget:20000000,dept:'Operations',location:'Hazira',rfq:'RFQ-2026-0330',vendor:'Grundfos India Pvt Ltd',vendorCode:'VND-00305',stage:'approved',prevStage:'cfo',status:'approved',age:0,flags:[],created:'15 Apr',submitted:'16 Apr',riskJust:'',limitJust:'',bizJust:'Cooling tower pump replacement.',urgency:'Planned',impact:'High',reqDelivery:'15 Jun',modalityDetail:'L1 Based',modalityJust:'L1.',recNote:'Grundfos India — L1 best TCO.',savings:1000000,finalValue:19000000,deliveryDays:45,paymentTerms:'Net 30',warranty:'18 Months',locked:true,versions:[],timeline:[{stage:'initiator',user:'RS',ts:'16 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'17 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'19 Apr',status:'done',comment:'Approved.'},{stage:'cfo',user:'SG',ts:'22 Apr',status:'done',comment:'Within budget.'}],comments:[],vendors:[],attachments:[],},
+    'NFA-2026-SV-0045':{id:'NFA-2026-SV-0045',buyer:'PS',desc:'SAP ERP Support License Renewal',type:'Service',modality:'prop',value:3800000,budget:4000000,dept:'IT',location:'Corporate',rfq:'N/A',vendor:'SAP India Pvt Ltd',vendorCode:'VND-00010',stage:'cfo',prevStage:'sod',status:'review',age:4,flags:['proprietary'],created:'29 Apr',submitted:'29 Apr',riskJust:'SAP incumbent ERP — proprietary license, no alternate.',limitJust:'',bizJust:'Annual SAP support renewal.',urgency:'Planned',impact:'High',reqDelivery:'01 Jun',modalityDetail:'Proprietary',modalityJust:'Exclusive license — no alternate.',recNote:'Proprietary renewal.',savings:200000,finalValue:3800000,deliveryDays:0,paymentTerms:'Annual Advance',warranty:'N/A',locked:false,versions:[],timeline:[{stage:'initiator',user:'PS',ts:'29 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'30 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'01 May',status:'done',comment:'Approved — proprietary renewal.'},{stage:'cfo',user:'SG',ts:'Pending 4d',status:'current',comment:''}],comments:[],vendors:[],attachments:[],},
+    'NFA-2026-CP-0019':{id:'NFA-2026-CP-0019',buyer:'VV',desc:'Safety Equipment & PPE Bulk Order',type:'Capex',modality:'L1',value:4180000,budget:5000000,dept:'Safety',location:'Hazira',rfq:'RFQ-2026-0285',vendor:'Honeywell Safety Products',vendorCode:'VND-00140',stage:'sod',prevStage:'rm',status:'rejected',age:0,flags:['rejected'],created:'15 Mar',submitted:'18 Mar',riskJust:'',limitJust:'',bizJust:'Annual safety equipment procurement.',urgency:'Planned',impact:'High',reqDelivery:'30 Apr',modalityDetail:'L1 Based',modalityJust:'',recNote:'',savings:820000,finalValue:4180000,deliveryDays:21,paymentTerms:'Net 30',warranty:'12 Months',locked:true,versions:[],timeline:[{stage:'initiator',user:'VV',ts:'18 Mar',status:'done',comment:''},{stage:'rm',user:'AM',ts:'19 Mar',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'22 Mar',status:'rejected',comment:'Vendor not on AMNS AVL. Resubmit with approved vendor.'}],comments:[{id:'c1',user:'PN',ts:'22 Mar 15:00',type:'rejection',text:'Rejected: Honeywell Safety not on AMNS AVL. Resubmit with registered vendor or initiate vendor registration first.'}],vendors:[],attachments:[],},
+  }
+};
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   5. APP STATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const APP = {
+  role: 'buyer',
+  user: 'VV',
+  currentNFA: null,
+  alertsOpen: false,
+  compact: false,
+  nfaCounter: 52,
+  filter: {text:'',status:'',type:'',dept:''},
+};
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   6. UTILITY FUNCTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const all = () => Object.values(DB.nfas);
+const u = id => USERS[id] || {name:'System',title:'Auto',dept:'—',color:'#647A99',av:'SY'};
+const fv = v => v>=10000000?'₹'+(v/10000000).toFixed(2)+' Cr':v>=100000?'₹'+(v/100000).toFixed(1)+' L':'₹'+v.toLocaleString('en-IN');
+const fvf = v => '₹'+v.toLocaleString('en-IN');
+const now = () => new Date().toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false});
+const ageClass = (a,s) => a>s?'age-crit':a>=s-1?'age-warn':'age-ok';
+const stageChip = (n) => {
+  const m={draft:'c-draft',review:'c-review',approved:'c-approved',rejected:'c-rejected',sendback:'c-sendback'};
+  if(n.status==='review'){if(n.stage==='rm')return'c-rm';if(n.stage==='sod')return'c-sod';if(n.stage==='cfo')return'c-cfo';if(n.stage==='ceo')return'c-ceo';}
+  return m[n.status]||'c-draft';
+};
+const statusLabel = n => {
+  if(n.status==='approved')return'✅ Approved';
+  if(n.status==='rejected')return'✗ Rejected';
+  if(n.status==='sendback')return'↩ Sent Back';
+  if(n.status==='draft')return'📝 Draft';
+  const m={rm:'Rpt. Manager Review',sod:'SOD/C&P Review',cfo:'CFO Review',ceo:'CEO Review',initiator:'Pending Sub.'};
+  return m[n.stage]||'⏳ In Review';
+};
+const flagLabel = f => ({
+  'l1-deviation':'L1 Deviation','single-vendor':'Single Vendor','sla-breach':'SLA Breach',
+  'sla-warning':'SLA Warning','limited-competition':'Ltd Competition','rejected':'Rejected',
+  'sendback':'Sent Back','proprietary':'Proprietary'
+})[f]||f;
+const stageCurrentUser = n => STAGE_USER[n.stage]||n.buyer;
+
+function logAudit(nfaId, action, ver){
+  const entry = {ts:now(),user:APP.user,nfa:nfaId,action,ver:ver||'—'};
+  AUDIT_LOG.unshift(entry);
+  saveAudit();
+  if(document.getElementById('screen-audit-log').classList.contains('active')) renderAuditLog();
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   7. SLA / ESCALATION ENGINE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function runSlaCheck(){
+  all().forEach(n=>{
+    if(n.status!=='review')return;
+    const sla = getSla(n);
+    if(n.age>sla&&!n.flags.includes('sla-breach')){
+      n.flags.push('sla-breach');
+      n.flags=n.flags.filter(f=>f!=='sla-warning');
+      logAudit(n.id,`AUTO-ESCALATION: SLA breached (${n.age}d/${sla}d) — escalation alert sent`,'SYS');
+    } else if(n.age>=sla-1&&!n.flags.includes('sla-breach')&&!n.flags.includes('sla-warning')){
+      n.flags.push('sla-warning');
+    }
+  });
+  saveData();
+  updateCounts();
+  updateAlerts();
+}
+
+function generateAlerts(){
+  const alerts=[];
+  all().forEach(n=>{
+    const sla=getSla(n);
+    if(n.status==='review'&&n.age>sla){
+      alerts.push({type:'sla',t:`🔴 SLA Breach — ${n.id}`,b:`Pending ${n.age}d with ${u(stageCurrentUser(n)).name}. Exceeded by ${n.age-sla}d.`,m:'Auto-escalation sent',id:n.id});
+    } else if(n.status==='review'&&n.age>=sla-1){
+      alerts.push({type:'warn',t:`⚠ SLA Warning — ${n.id}`,b:`Pending ${n.age}d. Limit: ${sla}d.`,m:'Today',id:n.id});
+    }
+    if(n.status==='review'&&stageCurrentUser(n)===APP.user){
+      alerts.push({type:'pend',t:`⏳ Pending — ${n.id}`,b:`Awaiting your review. ${fv(n.value)}`,m:`Age: ${n.age}d`,id:n.id});
+    }
+  });
+  return alerts;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   8. NAVIGATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function nav(screen, el){
+  document.querySelectorAll('.screen,.detail-screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('act'));
+  const el2 = document.getElementById('screen-'+screen);
+  if(el2) el2.classList.add('active');
+  if(el) el.classList.add('act');
+  else{ const m = document.querySelector(`.nav-item[data-s="${screen}"]`); if(m) m.classList.add('act'); }
+  APP.currentScreen = screen;
+  const lb = {dashboard:'Dashboard',listing:'All NFAs','my-nfas':'My NFAs',approvals:'Pending Approvals','new-nfa':'Initiate NFA','doa-config':'DOA Config',analytics:'Analytics','audit-log':'Audit Log','nfa-detail':'NFA Detail'};
+  document.getElementById('topCtx').innerHTML = `<b>${lb[screen]||screen}</b>`;
+  const renderers = {dashboard:renderDashboard,listing:renderListing,'my-nfas':renderMyNFAs,approvals:renderApprovals,'new-nfa':renderNewNFA,'doa-config':renderDoaConfig,analytics:renderAnalytics,'audit-log':renderAuditLog};
+  if(renderers[screen]) renderers[screen]();
+}
+
+function openNFA(id){
+  APP.currentNFA = id;
+  const nfa = DB.nfas[id];
+  if(!nfa) return;
+  document.querySelectorAll('.screen,.detail-screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('act'));
+  document.getElementById('screen-nfa-detail').classList.add('active');
+  document.getElementById('topCtx').innerHTML = `<b>All NFAs</b> / <b>${id}</b>`;
+  renderNFADetail(nfa);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   9. DASHBOARD RENDERER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function renderDashboard(){
+  const el = document.getElementById('screen-dashboard');
+  const nfas = all();
+  const isApprover = APP.role==='approver';
+  let h = `<div class="ph"><div><h1>${isApprover?'Approver Dashboard':'Initiator Dashboard'}</h1><p>${u(APP.user).name} · ${u(APP.user).title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</p></div><div class="ph-right"><button class="cmpbtn" onclick="toggleCompact()">⊟ Compact</button><button class="btn btn-g btn-sm" onclick="nav('new-nfa')">➕ New NFA</button><button class="btn btn-p btn-sm" onclick="exportReport()">⬇ Export</button></div></div>`;
+
+  if(isApprover){
+    const mine = nfas.filter(n=>n.status==='review'&&stageCurrentUser(n)===APP.user);
+    const breached = mine.filter(n=>n.age>getSla(n));
+    const val = mine.reduce((s,n)=>s+n.value,0);
+    h += `<div class="kpi-g g4">
+      <div class="kpi r"><div class="kl">Pending My Approval</div><div class="kv">${mine.length}</div><div class="ks">Requires decision</div>${mine.length?`<div class="kd dr">Action needed</div>`:`<div class="kd dg">✓ Clear</div>`}</div>
+      <div class="kpi a"><div class="kl">SLA Breaches</div><div class="kv">${breached.length}</div><div class="ks">Immediate action</div>${breached.length?`<div class="kd dr">URGENT</div>`:`<div class="kd dg">✓ None</div>`}</div>
+      <div class="kpi b"><div class="kl">Value Pending</div><div class="kv" style="font-size:17px;">${fv(val)}</div><div class="ks">${mine.length} NFAs</div></div>
+      <div class="kpi g"><div class="kl">Approved by Me</div><div class="kv">${nfas.filter(n=>n.status==='approved'&&n.timeline.some(t=>t.user===APP.user&&t.status==='done')).length}</div></div>
+    </div>
+    <div class="card"><div class="ch"><div class="ch-t">Priority Queue</div></div>${renderTable(mine,['id','desc','value','flags','age','qAction'])}</div>`;
+  } else {
+    const mine = nfas.filter(n=>n.buyer===APP.user);
+    const pend = mine.filter(n=>n.status==='review').length;
+    const appr = mine.filter(n=>n.status==='approved').length;
+    const rej  = mine.filter(n=>['rejected','sendback'].includes(n.status)).length;
+    const valU = mine.filter(n=>n.status==='review').reduce((s,n)=>s+n.value,0);
+    const savA = mine.filter(n=>n.status==='approved').reduce((s,n)=>s+n.savings,0);
+    const breach = mine.filter(n=>n.status==='review'&&n.age>getSla(n)).length;
+    const a03=mine.filter(n=>n.status==='review'&&n.age<=3).length;
+    const a37=mine.filter(n=>n.status==='review'&&n.age>3&&n.age<=7).length;
+    const a7p=mine.filter(n=>n.status==='review'&&n.age>7).length;
+    h += `<div class="kpi-g g4">
+      <div class="kpi b"><div class="kl">Total NFAs</div><div class="kv">${mine.length}</div><div class="ks">All categories</div></div>
+      <div class="kpi a"><div class="kl">Pending Approval</div><div class="kv">${pend}</div><div class="ks">${breach} SLA breach${breach!==1?'es':''}</div>${breach?`<div class="kd dr">⚠ ${breach} urgent</div>`:`<div class="kd dg">✓ On track</div>`}</div>
+      <div class="kpi g"><div class="kl">Approved (YTD)</div><div class="kv">${appr}</div><div class="ks">${mine.length?Math.round(appr/mine.length*100):0}% rate</div></div>
+      <div class="kpi r"><div class="kl">Rejected/Sent Back</div><div class="kv">${rej}</div></div>
+    </div>
+    <div class="kpi-g g3">
+      <div class="kpi t"><div class="kl">Value Under Approval</div><div class="kv" style="font-size:17px;">${fv(valU)}</div></div>
+      <div class="kpi b"><div class="kl">Avg. Approval Time</div><div class="kv">4.2d</div><div class="ks">Target: 5 days</div></div>
+      <div class="kpi g"><div class="kl">Total Savings</div><div class="kv" style="font-size:17px;">${fv(savA)}</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:15px;">
+      <div class="card"><div class="ch"><div class="ch-t">Aging Analysis</div></div><div class="cb"><div class="bchart">
+        <div class="bcg"><div class="bcv">${a03}</div><div class="bcb" style="height:${a03?60:5}%;background:linear-gradient(180deg,#43A858,var(--green));"></div><div class="bcl">0–3d<br><span style="color:var(--green)">OK</span></div></div>
+        <div class="bcg"><div class="bcv">${a37}</div><div class="bcb" style="height:${a37?60:5}%;background:linear-gradient(180deg,var(--gold),var(--amber));"></div><div class="bcl">3–7d<br><span style="color:var(--amber)">Watch</span></div></div>
+        <div class="bcg"><div class="bcv">${a7p}</div><div class="bcb" style="height:${a7p?40:5}%;background:linear-gradient(180deg,#EF5350,var(--red));"></div><div class="bcl">>7d<br><span style="color:var(--red)">Breach</span></div></div>
+      </div></div></div>
+      <div class="card"><div class="ch"><div class="ch-t">Stage Pipeline</div></div><div class="cb">
+        ${[['rm',2],['sod',3],['cfo',4],['ceo',5]].map(([s,_])=>{
+          const cnt=all().filter(n=>n.stage===s&&n.status==='review').length;
+          return `<div class="pr-row"><div class="pr-nm">${STAGE_LABELS[s]}</div><div class="pr-bar"><div class="pr-fill pf-b" style="width:${Math.min(100,cnt*20)}%"></div></div><div class="pr-val">${cnt}</div></div>`;
+        }).join('')}
+      </div></div>
+      <div class="card"><div class="ch"><div class="ch-t">Status Distribution</div></div><div class="cb">
+        ${['review','approved','rejected','sendback'].map(st=>{
+          const cnt=mine.filter(n=>n.status===st).length;
+          const pct=mine.length?Math.round(cnt/mine.length*100):0;
+          const cls={review:'pf-b',approved:'pf-g',rejected:'pf-r',sendback:'pf-a'}[st];
+          const lb={review:'In Review',approved:'Approved',rejected:'Rejected',sendback:'Sent Back'}[st];
+          return `<div class="pr-row"><div class="pr-nm">${lb}</div><div class="pr-bar"><div class="pr-fill ${cls}" style="width:${pct}%"></div></div><div class="pr-val">${cnt} (${pct}%)</div></div>`;
+        }).join('')}
+      </div></div>
+    </div>
+    <div class="card"><div class="ch"><div class="ch-t">My Active NFAs</div><button class="btn btn-g btn-sm" onclick="nav('listing')">View All →</button></div>${renderTable(mine.filter(n=>n.status!=='approved').slice(0,5),['id','desc','value','type','stage','age','status'])}</div>`;
+  }
+  el.innerHTML = h;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   10. TABLE RENDERER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function renderTable(nfas, cols){
+  if(!nfas.length) return '<div style="padding:18px;text-align:center;color:var(--t3);">No data to display</div>';
+  const COL = {
+    id:       ['NFA Number',  n=>`<span class="tid">${n.id}</span>`],
+    buyer:    ['Buyer',       n=>u(n.buyer).name.split(' ').map((w,i)=>i===0?w:w[0]+'.').join(' ')],
+    desc:     ['Description', n=>`<span style="max-width:170px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${n.desc}</span>`],
+    value:    ['Value',       n=>`<span class="tval">${fv(n.value)}</span>`],
+    type:     ['Type',        n=>`<span class="chip c-${n.type.toLowerCase()}">${n.type}</span>`],
+    modality: ['Modality',    n=>n.modalityDetail||n.modality],
+    stage:    ['Stage',       n=>`<span class="chip ${stageChip(n)}" style="font-size:10.5px;">${STAGE_LABELS[n.stage]||n.stage}</span>`],
+    pendWith: ['Pending With',n=>n.status==='review'?u(stageCurrentUser(n)).name.split(' ').slice(0,2).join(' '):'—'],
+    age:      ['Age',         n=>`<span class="${ageClass(n.age,getSla(n))}">${n.age>0?n.age+'d':'Today'}</span>`],
+    status:   ['Status',      n=>{
+      if(n.age>getSla(n)&&n.status==='review') return `<span class="chip c-sla">🔴 SLA Breach</span>`;
+      if(n.flags.includes('sla-warning')) return `<span class="chip c-amber">⚠ SLA Warn</span>`;
+      return `<span class="chip ${stageChip(n)}">${statusLabel(n)}</span>`;
+    }],
+    flags:    ['Flags',       n=>n.flags.filter(f=>!['sla-warning','sla-breach'].includes(f)).map(f=>`<span class="chip c-red" style="font-size:9.5px;">${flagLabel(f)}</span>`).join(' ')||'—'],
+    qAction:  ['Action',      n=>`<button class="btn btn-ok btn-xs" onclick="qApprove('${n.id}',event)">✓ Approve</button> <button class="btn btn-g btn-xs" onclick="openNFA('${n.id}')">View</button>`],
+  };
+  const vcols = cols.filter(c=>COL[c]);
+  let h = '<div style="overflow-x:auto;"><table><thead><tr>';
+  vcols.forEach(c=>h+=`<th>${COL[c][0]}</th>`);
+  if(!cols.includes('qAction')) h += '<th>Action</th>';
+  h += '</tr></thead><tbody>';
+  nfas.forEach(n=>{
+    h += `<tr onclick="openNFA('${n.id}')">`;
+    vcols.forEach(c=>h+=`<td>${COL[c][1](n)}</td>`);
+    if(!cols.includes('qAction')) h += `<td><button class="btn btn-g btn-xs" onclick="openNFA('${n.id}');event.stopPropagation()">View</button></td>`;
+    h += '</tr>';
+  });
+  h += '</tbody></table></div>';
+  return h;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   11. LISTING, MY NFAS, APPROVALS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function renderListing(){
+  const el = document.getElementById('screen-listing');
+  el.innerHTML = `<div class="ph"><div><h1>All NFAs</h1><p>Master procurement approval register · ${all().length} total</p></div><div class="ph-right"><button class="btn btn-g btn-sm" onclick="exportReport()">⬇ Export</button><button class="btn btn-p btn-sm" onclick="nav('new-nfa')">➕ Initiate NFA</button></div></div>
+  <div class="fbar">
+    <input class="fsrch" type="text" placeholder="Search NFA, vendor, buyer…" oninput="APP.filter.text=this.value;applyFilter()" value="${APP.filter.text}">
+    <select class="fsel" onchange="APP.filter.status=this.value;applyFilter()">
+      <option value="">All Status</option><option ${APP.filter.status==='review'?'selected':''}>review</option><option ${APP.filter.status==='approved'?'selected':''}>approved</option><option ${APP.filter.status==='rejected'?'selected':''}>rejected</option><option ${APP.filter.status==='sendback'?'selected':''}>sendback</option>
+    </select>
+    <select class="fsel" onchange="APP.filter.type=this.value;applyFilter()">
+      <option value="">All Types</option><option>Capex</option><option>Opex</option><option>Service</option>
+    </select>
+    <span class="fcnt" id="fcnt"></span>
+  </div>
+  <div class="tw card" id="listingTbl"></div>`;
+  applyFilter();
+}
+
+function applyFilter(){
+  let d = all();
+  const {text,status,type} = APP.filter;
+  if(text){const q=text.toLowerCase();d=d.filter(n=>n.id.toLowerCase().includes(q)||n.desc.toLowerCase().includes(q)||n.vendor.toLowerCase().includes(q)||u(n.buyer).name.toLowerCase().includes(q));}
+  if(status) d=d.filter(n=>n.status===status);
+  if(type)   d=d.filter(n=>n.type===type);
+  const tbl = document.getElementById('listingTbl');
+  if(tbl) tbl.innerHTML = renderTable(d,['id','buyer','desc','value','type','modality','stage','pendWith','age','status']);
+  const fc = document.getElementById('fcnt');
+  if(fc) fc.textContent = `Showing ${d.length} of ${all().length}`;
+}
+
+function renderMyNFAs(){
+  const mine = all().filter(n=>n.buyer===APP.user);
+  const el = document.getElementById('screen-my-nfas');
+  el.innerHTML = `<div class="ph"><div><h1>My NFAs</h1><p>NFAs initiated by ${u(APP.user).name}</p></div><div class="ph-right"><button class="btn btn-p btn-sm" onclick="nav('new-nfa')">➕ New NFA</button></div></div>
+  <div class="tw card">${renderTable(mine,['id','desc','value','type','stage','pendWith','age','status'])}</div>`;
+}
+
+function renderApprovals(){
+  const mine = all().filter(n=>n.status==='review'&&stageCurrentUser(n)===APP.user);
+  const breach = mine.filter(n=>n.age>getSla(n)).length;
+  const val = mine.reduce((s,n)=>s+n.value,0);
+  const el = document.getElementById('screen-approvals');
+  el.innerHTML = `<div class="ph"><div><h1>Pending Approvals</h1><p>${u(APP.user).name} · ${u(APP.user).title}</p></div></div>
+  <div class="kpi-g g3" style="margin-bottom:15px;">
+    <div class="kpi r"><div class="kl">Pending Action</div><div class="kv">${mine.length}</div></div>
+    <div class="kpi a"><div class="kl">SLA Breaches</div><div class="kv">${breach}</div></div>
+    <div class="kpi b"><div class="kl">Value at Stake</div><div class="kv" style="font-size:17px;">${fv(val)}</div></div>
+  </div>
+  <div class="tw card">${renderTable(mine,['id','buyer','desc','value','flags','age','status','qAction'])}</div>`;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   12. NFA DETAIL — FULL RENDERER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+const SECTIONS = [
+  {id:'exec',    lbl:'📊 Summary'},
+  {id:'req',     lbl:'📋 Requirement'},
+  {id:'sourcing',lbl:'🎯 Sourcing'},
+  {id:'tech',    lbl:'🔬 Technical'},
+  {id:'comml',   lbl:'💹 Commercial'},
+  {id:'auction', lbl:'🏷 Auction'},
+  {id:'risk',    lbl:'⚠️ Risk',     flag:true},
+  {id:'decision',lbl:'✅ Decision'},
+  {id:'attach',  lbl:'📎 Attachments'},
+  {id:'comments',lbl:'💬 Comments'},
+  {id:'audit',   lbl:'🗂️ Audit'},
+  {id:'versions',lbl:'🔄 Versions'},
+  {id:'workflow',lbl:'⚡ Workflow'},
+];
+
+function renderNFADetail(nfa){
+  const ndm = document.getElementById('ndm');
+  const ndp = document.getElementById('ndp');
+  const sla = getSla(nfa);
+  const slaChip = nfa.status!=='review'?'':`<span class="chip ${nfa.age>sla?'c-sla':nfa.age>=sla-1?'c-amber':'c-green'}">${nfa.age>sla?'🔴 SLA Breach':nfa.age>=sla-1?'⚠ SLA Warn':'✓ On Track'}</span>`;
+
+  // Main content
+  ndm.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <button class="btn btn-g btn-sm" onclick="nav('listing')">← Back</button>
+        <div><div style="font-size:18px;font-weight:700;">${nfa.id}</div><div style="font-size:11.5px;color:var(--t3);">${nfa.desc} · ${nfa.type} · ${nfa.location}</div></div>
+      </div>
+      <div style="display:flex;gap:7px;align-items:center;">
+        <button class="cmpbtn" onclick="toggleCompact()">⊟ Compact</button>
+        <span class="chip ${stageChip(nfa)}" id="nd-status">${statusLabel(nfa)}</span>
+        ${slaChip}
+        <button class="btn btn-g btn-sm" onclick="exportNFAPDF('${nfa.id}')">⬇ PDF</button>
+      </div>
+    </div>
+    <div class="stabs" id="nfaTabs"></div>
+    <div id="nfaSecContent"></div>`;
+
+  // Build tabs
+  const tabsEl = document.getElementById('nfaTabs');
+  SECTIONS.forEach((s,i)=>{
+    const tab = document.createElement('div');
+    tab.className = `stab${s.flag&&nfa.flags.length?' flag':''} ${i===0?'active':''}`;
+    tab.textContent = s.flag&&nfa.flags.length?`⚠️ Risk (${nfa.flags.length})`:s.lbl;
+    tab.onclick = ()=>{
+      document.querySelectorAll('.stab').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      renderSection(s.id, nfa);
+    };
+    tabsEl.appendChild(tab);
+  });
+  renderSection('exec', nfa);
+  renderPanel(nfa);
+}
+
+function renderSection(id, nfa){
+  const el = document.getElementById('nfaSecContent');
+  const R = {
+    exec: secExec, req: secReq, sourcing: secSourcing,
+    tech: secTech, comml: secComml, auction: secAuction,
+    risk: secRisk, decision: secDecision, attach: secAttach,
+    comments: secComments, audit: secAudit, versions: secVersions, workflow: secWorkflow,
+  };
+  if(R[id]) el.innerHTML = R[id](nfa);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   13. SECTION RENDERERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function wfVis(nfa){
+  const chain = [...computeChain(nfa),'approved'];
+  const icons = {initiator:'👤',rm:'👥',sod:'⚖️',cfo:'💼',ceo:'🏛️',approved:'✅'};
+  const short = {initiator:'Initiator',rm:'Rpt. Mgr',sod:'SOD/C&P',cfo:'CFO',ceo:'CEO',approved:'PO Auth.'};
+  const ci = chain.indexOf(nfa.status==='approved'?'approved':nfa.stage);
+  return chain.map((s,i)=>{
+    const done = i<ci||nfa.status==='approved';
+    const curr = i===ci&&nfa.status!=='approved';
+    const rej  = nfa.status==='rejected'&&s===nfa.stage;
+    let cls = rej?'wrej':done?'wdone':curr?'wcurr':'';
+    let badge = done?`<div class="wfb wfb-d">✓</div>`:curr?`<div class="wfb wfb-c">→</div>`:'';
+    const arr = i<chain.length-1?'<div class="wfa">→</div>':'';
+    return `<div class="wfn"><div class="wfc ${cls}">${icons[s]||'⬤'}${badge}</div><div class="wfl ${curr?'wca':''}">${short[s]||s}<br><span style="font-size:9px;color:var(--t4);">${done?'Done':curr?'Active':i===0?'Done':'Pend.'}</span></div></div>${arr}`;
+  }).join('');
+}
+
+function secExec(nfa){
+  const sav = nfa.savings; const savPct = nfa.budget?((nfa.budget-nfa.value)/nfa.budget*100).toFixed(1):0;
+  return `<div class="kpi-g g4">
+    <div class="kpi b"><div class="kl">NFA Value</div><div class="kv" style="font-size:17px;">${fv(nfa.value)}</div><div class="ks">Incl. GST &amp; freight</div><div class="kd ${savPct>0?'dg':'dr'}">${savPct>0?'↓':'+'}${Math.abs(savPct)}% vs Budget</div></div>
+    <div class="kpi t"><div class="kl">Budget</div><div class="kv" style="font-size:17px;">${fv(nfa.budget)}</div></div>
+    <div class="kpi g"><div class="kl">Savings</div><div class="kv" style="font-size:17px;">${fv(sav)}</div></div>
+    <div class="kpi ${nfa.flags.includes('limited-competition')?'a':'g'}"><div class="kl">Vendor Pool</div><div class="kv">${nfa.vendors.length||4}/6</div></div>
+  </div>
+  ${nfa.flags.length?`<div style="background:var(--alt);border:1.5px solid rgba(168,76,0,.2);border-radius:var(--r);padding:12px 15px;margin-bottom:13px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;"><span style="font-size:16px;">⚠️</span><span style="font-size:13px;font-weight:700;color:var(--amber);">${nfa.flags.length} Risk Flag${nfa.flags.length>1?'s':''} Detected</span></div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;">${nfa.flags.map(f=>`<span class="chip c-${['sla-breach','l1-deviation','single-vendor','rejected'].includes(f)?'red':'amber'}">${flagLabel(f)}</span>`).join('')}</div>
+  </div>`:''}
+  <div class="ig g6">
+    <div class="ic"><div class="ic-l">RFQ</div><div class="ic-v" style="font-size:12px;font-family:var(--mono);">${nfa.rfq}</div></div>
+    <div class="ic"><div class="ic-l">Tender</div><div class="ic-v" style="font-size:12px;">Limited</div></div>
+    <div class="ic"><div class="ic-l">Auction</div><div class="ic-v" style="font-size:12px;color:var(--green);">✓ Done</div></div>
+    <div class="ic"><div class="ic-l">Rec. Vendor</div><div class="ic-v" style="font-size:11px;">${nfa.vendor.split(' ').slice(0,2).join(' ')}</div></div>
+    <div class="ic"><div class="ic-l">DOA Level</div><div class="ic-v" style="font-size:12px;">${STAGE_LABELS[computeChain(nfa).slice(-1)[0]]||'—'}</div></div>
+    <div class="ic"><div class="ic-l">Created By</div><div class="ic-v" style="font-size:12px;">${u(nfa.buyer).name.split(' ')[0]}</div></div>
+  </div>
+  <div class="card"><div class="ch"><div class="ch-t">Procurement Timeline</div></div><div class="cb"><div class="wfv">${wfVis(nfa)}</div></div></div>`;
+}
+
+function secReq(nfa){
+  const L = nfa.locked;
+  return `<div class="card" style="margin-bottom:13px;"><div class="ch"><div class="ch-t">Procurement Modality / DOA Clause</div></div><div class="cb">
+    <div class="fg c2">
+      <div><div class="fl">Modality <span ${L?'':'class="req"'}>*</span></div>${L?`<input class="fi fi-lock" readonly value="${nfa.modalityDetail}">`:`<select class="fi fi-sel" onchange="updateModality('${nfa.id}',this.value)"><option value="L1" ${nfa.modality==='L1'?'selected':''}>L1 Based</option><option value="single" ${nfa.modality==='single'?'selected':''}>Single Vendor (OEM)</option><option value="repeat" ${nfa.modality==='repeat'?'selected':''}>Repeat Order</option><option value="rate" ${nfa.modality==='rate'?'selected':''}>Rate Contract</option><option value="prop" ${nfa.modality==='prop'?'selected':''}>Proprietary</option></select>`}</div>
+      <div><div class="fl">DOA Clause <span class="atag">AUTO</span></div><input class="fi fi-ro" readonly value="${doaLabel(nfa)}"></div>
+      <div class="full"><div class="fl">Modality Justification ${nfa.flags.includes('l1-deviation')?'<span class="rtag">Required</span>':''}</div><textarea class="fi fi-ta ${L?'fi-lock':''}" ${L?'readonly':''}>${nfa.modalityJust}</textarea></div>
+    </div>
+  </div></div>
+  <div class="card"><div class="ch"><div class="ch-t">Business Justification</div></div><div class="cb">
+    <div class="fg c2">
+      <div class="full"><div class="fl">Requirement Description <span class="req">*</span></div><textarea class="fi fi-ta ${L?'fi-lock':''}" rows="3" ${L?'readonly':''}>${nfa.bizJust}</textarea></div>
+      <div><div class="fl">Business Impact</div><div class="radio-g"><div class="rpill ${nfa.impact==='High'?'sel r':''}">🔴 High</div><div class="rpill ${nfa.impact==='Medium'?'sel a':''}">🟡 Medium</div><div class="rpill ${nfa.impact==='Low'?'sel g':''}">🟢 Low</div></div></div>
+      <div><div class="fl">Urgency</div><div class="radio-g"><div class="rpill ${nfa.urgency==='Critical'?'sel r':''}">⚡ Critical</div><div class="rpill ${nfa.urgency==='High'?'sel a':''}">🔴 High</div><div class="rpill ${nfa.urgency==='Planned'?'sel g':''}">📅 Planned</div><div class="rpill ${nfa.urgency==='Routine'?'sel':''}">🔄 Routine</div></div></div>
+      <div><div class="fl">Historical Ref. <span class="atag">AUTO</span></div><input class="fi fi-ro" readonly value="₹2,18,40,000 · PO-2025-09-1142 · Sep 2025"></div>
+      <div><div class="fl">Delivery Required</div><input class="fi ${L?'fi-lock':''}" type="date" value="${nfa.reqDelivery||'2026-05-15'}" ${L?'readonly':''}></div>
+    </div>
+  </div></div>`;
+}
+
+function secSourcing(nfa){
+  return `<div class="ig g3" style="margin-bottom:13px;">
+    <div class="ic"><div class="ic-l">RFQ</div><div class="ic-v" style="font-size:12px;font-family:var(--mono);">${nfa.rfq}</div></div>
+    <div class="ic"><div class="ic-l">Tender</div><div class="ic-v">Limited (AVL)</div></div>
+    <div class="ic"><div class="ic-l">Auction</div><div class="ic-v" style="color:var(--green);">✓ Conducted</div></div>
+    <div class="ic"><div class="ic-l">Invited</div><div class="ic-v">6</div></div>
+    <div class="ic"><div class="ic-l">Responded</div><div class="ic-v" style="color:var(--amber);">${nfa.vendors.length||4}</div></div>
+    <div class="ic"><div class="ic-l">Qualified</div><div class="ic-v" style="color:var(--green);">3</div></div>
+  </div>
+  <div class="card"><div class="ch"><div class="ch-t">Vendor Participation Matrix</div></div><div style="overflow-x:auto;"><table class="ctab">
+    <thead><tr><th>Vendor</th><th>Quote</th><th>Technical</th><th>Auction</th><th>Non-Response</th></tr></thead>
+    <tbody>
+      <tr><td><strong>D&H Secheron Electrodes</strong></td><td><span class="chip c-green">✓ Yes</span></td><td style="color:var(--green);font-weight:700;">✓ Qualified</td><td><span class="chip c-green">Participated</span></td><td>—</td></tr>
+      <tr><td>Ador Welding Ltd</td><td><span class="chip c-green">✓ Yes</span></td><td style="color:var(--green);font-weight:700;">✓ Qualified</td><td><span class="chip c-green">Participated</span></td><td>—</td></tr>
+      <tr><td>ESAB India Ltd</td><td><span class="chip c-green">✓ Yes</span></td><td style="color:var(--amber);font-weight:700;">⚠ Conditional</td><td><span class="chip c-amber">Withdrew</span></td><td>Impact below spec</td></tr>
+      <tr><td>Lincoln Electric India</td><td><span class="chip c-green">✓ Yes</span></td><td style="color:var(--green);font-weight:700;">✓ Qualified</td><td><span class="chip c-green">Participated</span></td><td>—</td></tr>
+      <tr><td>Superon Schweisstechnik</td><td><span class="chip c-red">✗ No</span></td><td>—</td><td>—</td><td>Capacity constraints</td></tr>
+      <tr><td>Gedik Welding (Import)</td><td><span class="chip c-red">✗ No</span></td><td>—</td><td>—</td><td>Lead time</td></tr>
+    </tbody>
+  </table></div></div>`;
+}
+
+function secTech(nfa){
+  return `<div class="clt b"><p>Technical evaluation by Plant Maintenance — R. Krishnamurthy (Dy. Manager). Basis: AMNS Spec WLD-SPEC-2022-04, IS 814:2004, IRS-T-11.</p></div>
+  <div class="card"><div class="ch"><div class="ch-t">Technical Compliance Matrix</div></div><div style="overflow-x:auto;"><table class="ctab">
+    <thead><tr><th>Vendor</th><th>Coating</th><th>Tensile</th><th>Impact</th><th>Storage</th><th>Lead Time</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><strong>D&H Secheron</strong></td><td>Low-H ✓</td><td>580 MPa ✓</td><td>60J@-20°C ✓</td><td>Hermetic ✓</td><td>12d ✓</td><td><span class="chip c-green">✓ Qualified</span></td></tr>
+      <tr><td>Ador Welding</td><td>Low-H ✓</td><td>572 MPa ✓</td><td>55J@-20°C ✓</td><td>Standard ✓</td><td>18d ✓</td><td><span class="chip c-green">✓ Qualified</span></td></tr>
+      <tr><td>ESAB India</td><td>Low-H ✓</td><td>565 MPa ⚠</td><td>48J@-20°C ✗</td><td>Standard ✓</td><td>14d ✓</td><td><span class="chip c-amber">⚠ Conditional</span></td></tr>
+      <tr><td>Lincoln Electric</td><td>Low-H ✓</td><td>590 MPa ✓</td><td>65J@-20°C ✓</td><td>Hermetic ✓</td><td>22d ⚠</td><td><span class="chip c-green">✓ Qualified</span></td></tr>
+    </tbody>
+  </table></div></div>`;
+}
+
+function secComml(nfa){
+  const vl = nfa.vendors.length?nfa.vendors:[
+    {name:'Lincoln Electric India',rank:1,unitPrice:1782,basic:22096800,gst:3977424,freight:280000,tcl:26354224,vsL1:0,  rec:false},
+    {name:'D&H Secheron Electrodes',rank:2,unitPrice:1810,basic:22444000,gst:4039920,freight:244480,tcl:26728400,vsL1:1.42,rec:true},
+    {name:'Ador Welding Ltd',       rank:3,unitPrice:1840,basic:22816000,gst:4106880,freight:310000,tcl:27232880,vsL1:3.33,rec:false},
+    {name:'ESAB India Ltd',         rank:4,unitPrice:1930,basic:23932000,gst:4307760,freight:275000,tcl:28514760,vsL1:8.19,rec:false},
+  ];
+  const rkc = ['rk1','rk2','rk3','rk4'];
+  const maxTcl = Math.max(...vl.map(v=>v.tcl));
+  return `<div class="card" style="margin-bottom:13px;"><div class="ch"><div><div class="ch-t">Price Comparison — Post Auction</div><div class="ch-s">All values ₹ · Incl. GST &amp; Logistics · Auto-ranked</div></div></div>
+  <div style="overflow-x:auto;"><table class="ctab">
+    <thead><tr><th>Rank</th><th>Vendor</th><th>Unit Price</th><th>Basic Amt</th><th>GST 18%</th><th>Freight</th><th>Landed (TCO)</th><th>vs L1</th><th>Status</th></tr></thead>
+    <tbody>
+      ${vl.map((v,i)=>`<tr ${v.rec?'class="rrow"':''}><td><span class="${rkc[i]||'rk4'}">L${v.rank}</span></td><td><strong>${v.name}</strong>${v.rec?' ⭐':''}</td><td class="rf">₹${v.unitPrice.toLocaleString('en-IN')}</td><td class="rf">${fv(v.basic)}</td><td class="rf">${fv(v.gst)}</td><td class="rf">${fv(v.freight)}</td><td class="rf ${v.rec?'rf-best':''}">${fvf(v.tcl)}</td><td class="rf" style="color:${v.vsL1>0?'var(--amber)':'var(--green)'};">${v.vsL1?'+'+v.vsL1+'%':'—'}</td><td>${v.rec?'<span class="chip c-green">✅ Recommended</span>':v.rank===1?'<span class="chip c-blue">L1 · Not Rec.</span>':'<span class="chip c-teal">Qualified</span>'}</td></tr>`).join('')}
+    </tbody>
+  </table></div></div>
+  <div class="card"><div class="ch"><div class="ch-t">Visual Comparison</div></div><div class="cb"><div class="bchart">
+    ${vl.map((v,i)=>{
+      const pct=Math.round(v.tcl/maxTcl*100);
+      const clrs=['linear-gradient(180deg,#5B98FF,var(--blue))','linear-gradient(180deg,#43A858,var(--green))','linear-gradient(180deg,var(--gold),var(--amber))','linear-gradient(180deg,#EF5350,var(--red))'];
+      return `<div class="bcg"><div class="bcv" style="font-size:9.5px;">${fv(v.tcl)}</div><div class="bcb" style="height:${pct}%;background:${v.rec?'linear-gradient(180deg,#43A858,var(--green));box-shadow:0 0 12px rgba(24,104,48,.3)':clrs[i]};"></div><div class="bcl" style="${v.rec?'color:var(--green);font-weight:700;':''}">${v.name.split(' ').slice(0,2).join(' ')}<br>(L${v.rank})</div></div>`;
+    }).join('')}
+    <div class="bcg"><div class="bcv" style="font-size:9.5px;">${fv(nfa.budget)}</div><div class="bcb" style="height:${Math.round(nfa.budget/maxTcl*100)}%;background:repeating-linear-gradient(45deg,#8BB4FF,#8BB4FF 3px,#E6EFFF 3px,#E6EFFF 8px);border:2px dashed var(--blue);"></div><div class="bcl" style="color:var(--blue);">Budget</div></div>
+  </div></div></div>`;
+}
+
+function secAuction(nfa){
+  return `<div class="kpi-g g3">
+    <div class="kpi t"><div class="kl">Pre-Auction Best</div><div class="kv" style="font-size:16px;">₹2,71,57,400</div><div class="ks">Lincoln Electric</div></div>
+    <div class="kpi g"><div class="kl">Post-Auction Best</div><div class="kv" style="font-size:16px;">₹2,63,54,224</div><div class="ks">Lincoln · Final</div><div class="kd dg">↓ ₹8.03L (2.96%)</div></div>
+    <div class="kpi a"><div class="kl">Total Bids</div><div class="kv">27</div><div class="ks">3 participants · 90 min</div></div>
+  </div>
+  <div class="card"><div class="ch"><div class="ch-t">Bid Trend — 01 May 2026 · 14:00–15:30 IST</div></div><div class="cb">
+    <div style="background:var(--bg);border-radius:var(--rsm);padding:14px;height:145px;overflow:hidden;">
+      <svg width="100%" height="115" viewBox="0 0 520 115" style="display:block;">
+        <defs><linearGradient id="bg1v4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1251C8" stop-opacity=".12"/><stop offset="100%" stop-color="#1251C8" stop-opacity="0"/></linearGradient></defs>
+        <line x1="0" y1="28" x2="520" y2="28" stroke="#DDE6F4" stroke-dasharray="4,4"/>
+        <line x1="0" y1="56" x2="520" y2="56" stroke="#DDE6F4" stroke-dasharray="4,4"/>
+        <line x1="0" y1="84" x2="520" y2="84" stroke="#DDE6F4" stroke-dasharray="4,4"/>
+        <polygon points="20,21 75,19 135,16 195,13 255,10 315,8 375,7 445,6 510,5 510,115 20,115" fill="url(#bg1v4)"/>
+        <polyline points="20,21 75,19 135,16 195,13 255,10 315,8 375,7 445,6 510,5" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linejoin="round"/>
+        <polyline points="20,31 90,28 160,25 220,22 280,20 340,17 400,15 510,13" fill="none" stroke="var(--green)" stroke-width="2" stroke-dasharray="6,3"/>
+        <polyline points="20,46 110,42 190,38 270,35 350,32 430,29 510,27" fill="none" stroke="var(--amber)" stroke-width="2"/>
+        <text x="515" y="8" font-size="9" fill="var(--blue)" font-weight="700">Lincoln</text>
+        <text x="515" y="17" font-size="9" fill="var(--green)" font-weight="700">D&H</text>
+        <text x="515" y="30" font-size="9" fill="var(--amber)" font-weight="700">Ador</text>
+        <text x="16" y="108" font-size="8" fill="var(--t4)">14:00</text>
+        <text x="245" y="108" font-size="8" fill="var(--t4)">14:45</text>
+        <text x="485" y="108" font-size="8" fill="var(--t4)">15:30</text>
+      </svg>
+    </div>
+  </div></div>`;
+}
+
+function secRisk(nfa){
+  let h='';
+  if(nfa.flags.includes('l1-deviation')){
+    h+=`<div class="dc r"><div class="dc-t r">🔴 CRITICAL: L1 Vendor Not Selected<span style="margin-left:auto;" class="chip c-red">Mandatory</span></div>
+      <div class="dc-b">L1 (Lincoln Electric) quotes ${fvf(26354224)} vs recommended L2 at ${fvf(nfa.value)} — premium of ₹3,74,176 (1.42%). CFO-level justification required per AMNS DOA Policy.</div>
+      <div class="fl">Justification <span class="req">*</span></div>
+      <textarea class="fi fi-ta ${nfa.locked?'fi-lock':''}" rows="4" ${nfa.locked?'readonly':''}>${nfa.riskJust}</textarea>
+    </div>`;
+  }
+  if(nfa.modality==='single'||nfa.modality==='prop'){
+    h+=`<div class="dc r"><div class="dc-t r">🔴 SINGLE/PROPRIETARY VENDOR<span style="margin-left:auto;" class="chip c-red">Mandatory</span></div>
+      <div class="dc-b">Single source procurement. Written OEM/proprietary justification required.</div>
+      <div class="fl">OEM Justification <span class="req">*</span></div>
+      <textarea class="fi fi-ta" rows="3">${nfa.riskJust||'OEM holds exclusive design rights. No alternate vendor.'}</textarea>
+    </div>`;
+  }
+  if(nfa.flags.includes('limited-competition')){
+    h+=`<div class="dc a"><div class="dc-t a">🟡 Limited Competition — Advisory</div>
+      <div class="dc-b">Only ${nfa.vendors.length||4}/6 invited vendors responded. Min. 5 bids recommended for >₹2 Cr.</div>
+      <textarea class="fi fi-ta" rows="3">${nfa.limitJust}</textarea>
+    </div>`;
+  }
+  if(nfa.flags.includes('sla-breach')){
+    h+=`<div class="dc r"><div class="dc-t r">🔴 SLA BREACHED — Escalation Triggered</div>
+      <div class="dc-b">NFA pending ${nfa.age} days. SLA limit: ${getSla(nfa)} days. Auto-escalation notification sent.</div>
+    </div>`;
+  }
+  if(!h) h = `<div class="clt g"><p>✅ No risk flags for this NFA. All parameters within policy.</p></div>`;
+  h += `<div class="card" style="margin-top:12px;"><div class="ch"><div class="ch-t">Risk Summary</div></div><div style="overflow-x:auto;"><table class="ctab">
+    <thead><tr><th>Risk</th><th>Status</th><th>Severity</th><th>Mitigated</th></tr></thead>
+    <tbody>
+      <tr><td>L1 Not Selected</td><td>${nfa.flags.includes('l1-deviation')?`<span class="chip c-red">Flagged</span>`:`<span class="chip c-green">Clear</span>`}</td><td style="color:${nfa.flags.includes('l1-deviation')?'var(--red)':'var(--green)'};">${nfa.flags.includes('l1-deviation')?'High':'None'}</td><td>${nfa.riskJust?'✓ Justified':'—'}</td></tr>
+      <tr><td>Single Vendor</td><td>${nfa.modality==='single'?`<span class="chip c-red">Flagged</span>`:`<span class="chip c-green">Clear</span>`}</td><td style="color:${nfa.modality==='single'?'var(--red)':'var(--green)'};">${nfa.modality==='single'?'High':'None'}</td><td>—</td></tr>
+      <tr><td>Budget Exceeded</td><td><span class="chip c-green">Clear</span></td><td style="color:var(--green);">None</td><td>N/A</td></tr>
+      <tr><td>SLA Status</td><td>${nfa.flags.includes('sla-breach')?`<span class="chip c-sla">Breached</span>`:nfa.flags.includes('sla-warning')?`<span class="chip c-amber">Warning</span>`:`<span class="chip c-green">On Track</span>`}</td><td style="color:${nfa.flags.includes('sla-breach')?'var(--red)':nfa.flags.includes('sla-warning')?'var(--amber)':'var(--green)'};">${nfa.flags.includes('sla-breach')?'High':nfa.flags.includes('sla-warning')?'Medium':'None'}</td><td>${nfa.flags.includes('sla-breach')?'Auto-escalated':'N/A'}</td></tr>
+    </tbody>
+  </table></div></div>`;
+  return h;
+}
+
+function secDecision(nfa){
+  const L = nfa.locked;
+  return `<div class="db">
+    <div style="font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--green);font-weight:700;margin-bottom:2px;">Recommended Vendor</div>
+    <div class="db-vn">${nfa.vendor}</div>
+    <div class="db-vs">${nfa.location} · ${nfa.dept} · Code: ${nfa.vendorCode}</div>
+    <div class="db-grid">
+      <div class="db-c"><div class="db-cl">Final Value</div><div class="db-cv">${fvf(nfa.finalValue)}</div></div>
+      <div class="db-c"><div class="db-cl">Savings vs Budget</div><div class="db-cv" style="color:var(--green);">${fv(nfa.savings)}</div></div>
+      <div class="db-c"><div class="db-cl">Delivery</div><div class="db-cv" style="font-size:13px;">${nfa.deliveryDays>0?nfa.deliveryDays+' Days':'Ongoing'}</div></div>
+      <div class="db-c"><div class="db-cl">Rank</div><div class="db-cv">${nfa.flags.includes('l1-deviation')?'L2 (Dev.)':'L1'}</div></div>
+      <div class="db-c"><div class="db-cl">Payment</div><div class="db-cv" style="font-size:12px;">${nfa.paymentTerms}</div></div>
+      <div class="db-c"><div class="db-cl">Warranty</div><div class="db-cv" style="font-size:12px;">${nfa.warranty}</div></div>
+    </div>
+  </div>
+  ${nfa.flags.includes('l1-deviation')?`<div class="card" style="margin-bottom:13px;"><div class="ch"><div class="ch-t">Why Not L1? — Decision Justification</div><span class="chip c-red">L1 Deviation</span></div>
+    <div class="cb"><div class="clt a"><p>L1 (Lincoln Electric India) not selected due to 22-day delivery incompatibility with BF#2 shutdown (18 May). D&H Secheron 12-day delivery + ₹3.74L premium justified vs ₹1.2–1.8 Cr/day production downtime.</p></div>
+    <div class="fg c2">
+      <div><div class="fl">Commercial Advantage</div><textarea class="fi fi-ta ${L?'fi-lock':''}" rows="3" ${L?'readonly':''}>D&H Secheron: 12d delivery, proven AMNS track record (3 prior POs), hermetic seal packaging.</textarea></div>
+      <div><div class="fl">Technical Advantage</div><textarea class="fi fi-ta ${L?'fi-lock':''}" rows="3" ${L?'readonly':''}>Full compliance with WLD-SPEC-2022-04 including 60J impact at -20°C. Lincoln superior technically but cannot meet timeline.</textarea></div>
+    </div>
+  </div></div>`:''}
+  <div class="card"><div class="ch"><div class="ch-t">Buyer's Recommendation Note</div></div><div class="cb">
+    <textarea class="fi fi-ta ${L?'fi-lock':''}" rows="5" ${L?'readonly':''}>${nfa.recNote}</textarea>
+    <div style="display:flex;gap:12px;margin-top:12px;">
+      <div style="flex:1;"><div class="fl">Initiated By</div><input class="fi fi-ro" readonly value="${u(nfa.buyer).name} · ${u(nfa.buyer).title}"></div>
+      <div style="flex:1;"><div class="fl">Submitted On</div><input class="fi fi-ro" readonly value="${nfa.submitted}"></div>
+    </div>
+    ${L?`<div class="clt g" style="margin-top:10px;"><p>🔒 NFA Approved & Locked — version history immutable. PO may be issued.</p></div>`:''}
+  </div></div>
+  <!-- SIGNATURE SECTION (PDF only) -->
+  <div id="sigSection">
+    <div style="margin-top:24px;border-top:2px solid #1251C8;padding-top:16px;">
+      <div style="font-size:12pt;font-weight:700;margin-bottom:16px;">Approval Signatures</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+        ${computeChain(nfa).filter(s=>s!=='initiator').map(s=>`<div style="border:1px solid #ccc;border-radius:6px;padding:12px;">
+          <div style="font-size:10pt;font-weight:700;margin-bottom:3px;">${STAGE_LABELS[s]||s}</div>
+          <div style="font-size:9pt;color:#666;margin-bottom:20px;">${u(STAGE_USER[s]).name} · ${u(STAGE_USER[s]).title}</div>
+          <div style="border-bottom:1px solid #333;height:30px;margin-bottom:6px;"></div>
+          <div style="font-size:8pt;color:#666;">Signature &amp; Date</div>
+          <div style="margin-top:8px;font-size:9pt;">Status: ${nfa.timeline.find(t=>t.stage===s)?.status==='done'?`✅ APPROVED — ${nfa.timeline.find(t=>t.stage===s)?.ts}`:'⏳ Pending'}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+  </div>`;
+}
+
+function secAttach(nfa){
+  const EM={'pdf':'📄','xlsx':'📊','docx':'📝'};
+  const IC={'pdf':'ic-pdf','xlsx':'ic-xlsx','docx':'ic-docx'};
+  const atts = nfa.attachments.length?nfa.attachments:[
+    {name:'Comparative Statement — '+nfa.rfq,type:'xlsx',size:'284 KB',date:'02 May',by:'Procol Auto'},
+    {name:'Technical Evaluation Report',type:'pdf',size:'1.1 MB',date:'23 Apr',by:'Plant Maintenance'},
+    {name:nfa.vendor+' — Final Quotation',type:'pdf',size:'420 KB',date:'30 Apr',by:'Vendor'},
+    {name:'Reverse Auction Log',type:'xlsx',size:'95 KB',date:'01 May',by:'Procol Auto'},
+  ];
+  return `<div class="card"><div class="ch"><div class="ch-t">Attached Documents (${atts.length})</div><button class="btn btn-g btn-sm">⬇ All</button></div><div class="cb">
+    ${atts.map(a=>`<div class="att"><div class="att-ic ${IC[a.type]||'ic-pdf'}">${EM[a.type]||'📄'}</div><div><div class="att-n">${a.name}</div><div class="att-m">${a.type.toUpperCase()} · ${a.size} · ${a.date} · ${a.by}</div></div><div style="margin-left:auto;display:flex;gap:5px;"><button class="btn btn-g btn-xs">View</button><button class="btn btn-g btn-xs">⬇</button></div></div>`).join('')}
+    ${!nfa.locked?`<div class="drop-z"><div style="font-size:22px;margin-bottom:5px;">⬆️</div><div style="font-size:12.5px;color:var(--t2);"><span style="color:var(--blue);font-weight:700;">Click to upload</span> or drag &amp; drop<br><span style="font-size:11px;color:var(--t3);">PDF, XLSX, DOCX · Max 25 MB</span></div></div>`:''}
+  </div></div>`;
+}
+
+function secComments(nfa){
+  const TS={'submission':'c-blue','approval':'c-green','rejection':'c-red','sendback':'c-amber','note':''};
+  const TL={'submission':'Submission','approval':'✓ Approved','rejection':'✗ Rejected','sendback':'↩ Sent Back','note':'Note'};
+  const CT={'submission':'t-sub','approval':'t-appr','rejection':'t-rej','sendback':'t-sb','note':'t-note'};
+  return `<div class="card"><div class="ch"><div class="ch-t">Comment Thread</div><div class="ch-s">${nfa.comments.length} comments · Stage-wise visibility</div></div><div class="cb">
+    <div class="ct-wrap" id="ctWrap">
+      ${nfa.comments.map(c=>{
+        const uu=u(c.user);
+        return `<div class="ct-card ${CT[c.type]||'t-note'}">
+          <div class="ct-hd">
+            <div class="ct-av" style="background:${uu.color};">${uu.av}</div>
+            <div><div class="ct-who">${uu.name}</div><div class="ct-role">${uu.title} · ${uu.dept}</div></div>
+            <span class="chip ${TS[c.type]||'c-blue'}" style="font-size:9.5px;">${TL[c.type]||'Note'}</span>
+            <div class="ct-ts">${c.ts}</div>
+          </div>
+          <div class="ct-body">${c.text}</div>
+        </div>`;
+      }).join('')}
+    </div>
+    ${!nfa.locked?`<div class="ct-in-wrap">
+      <div class="ct-av" style="background:${u(APP.user).color};">${u(APP.user).av}</div>
+      <textarea class="ct-in" id="ctInput" placeholder="Add a comment…" rows="2"></textarea>
+      <button class="btn btn-p btn-sm" onclick="addComment('${nfa.id}')">Post</button>
+    </div>`:''}
+  </div></div>`;
+}
+
+function secAudit(nfa){
+  const ents = AUDIT_LOG.filter(e=>e.nfa===nfa.id);
+  return `<div class="card"><div class="ch"><div class="ch-t">NFA Audit Trail — ${ents.length} entries</div><button class="btn btn-g btn-sm">⬇ Export</button></div>
+  <div class="audit-hdr"><span>Timestamp</span><span>User</span><span>NFA</span><span>Action</span><span>Ver</span></div>
+  <div>${ents.length?ents.map(e=>`<div class="audit-row"><span class="at">${e.ts}</span><span class="au">${u(e.user).name.split(' ')[0]}</span><span class="an2">${e.nfa}</span><span class="aa">${e.action}</span><span class="av">${e.ver}</span></div>`).join(''):'<div style="padding:16px;text-align:center;color:var(--t3);">No audit entries</div>'}</div>
+  </div>`;
+}
+
+function secVersions(nfa){
+  return `<div class="card"><div class="ch"><div class="ch-t">Version History</div><div class="ch-s">${nfa.versions.length} versions</div></div><div class="cb">
+    ${nfa.versions.length?nfa.versions.map(v=>`<div class="vi"><div class="vn">${v.ver}</div><div style="flex:1;"><div class="vi-who">${u(v.who).name}</div><div class="vi-ts">${v.ts}</div><div class="vi-ch">${v.changes}</div></div>${!nfa.locked?'<button class="btn btn-g btn-xs">Diff</button>':''}</div>`).join(''):'<div style="color:var(--t3);text-align:center;padding:16px;">No versions</div>'}
+    ${nfa.locked?`<div class="clt g" style="margin-top:10px;"><p>🔒 Approved &amp; locked — history immutable.</p></div>`:''}
+  </div></div>`;
+}
+
+function secWorkflow(nfa){
+  const chain = computeChain(nfa);
+  return `<div class="doa-pill" style="margin-bottom:13px;">
+    <div class="doa-lbl">DOA Level — Auto-computed</div>
+    <div class="doa-v">${doaLabel(nfa)}</div>
+    <div class="doa-s">Value: ${fv(nfa.value)} · Modality: ${nfa.modalityDetail||nfa.modality} · Flags: ${nfa.flags.join(', ')||'none'}</div>
+  </div>
+  <div class="card" style="margin-bottom:13px;"><div class="ch"><div class="ch-t">Live Approval Workflow</div></div><div class="cb"><div class="wfv">${wfVis(nfa)}</div></div></div>
+  <div class="card" style="margin-bottom:13px;"><div class="ch"><div class="ch-t">Approver Chain</div></div><div class="cb">
+    ${chain.map(s=>{
+      const tl=nfa.timeline.find(t=>t.stage===s);
+      const isDone=tl?.status==='done', isCurr=tl?.status==='current';
+      return `<div style="display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid var(--blt2);">
+        <div class="adot ${isDone?'adot-done':isCurr?'adot-curr':'adot-wait'}">${isDone?'✓':isCurr?'→':'○'}</div>
+        <div style="flex:1;"><div style="font-size:12.5px;font-weight:700;">${STAGE_LABELS[s]||s}</div><div style="font-size:11.5px;color:var(--t2);">${u(STAGE_USER[s]||nfa.buyer).name} · ${u(STAGE_USER[s]||nfa.buyer).title}</div></div>
+        <span class="atag2 ${isDone?'tdone':isCurr?'tcurr':'twait'}">${isDone?'Approved':isCurr?'In Review':'Waiting'}</span>
+        ${tl?.comment?`<div style="font-size:11px;color:var(--t2);font-style:italic;max-width:180px;">"${tl.comment}"</div>`:''}
+      </div>`;
+    }).join('')}
+  </div></div>
+  <div class="card"><div class="ch"><div class="ch-t">DOA Reference Matrix</div></div><div style="overflow-x:auto;"><table class="ctab">
+    <thead><tr><th>Threshold</th><th>Standard</th><th>L1 Deviation</th><th>Single Vendor</th><th>SLA</th></tr></thead>
+    <tbody>
+      ${DOA.map(r=>{
+        const curr = nfa.value<=r.max && nfa.value>(DOA[DOA.indexOf(r)-1]?.max||0);
+        const s2u = {AM:'RM',PN:'SOD',SG:'CFO',RK:'CEO'};
+        return `<tr ${curr?'style="background:var(--bxlt)!important;"':''}>
+          <td><strong>${r.label}${curr?' ← Current':''}</strong></td>
+          <td>${r.std.map(x=>s2u[x]||x).join(' → ')}</td>
+          <td>${r.dev.map(x=>s2u[x]||x).join(' → ')}</td>
+          <td>${r.single.map(x=>s2u[x]||x).join(' → ')}</td>
+          <td>${r.sla}d</td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table></div></div>`;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   14. RIGHT PANEL RENDERER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function renderPanel(nfa){
+  const ndp = document.getElementById('ndp');
+  const sla = getSla(nfa);
+  const myTurn = nfa.status==='review' && stageCurrentUser(nfa)===APP.user;
+  const curAppr = u(stageCurrentUser(nfa)||nfa.buyer);
+  const slaPct = Math.min(100, Math.round(nfa.age/sla*100));
+  const slaFill = nfa.age>sla?'slcrit':nfa.age>=sla-1?'slwarn':'slok';
+
+  ndp.innerHTML = `
+  <div class="ps">
+    <div class="pl">NFA Summary</div>
+    <div class="doa-pill">
+      <div class="doa-lbl">Current Approver</div>
+      <div class="doa-v">${curAppr.name}</div>
+      <div class="doa-s">${curAppr.title} · ${STAGE_LABELS[nfa.stage]||nfa.stage}</div>
+    </div>
+    <div class="ir"><span class="ik">NFA</span><span class="iv m">${nfa.id}</span></div>
+    <div class="ir"><span class="ik">Status</span><span class="iv b" id="ps-status">${statusLabel(nfa)}</span></div>
+    <div class="ir"><span class="ik">Value</span><span class="iv g m">${fvf(nfa.value)}</span></div>
+    <div class="ir"><span class="ik">Budget</span><span class="iv m">${fvf(nfa.budget)}</span></div>
+    <div class="ir"><span class="ik">Savings</span><span class="iv g">${fv(nfa.savings)} (${nfa.budget?(nfa.savings/nfa.budget*100).toFixed(1):0}%)</span></div>
+    <div class="ir"><span class="ik">Vendor</span><span class="iv" style="font-size:11px;">${nfa.vendor.split(' ').slice(0,2).join(' ')}</span></div>
+    <div class="ir"><span class="ik">Risk Flags</span><span class="iv ${nfa.flags.length?'r':'g'}">${nfa.flags.length?nfa.flags.length+' flagged':'✓ None'}</span></div>
+    <div class="ir"><span class="ik">DOA</span><span class="iv" style="font-size:11px;">${STAGE_LABELS[computeChain(nfa).slice(-1)[0]]}</span></div>
+    ${nfa.status==='review'?`<div class="slaw">
+      <div class="ir" style="margin-bottom:3px;"><span class="ik">Pending</span><span class="iv ${nfa.age>sla?'r':nfa.age>=sla-1?'a':'g'}">${nfa.age>0?nfa.age+'d':'Today'} / ${sla}d SLA</span></div>
+      <div class="slab"><div class="slaf ${slaFill}" style="width:${slaPct}%"></div></div>
+      <div class="slat" id="sla-txt">${nfa.age>sla?'🔴 SLA BREACHED — escalation sent':nfa.age>=sla-1?'⚠ SLA Warning — action needed':'✓ On track'}</div>
+    </div>`:''}
+  </div>
+
+  <div class="ps">
+    <div class="pl">Approval Actions</div>
+    ${nfa.locked?`<div class="clt g"><p>🔒 Approved &amp; Locked · PO authorized</p></div>`:
+      !myTurn&&nfa.status==='review'?`<div class="clt b"><p>Awaiting: ${curAppr.name}<br>You are not the current approver.<br>Switch role to take action.</p></div>`:
+      nfa.status==='review'?`<div class="ag">
+        <button class="ab ab-ok" onclick="showModal('approve','${nfa.id}')">✅ Approve</button>
+        <button class="ab ab-fw" onclick="showModal('approve','${nfa.id}')">➡ Forward to Next</button>
+        <button class="ab ab-sb" onclick="showModal('sendback','${nfa.id}')">↩ Send Back</button>
+        <button class="ab ab-rej" onclick="showModal('reject','${nfa.id}')">✗ Reject</button>
+      </div><textarea class="cbox" id="apCmt" placeholder="Comment (mandatory for rejection/send back)…"></textarea>`:
+      nfa.status==='rejected'?`<div class="clt r"><p>✗ NFA Rejected — Initiator notified</p></div>`:
+      nfa.status==='sendback'?`<div class="clt a"><p>↩ Sent Back — Awaiting initiator revision</p></div>`:
+      `<div class="clt g"><p>✅ NFA fully approved. PO authorized.</p></div>`}
+  </div>
+
+  <div class="ps" style="flex:1;">
+    <div class="pl">Approval History</div>
+    <div id="atlContainer">
+      ${buildAtl(nfa)}
+    </div>
+  </div>
+
+  <div class="ps" style="text-align:center;font-size:10px;color:var(--t4);line-height:1.6;">
+    🔒 All actions time-stamped · Non-repudiable<br>
+    <span style="font-family:var(--mono);">AMNS NFA Portal v4 · ${new Date().getFullYear()}</span><br>
+    <button class="btn btn-g btn-xs" style="margin-top:6px;" onclick="if(confirm('Reset all data to defaults?'))clearStorage()">⚠ Reset Data</button>
+  </div>`;
+}
+
+function buildAtl(nfa){
+  return nfa.timeline.map(step=>{
+    const uu = u(step.user||'SYS');
+    const ds = {done:'adot-done',current:'adot-curr',waiting:'adot-wait',skip:'adot-skip',sendback:'adot-sb',rejected:'adot-rej'};
+    const di = {done:'✓',current:'→',waiting:'…',skip:'—',sendback:'↩',rejected:'✗'};
+    const ts = {done:'tdone',current:'tcurr',waiting:'twait',skip:'twait',sendback:'tsb',rejected:'trej'};
+    const tl = {done:'Approved',current:'In Review',waiting:'Waiting',skip:'Skipped',sendback:'Sent Back',rejected:'Rejected'};
+    const sc = {done:'sdone',sendback:'ssb',rejected:'srej'};
+    return `<div class="atl-step ${sc[step.status]||''}">
+      <div class="adot ${ds[step.status]||'adot-wait'}">${di[step.status]||'○'}</div>
+      <div class="ai">
+        <div class="ar">${STAGE_LABELS[step.stage]||step.stage}</div>
+        <div class="an">${uu.name} · ${uu.title}</div>
+        <div class="ats">${step.ts}</div>
+        <div><span class="atag2 ${ts[step.status]||'twait'}">${tl[step.status]||step.status}</span></div>
+        ${step.comment?`<div class="acmt">"${step.comment}"</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   15. ACTION ENGINE — APPROVE / REJECT / SENDBACK
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function showModal(type, id){
+  APP.currentNFA = id;
+  const nfa = DB.nfas[id];
+  if(!nfa) return;
+  if(type==='approve'){
+    document.getElementById('ma-id').textContent = id;
+    document.getElementById('ma-val').textContent = fvf(nfa.value);
+    const next = computeNextStage(nfa);
+    const nm = {approved:'FINAL — NFA will be fully approved and locked.',rm:'Reporting Manager — '+u('AM').name,sod:'SOD/C&P — '+u('PN').name,cfo:'CFO — '+u('SG').name,ceo:'CEO — '+u('RK').name};
+    document.getElementById('ma-next').textContent = next==='approved'?nm.approved:'Forward to: '+(nm[next]||next);
+    document.getElementById('ma-cmt').value='';
+  } else if(type==='reject'){
+    document.getElementById('mr-id').textContent = id;
+    document.getElementById('mr-cmt').value='';
+  } else if(type==='sendback'){
+    document.getElementById('ms-id').textContent = id;
+    document.getElementById('ms-cmt').value='';
+  }
+  document.getElementById('m-'+type).classList.add('open');
+}
+function closeModal(t){ document.getElementById('m-'+t).classList.remove('open'); }
+document.querySelectorAll('.mov').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
+
+function execApprove(){
+  const comment = document.getElementById('ma-cmt').value.trim()||'Approved.';
+  const nfa = DB.nfas[APP.currentNFA];
+  if(!nfa) return;
+  closeModal('approve');
+
+  // Update timeline — mark current stage done
+  const tlStep = nfa.timeline.find(t=>t.stage===nfa.stage);
+  if(tlStep){ tlStep.status='done'; tlStep.ts=now(); tlStep.comment=comment; }
+
+  const prev = nfa.stage;
+  const next = computeNextStage(nfa);
+
+  if(next==='approved'){
+    nfa.status='approved'; nfa.stage='approved'; nfa.locked=true;
+    nfa.timeline.forEach(t=>{ if(t.status==='waiting'||t.status==='current'){ t.status='done'; t.ts=now(); } });
+    toast('🎉 NFA Fully Approved! PO can be issued.','g');
+    logAudit(nfa.id,`FINAL APPROVAL by ${u(APP.user).name} · NFA locked · PO authorized`,`v${nfa.versions.length+1}.0`);
+  } else {
+    nfa.prevStage = nfa.stage;
+    nfa.stage = next;
+    const nextTl = nfa.timeline.find(t=>t.stage===next);
+    if(nextTl){ nextTl.status='current'; nextTl.ts='Pending from '+now(); }
+    else { nfa.timeline.push({stage:next,user:STAGE_USER[next]||'—',ts:'Pending from '+now(),status:'current',comment:''}); }
+    toast(`✅ Approved → Forwarded to ${STAGE_LABELS[next]}`,'g');
+    logAudit(nfa.id,`Approved at ${STAGE_LABELS[prev]} by ${u(APP.user).name} → forwarded to ${STAGE_LABELS[next]}`,`v${nfa.versions.length+1}.0`);
+  }
+
+  // Add approval comment + version
+  nfa.comments.push({id:'c'+Date.now(),user:APP.user,ts:now(),type:'approval',text:comment});
+  nfa.versions.push({ver:`v${nfa.versions.length+1}.0`,who:APP.user,ts:now(),changes:`Approved at ${STAGE_LABELS[prev]} by ${u(APP.user).name}`});
+  saveData(); refreshAll();
+}
+
+function execReject(){
+  const comment = document.getElementById('mr-cmt').value.trim();
+  if(!comment){ toast('⚠ Rejection reason is mandatory!','r'); return; }
+  const nfa = DB.nfas[APP.currentNFA];
+  if(!nfa) return;
+  closeModal('reject');
+
+  const tlStep = nfa.timeline.find(t=>t.stage===nfa.stage);
+  if(tlStep){ tlStep.status='rejected'; tlStep.ts=now(); tlStep.comment=comment; }
+  nfa.status='rejected';
+  nfa.comments.push({id:'c'+Date.now(),user:APP.user,ts:now(),type:'rejection',text:comment});
+  nfa.versions.push({ver:`v${nfa.versions.length+1}.0`,who:APP.user,ts:now(),changes:`Rejected by ${u(APP.user).name}: ${comment.slice(0,60)}`});
+  logAudit(nfa.id,`REJECTED by ${u(APP.user).name} — Reason: ${comment.slice(0,80)}`,`v${nfa.versions.length}.0`);
+  toast('✗ NFA Rejected — Initiator notified','r');
+  saveData(); refreshAll();
+}
+
+function execSendback(){
+  const comment = document.getElementById('ms-cmt').value.trim();
+  if(!comment){ toast('⚠ Revision instructions are mandatory!','a'); return; }
+  const nfa = DB.nfas[APP.currentNFA];
+  if(!nfa) return;
+  closeModal('sendback');
+
+  const tlStep = nfa.timeline.find(t=>t.stage===nfa.stage);
+  if(tlStep){ tlStep.status='sendback'; tlStep.ts=now(); tlStep.comment=comment; }
+  nfa.status='sendback';
+  const prev = nfa.prevStage||'initiator';
+  nfa.stage = prev;
+  const prevTl = nfa.timeline.find(t=>t.stage===prev);
+  if(prevTl){ prevTl.status='current'; prevTl.ts='Revision from '+now(); }
+  nfa.comments.push({id:'c'+Date.now(),user:APP.user,ts:now(),type:'sendback',text:comment});
+  nfa.versions.push({ver:`v${nfa.versions.length+1}.0`,who:APP.user,ts:now(),changes:`Sent back by ${u(APP.user).name}: ${comment.slice(0,60)}`});
+  logAudit(nfa.id,`SENT BACK by ${u(APP.user).name} → revision required`,`v${nfa.versions.length}.0`);
+  toast('↩ Sent Back — Initiator notified','a');
+  saveData(); refreshAll();
+}
+
+function qApprove(id, e){
+  e.stopPropagation();
+  APP.currentNFA = id;
+  showModal('approve', id);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   16. REAL-TIME SYNC — refreshAll
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function refreshAll(){
+  updateCounts();
+  updateAlerts();
+  const cs = APP.currentScreen;
+  // Refresh current screen
+  if(cs==='dashboard') renderDashboard();
+  else if(cs==='listing') applyFilter();
+  else if(cs==='my-nfas') renderMyNFAs();
+  else if(cs==='approvals') renderApprovals();
+  else if(cs==='audit-log') renderAuditLog();
+  // If NFA detail is active, refresh it
+  if(APP.currentNFA && document.getElementById('screen-nfa-detail').classList.contains('active')){
+    const nfa = DB.nfas[APP.currentNFA];
+    if(nfa){
+      // Update status chip
+      const sc = document.getElementById('nd-status');
+      if(sc){ sc.className=`chip ${stageChip(nfa)}`; sc.textContent=statusLabel(nfa); }
+      // Rebuild panel
+      renderPanel(nfa);
+    }
+  }
+}
+
+function updateCounts(){
+  const a = all();
+  document.getElementById('sb-all').textContent = a.length;
+  document.getElementById('sb-mine').textContent = a.filter(n=>n.buyer===APP.user).length;
+  const pend = a.filter(n=>n.status==='review'&&stageCurrentUser(n)===APP.user).length;
+  document.getElementById('sb-appr').textContent = pend;
+  document.getElementById('sb-appr').className = pend>0?'nav-cnt cnt-r':'nav-cnt cnt-g';
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   17. COMMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function addComment(nfaId){
+  const input = document.getElementById('ctInput');
+  const text = input?.value.trim();
+  if(!text){ toast('Comment cannot be empty','a'); return; }
+  const nfa = DB.nfas[nfaId];
+  if(!nfa) return;
+  nfa.comments.push({id:'c'+Date.now(),user:APP.user,ts:now(),type:'note',text});
+  logAudit(nfaId,`Comment by ${u(APP.user).name}: "${text.slice(0,60)}"`,`—`);
+  saveData();
+  renderSection('comments',nfa);
+  toast('Comment posted','g');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   18. MODALITY UPDATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function updateModality(id, val){
+  const nfa = DB.nfas[id];
+  if(!nfa||nfa.locked) return;
+  nfa.modality = val;
+  const lb = {L1:'L1 Based',single:'Single Vendor (OEM)',repeat:'Repeat Order',rate:'Rate Contract',prop:'Proprietary'};
+  nfa.modalityDetail = lb[val]||val;
+  if(val==='single'&&!nfa.flags.includes('single-vendor')) nfa.flags.push('single-vendor');
+  if(val!=='single') nfa.flags = nfa.flags.filter(f=>f!=='single-vendor');
+  logAudit(id,`Modality changed to ${lb[val]} by ${u(APP.user).name}`,'—');
+  saveData();
+  toast('Modality updated','b');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   19. NEW NFA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function renderNewNFA(){
+  const el = document.getElementById('screen-new-nfa');
+  el.innerHTML = `<div class="ph"><div><h1>Initiate NFA</h1><p>Create a procurement approval request</p></div><div class="ph-right"><button class="btn btn-g btn-sm" onclick="nav('listing')">Cancel</button><button class="btn btn-p btn-sm" onclick="submitNewNFA()">Submit NFA →</button></div></div>
+  <div class="card"><div class="ch"><div class="ch-t">NFA Details</div><span class="atag">AUTO-populated fields from Procol/ERP</span></div><div class="cb">
+    <div class="fg c3">
+      <div><div class="fl">NFA Number <span class="atag">AUTO</span></div><input class="fi fi-ro" id="nn-id" readonly value="NFA-2026-XX-${String(APP.nfaCounter+1).padStart(4,'0')}"></div>
+      <div><div class="fl">RFQ Reference</div><input class="fi" id="nn-rfq" placeholder="e.g. RFQ-2026-0412"></div>
+      <div><div class="fl">Procurement Type <span class="req">*</span></div><select class="fi fi-sel" id="nn-type" onchange="previewDoa()"><option>Capex</option><option>Opex</option><option>Service</option><option>Rate Contract</option></select></div>
+      <div class="full"><div class="fl">Item Description <span class="req">*</span></div><input class="fi" id="nn-desc" placeholder="Describe the material or service…"></div>
+      <div><div class="fl">Estimated Value (₹) <span class="req">*</span></div><input class="fi" id="nn-val" type="number" placeholder="e.g. 25000000" oninput="previewDoa()"></div>
+      <div><div class="fl">Procurement Modality <span class="req">*</span></div><select class="fi fi-sel" id="nn-mod" onchange="previewDoa()"><option value="L1">L1 Based</option><option value="single">Single Vendor (OEM)</option><option value="repeat">Repeat Order</option><option value="rate">Rate Contract</option><option value="prop">Proprietary</option></select></div>
+      <div><div class="fl">Department</div><input class="fi" id="nn-dept" value="Procurement &amp; Supply Chain"></div>
+      <div><div class="fl">Location</div><select class="fi fi-sel" id="nn-loc"><option>Hazira — Steel Plant</option><option>Dahej — Port</option><option>Corporate — Mumbai</option></select></div>
+      <div><div class="fl">Required Delivery</div><input class="fi" type="date" id="nn-del"></div>
+      <div class="full"><div class="fl">Business Justification <span class="req">*</span></div><textarea class="fi fi-ta" id="nn-just" rows="3" placeholder="Describe the business need and operational impact…"></textarea></div>
+    </div>
+    <div id="doa-prev" class="clt b" style="display:none;"><p id="doa-prev-txt"></p></div>
+  </div></div>`;
+}
+
+function previewDoa(){
+  const val = parseFloat(document.getElementById('nn-val')?.value||0);
+  const mod = document.getElementById('nn-mod')?.value||'L1';
+  if(!val){ document.getElementById('doa-prev').style.display='none'; return; }
+  const rule = doaRule(val);
+  const chain = mod==='single'||mod==='prop'?rule.single:rule.std;
+  const su = {AM:'Rpt. Manager',PN:'SOD/C&P',SG:'CFO',RK:'CEO'};
+  document.getElementById('doa-prev-txt').textContent = `ℹ️ DOA: ${rule.label} → Approvals required: ${chain.map(x=>su[x]||x).join(' → ')} · SLA: ${rule.sla} days`;
+  document.getElementById('doa-prev').style.display='';
+}
+
+function submitNewNFA(){
+  const desc = document.getElementById('nn-desc')?.value.trim();
+  const val  = parseFloat(document.getElementById('nn-val')?.value||0);
+  const just = document.getElementById('nn-just')?.value.trim();
+  if(!desc||!val||!just){ toast('⚠ Fill all required fields','a'); return; }
+
+  const type = document.getElementById('nn-type')?.value||'Capex';
+  const mod  = document.getElementById('nn-mod')?.value||'L1';
+  const pfx  = {Capex:'CP',Opex:'OP',Service:'SV','Rate Contract':'RC'}[type]||'CP';
+  APP.nfaCounter++;
+  const id = `NFA-2026-${pfx}-${String(APP.nfaCounter).padStart(4,'0')}`;
+  const rule = doaRule(val);
+  const chain = mod==='single'||mod==='prop'?rule.single:rule.std;
+  const stageOf = {AM:'rm',PN:'sod',SG:'cfo',RK:'ceo'};
+  const fullChain = ['initiator',...chain.map(x=>stageOf[x])];
+  const lb = {L1:'L1 Based',single:'Single Vendor (OEM)',repeat:'Repeat Order',rate:'Rate Contract',prop:'Proprietary'};
+
+  DB.nfas[id] = {
+    id, buyer:APP.user, desc, type, modality:mod,
+    value:val, budget:val*1.05,
+    dept:document.getElementById('nn-dept')?.value||'—',
+    location:document.getElementById('nn-loc')?.value||'—',
+    rfq:document.getElementById('nn-rfq')?.value||'TBD',
+    vendor:'TBD', vendorCode:'—',
+    stage:stageOf[chain[0]]||'rm', prevStage:'initiator',
+    status:'review', age:0,
+    flags: mod==='single'||mod==='prop'?['single-vendor']:[],
+    created:now(), submitted:now(),
+    riskJust:'', limitJust:'', bizJust:just,
+    urgency:'Planned', impact:'Medium', reqDelivery:'',
+    modalityDetail:lb[mod]||mod, modalityJust:'', recNote:'',
+    savings:0, finalValue:val, deliveryDays:0, paymentTerms:'Net 30', warranty:'12 Months',
+    locked:false,
+    versions:[{ver:'v0.1',who:APP.user,ts:now(),changes:'NFA draft created and submitted'}],
+    timeline:[
+      {stage:'initiator',user:APP.user,ts:now(),status:'done',comment:'NFA submitted.'},
+      ...fullChain.slice(1).map((s,i)=>({stage:s,user:STAGE_USER[s]||'—',ts:i===0?'Pending from '+now():'Waiting',status:i===0?'current':'waiting',comment:''})),
+    ],
+    comments:[{id:'c'+Date.now(),user:APP.user,ts:now(),type:'submission',text:`NFA submitted by ${u(APP.user).name}. ${just.slice(0,80)}`}],
+    vendors:[], attachments:[],
+  };
+
+  logAudit(id,`NFA created and submitted by ${u(APP.user).name} · Value: ${fv(val)} · Chain: ${fullChain.join('→')}`,'v0.1');
+  saveData(); updateCounts();
+  toast(`✅ ${id} submitted successfully!`,'g');
+  setTimeout(()=>openNFA(id), 500);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   20. ANALYTICS & AUDIT LOG SCREENS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function renderAnalytics(){
+  const a = all();
+  const appr = a.filter(n=>n.status==='approved');
+  const totalSav = appr.reduce((s,n)=>s+n.savings,0);
+  const totalVal = appr.reduce((s,n)=>s+n.value,0);
+  document.getElementById('screen-analytics').innerHTML = `
+  <div class="ph"><div><h1>Analytics</h1><p>Procurement performance — FY 2025–26</p></div><div class="ph-right"><button class="btn btn-g btn-sm" onclick="exportReport()">⬇ Export</button></div></div>
+  <div class="kpi-g g4">
+    <div class="kpi b"><div class="kl">Total NFA Value</div><div class="kv" style="font-size:16px;">${fv(totalVal)}</div><div class="ks">${appr.length} approved NFAs</div></div>
+    <div class="kpi g"><div class="kl">Total Savings</div><div class="kv" style="font-size:16px;">${fv(totalSav)}</div><div class="ks">Avg. ${totalVal?(totalSav/totalVal*100).toFixed(1):0}% per NFA</div></div>
+    <div class="kpi a"><div class="kl">Avg. Approval Time</div><div class="kv">4.2d</div><div class="ks">Target: 5 days</div></div>
+    <div class="kpi t"><div class="kl">On-Time Rate</div><div class="kv">89%</div><div class="ks">42 of ${a.length} within SLA</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div class="card"><div class="ch"><div class="ch-t">Monthly Volume</div></div><div class="cb"><div class="bchart">
+      ${[['Oct',6],['Nov',8],['Dec',11],['Jan',9],['Feb',7],['Mar',6],['Apr',12],['May',4]].map(([m,v])=>`<div class="bcg"><div class="bcv">${v}</div><div class="bcb" style="height:${Math.round(v/12*100)}%;background:linear-gradient(180deg,#5B98FF,var(--blue));"></div><div class="bcl">${m}</div></div>`).join('')}
+    </div></div></div>
+    <div class="card"><div class="ch"><div class="ch-t">Savings by Category</div></div><div class="cb">
+      ${[['Capital Items','pf-b',76,'₹5.9Cr (9.8%)'],['Services','pf-t',38,'₹1.1Cr (7.2%)'],['Opex Items','pf-a',24,'₹0.8Cr (6.5%)']].map(([n,c,p,v])=>`<div class="pr-row"><div class="pr-nm">${n}</div><div class="pr-bar"><div class="pr-fill ${c}" style="width:${p}%"></div></div><div class="pr-val">${v}</div></div>`).join('')}
+    </div></div>
+  </div>`;
+}
+
+function renderAuditLog(){
+  const el = document.getElementById('screen-audit-log');
+  el.innerHTML = `
+  <div class="ph"><div><h1>System Audit Log</h1><p>Complete platform activity · ${AUDIT_LOG.length} entries</p></div><div class="ph-right"><input class="fsrch" placeholder="Search log…" oninput="filterAuditGlobal(this.value)"><button class="btn btn-g btn-sm" onclick="exportReport()">⬇ Export</button></div></div>
+  <div class="card">
+    <div class="audit-hdr"><span>Timestamp</span><span>User</span><span>NFA</span><span>Action</span><span>Ver</span></div>
+    <div id="gAuditBody">${auditRows(AUDIT_LOG)}</div>
+  </div>`;
+}
+function auditRows(entries){
+  return entries.slice(0,50).map(e=>`<div class="audit-row"><span class="at">${e.ts}</span><span class="au">${u(e.user).name.split(' ')[0]}</span><span class="an2">${e.nfa}</span><span class="aa">${e.action}</span><span class="av">${e.ver}</span></div>`).join('')||'<div style="padding:16px;text-align:center;color:var(--t3);">No audit entries</div>';
+}
+function filterAuditGlobal(q){
+  const el=document.getElementById('gAuditBody');
+  if(!el) return;
+  const f=AUDIT_LOG.filter(e=>e.action.toLowerCase().includes(q.toLowerCase())||e.nfa.toLowerCase().includes(q.toLowerCase())||u(e.user).name.toLowerCase().includes(q.toLowerCase()));
+  el.innerHTML=auditRows(f);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   21. DOA CONFIG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function renderDoaConfig(){
+  const su2={AM:'RM',PN:'SOD',SG:'CFO',RK:'CEO'};
+  document.getElementById('screen-doa-config').innerHTML = `
+  <div class="ph"><div><h1>DOA Configuration</h1><p>Delegation of Authority — approval hierarchy</p></div><div class="ph-right"><button class="btn btn-p btn-sm" onclick="toast('DOA saved to localStorage','g');saveData();">💾 Save</button></div></div>
+  <div class="card" style="margin-bottom:13px;"><div class="ch"><div class="ch-t">Approval Thresholds</div></div>
+    <div style="overflow-x:auto;"><table class="ctab">
+      <thead><tr><th>Threshold</th><th>Standard L1</th><th>L1 Deviation</th><th>Single/OEM Vendor</th><th>SLA (days)</th></tr></thead>
+      <tbody>${DOA.map(r=>`<tr><td><strong>${r.label}</strong></td><td>${r.std.map(x=>su2[x]).join(' → ')}</td><td>${r.dev.map(x=>su2[x]).join(' → ')}</td><td>${r.single.map(x=>su2[x]).join(' → ')}</td><td><input class="fi" type="number" value="${r.sla}" style="padding:4px;width:50px;text-align:center;" onchange="DOA[${DOA.indexOf(r)}].sla=parseInt(this.value)"></td></tr>`).join('')}</tbody>
+    </table></div></div>
+  <div class="card"><div class="ch"><div class="ch-t">Approver Directory</div></div><div class="cb">
+    <div class="fg c2">${Object.entries(USERS).filter(([,v])=>v.role==='approver').map(([id,p])=>`<div style="display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--blt2);border-radius:var(--rsm);">
+      <div style="width:34px;height:34px;border-radius:50%;background:${p.color};display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700;">${p.av}</div>
+      <div><div style="font-size:13px;font-weight:700;">${p.name}</div><div style="font-size:11.5px;color:var(--t2);">${p.title} · ${p.dept}</div></div>
+      <span class="chip c-teal" style="margin-left:auto;">Approver</span>
+    </div>`).join('')}</div>
+  </div></div>`;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   22. ROLE SYSTEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function cycleRole(){
+  const i = ROLES.indexOf(APP.role);
+  APP.role = ROLES[(i+1)%ROLES.length];
+  APP.user = ROLE_USERS[APP.role];
+  const uu = u(APP.user);
+  const rb = document.getElementById('roleBtn');
+  rb.textContent = {buyer:`👤 Buyer — ${uu.name}`,approver:`🔐 Approver — ${uu.name}`,admin:`🛠 Admin — ${uu.name}`}[APP.role];
+  rb.className = `tb-badge rb-${APP.role}`;
+  document.getElementById('tbAv').textContent = uu.av;
+  document.getElementById('tbAv').style.background = uu.color;
+  updateCounts(); updateAlerts();
+  toast(`Switched to ${APP.role} — ${uu.name}`,'b');
+  refreshAll();
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   23. ALERTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function updateAlerts(){
+  const alts = generateAlerts();
+  const el = document.getElementById('alertItems');
+  if(!el) return;
+  const dot = document.getElementById('notifDot');
+  if(dot) dot.style.display = alts.length?'':'none';
+  if(!alts.length){ el.innerHTML='<div style="padding:16px;text-align:center;color:var(--t3);">✓ No new notifications</div>'; return; }
+  el.innerHTML = alts.map(a=>`<div class="ali u-${a.type}" onclick="if(a.id){openNFA('${a.id||''}');toggleAlerts();}">
+    <div class="ali-t">${a.t}</div>
+    <div class="ali-b">${a.b}</div>
+    <div class="ali-m">${a.m}</div>
+  </div>`).join('');
+}
+function toggleAlerts(){
+  APP.alertsOpen = !APP.alertsOpen;
+  document.getElementById('alertPanel').classList.toggle('open',APP.alertsOpen);
+  if(APP.alertsOpen) updateAlerts();
+}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.tb-btn')&&!e.target.closest('.alp')){
+    document.getElementById('alertPanel').classList.remove('open');
+    APP.alertsOpen=false;
+  }
+});
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   24. PDF EXPORT (Enterprise Format)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function exportNFAPDF(id){
+  const nfa = DB.nfas[id||APP.currentNFA];
+  if(!nfa) return;
+  document.getElementById('pdf-nfa-h').textContent = nfa.id;
+  document.getElementById('pdf-date-h').textContent = 'Generated: '+now();
+  document.getElementById('pdf-ver-h').textContent = nfa.versions[0]?.ver||'v1.0';
+  // Show all sections for print
+  document.querySelectorAll('.nsec').forEach(s=>s.style.display='block');
+  toast('📄 Generating PDF — printing…','b');
+  setTimeout(()=>{
+    window.print();
+    setTimeout(()=>document.querySelectorAll('.nsec').forEach(s=>s.style.display=''),800);
+  }, 700);
+}
+function exportReport(){ toast('📊 Export generated','b'); setTimeout(()=>toast('✅ Report ready (PDF print)','g'),1000); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   25. COMPACT MODE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function toggleCompact(){
+  APP.compact = !APP.compact;
+  document.body.classList.toggle('cmode',APP.compact);
+  document.querySelectorAll('.cmpbtn').forEach(b=>b.textContent=APP.compact?'⊞ Normal':'⊟ Compact');
+  toast(APP.compact?'Compact mode on':'Normal mode on','b');
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   26. TOAST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function toast(msg, type){
+  const wrap = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(()=>{ t.style.transition='all .22s'; t.style.opacity='0'; t.style.transform='translateX(110%)'; setTimeout(()=>t.remove(),220); }, 3500);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   27. CLOCK & INIT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+function updateClock(){
+  const el = document.getElementById('syncTick');
+  if(el){ const d=new Date(); el.textContent=d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})+' · '+d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'}); }
+}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  // Load persisted data
+  const loaded = loadData();
+  loadAudit();
+  if(loaded) toast('✅ Data restored from localStorage','g');
+
+  // Seed initial audit entries if empty
+  if(!AUDIT_LOG.length){
+    AUDIT_LOG.push(
+      {ts:'03 May 09:41',user:'SYS',nfa:'NFA-2026-CP-0047',action:'Auction data synced from Procol',ver:'v1.4'},
+      {ts:'03 May 10:15',user:'AM', nfa:'NFA-2026-CP-0047',action:'Reporting Manager approved — "Shutdown critical"',ver:'v1.3'},
+      {ts:'03 May 08:52',user:'VV', nfa:'NFA-2026-CP-0047',action:'NFA submitted for approval workflow',ver:'v1.3'},
+      {ts:'21 Apr 16:30',user:'RK', nfa:'NFA-2026-CP-0044',action:'CEO final approval · PO authorized',ver:'v2.0'},
+      {ts:'01 May 16:00',user:'SYS',nfa:'NFA-2026-CP-0047',action:'Reverse auction completed · 27 bids · Prices locked',ver:'v1.1'},
+    );
+    saveAudit();
+  }
+
+  updateCounts();
+  updateAlerts();
+  updateClock();
+  setInterval(updateClock, 30000);
+
+  // SLA check every 60s (in real system would be server-side)
+  setInterval(runSlaCheck, 60000);
+  runSlaCheck();
+
+  // Initial render
+  renderDashboard();
+
+  setTimeout(()=>toast('🔔 Portal loaded · localStorage active · '+all().length+' NFAs','a'),800);
+});
+</script>
+</body>
+</html>
