@@ -3,34 +3,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AMNS India — NFA Portal v4</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+<title>AMNS India — NFA Portal v5</title>
+<!-- System fonts only - no external dependency -->
 
 <style>
 /* ═══════════════════════════════════════════
-   ROOT TOKENS
+   ROOT TOKENS — v5 Corporate Theme
 ═══════════════════════════════════════════ */
 :root {
-  --navy:    #091929; --navy2: #0F2338; --navy3: #163352;
-  --blue:    #1251C8; --blue2: #1A62E8; --blt: #E6EFFF; --bxlt: #F2F7FF;
-  --teal:    #006E78; --tlt: #E0F4F6;
-  --green:   #186830; --glt: #E6F4EA;
-  --amber:   #A84C00; --alt: #FFF0E0;
-  --red:     #A81818; --rlt: #FDEAEA;
-  --gold:    #C87800;
-  --bg:      #EEF1F8; --bg2: #E4E8F2; --bg3: #D8DEEE;
+  --navy:    #0D1B2E; --navy2: #122033; --navy3: #1A2E48;
+  --blue:    #1558CC; --blue2: #1A68E8; --blt: #E8F0FE; --bxlt: #F4F8FF;
+  --teal:    #006B72; --tlt: #E0F4F6;
+  --green:   #1A6B30; --glt: #E8F6EC;
+  --amber:   #B05400; --alt: #FFF1E0;
+  --red:     #B01E1E; --rlt: #FDEAEA;
+  --gold:    #CC8000;
+  --purple:  #5A3090;
+  --bg:      #F5F7FA; --bg2: #EBEEF5; --bg3: #DDE3EE;
   --white:   #FFFFFF;
-  --t1: #091929; --t2: #2E4566; --t3: #647A99; --t4: #9EB0CC;
-  --border:  #C8D4E8; --blt2: #DDE6F4;
-  --sh1: 0 1px 3px rgba(9,25,41,.07);
-  --sh2: 0 3px 12px rgba(9,25,41,.10);
-  --sh3: 0 8px 32px rgba(9,25,41,.14);
-  --sh4: 0 20px 60px rgba(9,25,41,.20);
-  --r:8px; --rsm:5px; --rlg:12px;
-  --topH:52px; --sbW:212px; --rpW:272px;
-  --font:'IBM Plex Sans','Segoe UI',Calibri,sans-serif;
-  --mono:'IBM Plex Mono','Courier New',monospace;
-  --serif:'IBM Plex Serif',Georgia,serif;
+  --t1: #0D1B2E; --t2: #2C4160; --t3: #5E78A0; --t4: #98B0CC;
+  --border:  #C8D4E4; --blt2: #DDE6F0;
+  --sh1: 0 1px 3px rgba(13,27,46,.06);
+  --sh2: 0 2px 10px rgba(13,27,46,.09);
+  --sh3: 0 6px 28px rgba(13,27,46,.13);
+  --sh4: 0 16px 50px rgba(13,27,46,.18);
+  --r:7px; --rsm:4px; --rlg:10px;
+  --topH:52px; --sbW:215px; --rpW:275px;
+  --font:'Segoe UI',Calibri,'Helvetica Neue',Arial,sans-serif;
+  --mono:'Consolas','Courier New',monospace;
+  --serif:Georgia,'Times New Roman',serif;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--t1);font-family:var(--font);font-size:13.5px;line-height:1.55;}
@@ -475,6 +476,132 @@ body.cmode .fg{gap:8px!important;}
 #pdfFooter{display:none;padding:8px 20px;border-top:1px solid #ccc;font-size:9pt;color:#666;margin-top:16px;}
 #sigSection{display:none;margin-top:24px;}
 .sdiv{height:1px;background:var(--blt2);margin:13px 0;}
+
+/* ═══ V5 ENHANCED APPROVER DASHBOARD ═══ */
+
+/* Executive KPI Cards - big number style */
+.ekpi-row{display:grid;gap:12px;margin-bottom:18px;}
+.ekpi-row.g4{grid-template-columns:repeat(4,1fr);}
+.ekpi-row.g2{grid-template-columns:repeat(2,1fr);}
+.ekpi{background:var(--white);border-radius:var(--r);padding:18px 20px 16px;border:1px solid var(--blt2);box-shadow:var(--sh1);position:relative;overflow:hidden;}
+.ekpi-accent{position:absolute;top:0;left:0;right:0;height:4px;}
+.ekpi-accent.g{background:var(--green);}
+.ekpi-accent.r{background:var(--red);}
+.ekpi-accent.b{background:var(--blue);}
+.ekpi-accent.a{background:var(--amber);}
+.ekpi-accent.t{background:var(--teal);}
+.ekpi-accent.p{background:var(--purple);}
+.ekpi-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.6px;color:var(--t3);margin-bottom:8px;}
+.ekpi-num{font-size:32px;font-weight:700;line-height:1;letter-spacing:-1px;color:var(--t1);font-variant-numeric:tabular-nums;}
+.ekpi-num.g{color:var(--green);}
+.ekpi-num.r{color:var(--red);}
+.ekpi-num.b{color:var(--blue);}
+.ekpi-num.a{color:var(--amber);}
+.ekpi-num.t{color:var(--teal);}
+.ekpi-sub{font-size:11.5px;color:var(--t3);margin-top:6px;}
+.ekpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:2px 8px;border-radius:12px;margin-top:6px;}
+.ekpi-delta.dg{background:var(--glt);color:var(--green);}
+.ekpi-delta.dr{background:var(--rlt);color:var(--red);}
+.ekpi-delta.da{background:var(--alt);color:var(--amber);}
+.ekpi-delta.db{background:var(--blt);color:var(--blue);}
+.ekpi-icon{position:absolute;right:16px;top:18px;font-size:26px;opacity:.14;}
+
+/* Workload Banner */
+.wl-banner{background:var(--navy);border-radius:var(--r);padding:16px 20px;margin-bottom:18px;display:flex;align-items:center;gap:20px;}
+.wl-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;}
+.wl-text{flex:1;}
+.wl-name{font-size:15px;font-weight:700;color:#fff;}
+.wl-sub{font-size:12px;color:rgba(255,255,255,.5);margin-top:2px;}
+.wl-stats{display:flex;gap:24px;}
+.wl-stat{text-align:center;}
+.wl-stat-num{font-size:22px;font-weight:700;color:#fff;line-height:1;}
+.wl-stat-lbl{font-size:10px;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.5px;margin-top:2px;}
+.wl-crit{background:var(--red);color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap;animation:pulseBg 2s infinite;}
+@keyframes pulseBg{0%,100%{opacity:1}50%{opacity:.75}}
+
+/* Decision Funnel */
+.funnel-wrap{padding:16px 0 8px;}
+.funnel{display:flex;align-items:center;gap:0;overflow-x:auto;}
+.funnel-step{display:flex;flex-direction:column;align-items:center;position:relative;flex:1;min-width:90px;}
+.funnel-bar{height:56px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#fff;width:100%;position:relative;transition:.3s;}
+.funnel-arrow{font-size:18px;color:var(--border);flex-shrink:0;margin:0 2px;align-self:center;margin-bottom:20px;}
+.funnel-lbl{font-size:11px;font-weight:600;color:var(--t2);margin-top:5px;text-align:center;}
+.funnel-cnt{font-size:10px;color:var(--t3);text-align:center;margin-top:1px;}
+.fb-received{background:var(--blue);}
+.fb-reviewed{background:var(--teal);}
+.fb-approved{background:var(--green);}
+.fb-rejected{background:var(--red);}
+.fb-sendback{background:var(--amber);}
+
+/* Aging Buckets - visual */
+.aging-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.aging-bucket{border-radius:var(--r);padding:14px 16px;border:1.5px solid;text-align:center;}
+.ag-ok{background:#F0FFF4;border-color:rgba(26,107,48,.18);}
+.ag-warn{background:#FFFBF0;border-color:rgba(176,84,0,.18);}
+.ag-crit{background:#FFF0F0;border-color:rgba(176,30,30,.2);}
+.aging-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.ag-ok .aging-label{color:var(--green);}
+.ag-warn .aging-label{color:var(--amber);}
+.ag-crit .aging-label{color:var(--red);}
+.aging-num{font-size:28px;font-weight:700;line-height:1;}
+.ag-ok .aging-num{color:var(--green);}
+.ag-warn .aging-num{color:var(--amber);}
+.ag-crit .aging-num{color:var(--red);}
+.aging-nfas{font-size:10.5px;margin-top:3px;}
+.ag-ok .aging-nfas{color:var(--green);}
+.ag-warn .aging-nfas{color:var(--amber);}
+.ag-crit .aging-nfas{color:var(--red);}
+
+/* Priority Queue */
+.pq-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid var(--blt2);border-radius:var(--rsm);margin-bottom:7px;cursor:pointer;transition:.12s;background:var(--white);}
+.pq-item:hover{border-color:var(--blue);background:var(--bxlt);}
+.pq-item.pq-critical{border-left:4px solid var(--red);background:var(--rlt);}
+.pq-item.pq-high{border-left:4px solid var(--amber);}
+.pq-item.pq-normal{border-left:4px solid var(--blue);}
+.pq-badge{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0;}
+.pq-badge.r{background:var(--red);}
+.pq-badge.a{background:var(--amber);}
+.pq-badge.b{background:var(--blue);}
+.pq-info{flex:1;}
+.pq-id{font-size:11.5px;font-weight:700;color:var(--blue);font-family:var(--mono);}
+.pq-desc{font-size:12px;color:var(--t2);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px;}
+.pq-val{font-size:12px;font-weight:700;font-family:var(--mono);text-align:right;}
+.pq-age{font-size:11px;font-weight:700;text-align:right;}
+.pq-reason{font-size:10px;color:var(--t3);text-align:right;margin-top:1px;}
+
+/* Location/Dept Distribution */
+.dist-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--blt2);}
+.dist-row:last-child{border-bottom:none;}
+.dist-label{width:130px;font-size:12px;font-weight:600;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dist-bar-wrap{flex:1;height:8px;background:var(--bg2);border-radius:4px;overflow:hidden;}
+.dist-bar{height:100%;border-radius:4px;transition:.4s;}
+.dist-val{width:60px;text-align:right;font-size:11.5px;font-weight:700;font-family:var(--mono);color:var(--t2);}
+.dist-cnt{width:24px;text-align:right;font-size:11px;color:var(--t3);}
+
+/* Decision Analytics Panel */
+.danalytics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.da-stat{background:var(--white);border:1px solid var(--blt2);border-radius:var(--r);padding:16px;text-align:center;box-shadow:var(--sh1);}
+.da-num{font-size:28px;font-weight:700;line-height:1;margin-bottom:4px;}
+.da-lbl{font-size:11px;color:var(--t3);font-weight:600;}
+.da-trend{font-size:11px;margin-top:4px;font-weight:600;}
+.da-trend.up{color:var(--green);}
+.da-trend.dn{color:var(--red);}
+.da-trend.flat{color:var(--t3);}
+
+/* Section subheader */
+.sec-hd{font-size:13px;font-weight:700;color:var(--t1);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.sec-hd-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:var(--rlt);color:var(--red);}
+.sec-hd-badge.a{background:var(--alt);color:var(--amber);}
+.sec-hd-badge.b{background:var(--blt);color:var(--blue);}
+
+/* Two-col layout helper */
+.dash-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+.dash-3col{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:16px;}
+
+/* Trend sparkline-like mini bars */
+.mini-trend{display:flex;align-items:flex-end;gap:3px;height:24px;}
+.mt-bar{border-radius:2px 2px 0 0;width:10px;opacity:.7;}
+
 </style>
 </head>
 <body>
@@ -498,7 +625,7 @@ body.cmode .fg{gap:8px!important;}
 <header class="topbar">
   <div class="tb-logo">
     <div class="tb-mark">AM</div>
-    <div><div class="tb-name">AMNS India</div><div class="tb-sub">NFA Portal · v4</div></div>
+    <div><div class="tb-name">AMNS India</div><div class="tb-sub">NFA Portal · v5</div></div>
   </div>
   <div class="tb-sep"></div>
   <div class="tb-ctx" id="topCtx"><b>Dashboard</b></div>
@@ -880,72 +1007,404 @@ function openNFA(id){
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   9. DASHBOARD RENDERER
+   9. DASHBOARD RENDERER — v5 ENHANCED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 function renderDashboard(){
   const el = document.getElementById('screen-dashboard');
   const nfas = all();
   const isApprover = APP.role==='approver';
-  let h = `<div class="ph"><div><h1>${isApprover?'Approver Dashboard':'Initiator Dashboard'}</h1><p>${u(APP.user).name} · ${u(APP.user).title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</p></div><div class="ph-right"><button class="cmpbtn" onclick="toggleCompact()">⊟ Compact</button><button class="btn btn-g btn-sm" onclick="nav('new-nfa')">➕ New NFA</button><button class="btn btn-p btn-sm" onclick="exportReport()">⬇ Export</button></div></div>`;
+  const uu = u(APP.user);
 
   if(isApprover){
-    const mine = nfas.filter(n=>n.status==='review'&&stageCurrentUser(n)===APP.user);
-    const breached = mine.filter(n=>n.age>getSla(n));
-    const val = mine.reduce((s,n)=>s+n.value,0);
-    h += `<div class="kpi-g g4">
-      <div class="kpi r"><div class="kl">Pending My Approval</div><div class="kv">${mine.length}</div><div class="ks">Requires decision</div>${mine.length?`<div class="kd dr">Action needed</div>`:`<div class="kd dg">✓ Clear</div>`}</div>
-      <div class="kpi a"><div class="kl">SLA Breaches</div><div class="kv">${breached.length}</div><div class="ks">Immediate action</div>${breached.length?`<div class="kd dr">URGENT</div>`:`<div class="kd dg">✓ None</div>`}</div>
-      <div class="kpi b"><div class="kl">Value Pending</div><div class="kv" style="font-size:17px;">${fv(val)}</div><div class="ks">${mine.length} NFAs</div></div>
-      <div class="kpi g"><div class="kl">Approved by Me</div><div class="kv">${nfas.filter(n=>n.status==='approved'&&n.timeline.some(t=>t.user===APP.user&&t.status==='done')).length}</div></div>
-    </div>
-    <div class="card"><div class="ch"><div class="ch-t">Priority Queue</div></div>${renderTable(mine,['id','desc','value','flags','age','qAction'])}</div>`;
+    renderApproverDashboard(el, nfas, uu);
   } else {
-    const mine = nfas.filter(n=>n.buyer===APP.user);
-    const pend = mine.filter(n=>n.status==='review').length;
-    const appr = mine.filter(n=>n.status==='approved').length;
-    const rej  = mine.filter(n=>['rejected','sendback'].includes(n.status)).length;
-    const valU = mine.filter(n=>n.status==='review').reduce((s,n)=>s+n.value,0);
-    const savA = mine.filter(n=>n.status==='approved').reduce((s,n)=>s+n.savings,0);
-    const breach = mine.filter(n=>n.status==='review'&&n.age>getSla(n)).length;
-    const a03=mine.filter(n=>n.status==='review'&&n.age<=3).length;
-    const a37=mine.filter(n=>n.status==='review'&&n.age>3&&n.age<=7).length;
-    const a7p=mine.filter(n=>n.status==='review'&&n.age>7).length;
-    h += `<div class="kpi-g g4">
-      <div class="kpi b"><div class="kl">Total NFAs</div><div class="kv">${mine.length}</div><div class="ks">All categories</div></div>
-      <div class="kpi a"><div class="kl">Pending Approval</div><div class="kv">${pend}</div><div class="ks">${breach} SLA breach${breach!==1?'es':''}</div>${breach?`<div class="kd dr">⚠ ${breach} urgent</div>`:`<div class="kd dg">✓ On track</div>`}</div>
-      <div class="kpi g"><div class="kl">Approved (YTD)</div><div class="kv">${appr}</div><div class="ks">${mine.length?Math.round(appr/mine.length*100):0}% rate</div></div>
-      <div class="kpi r"><div class="kl">Rejected/Sent Back</div><div class="kv">${rej}</div></div>
-    </div>
-    <div class="kpi-g g3">
-      <div class="kpi t"><div class="kl">Value Under Approval</div><div class="kv" style="font-size:17px;">${fv(valU)}</div></div>
-      <div class="kpi b"><div class="kl">Avg. Approval Time</div><div class="kv">4.2d</div><div class="ks">Target: 5 days</div></div>
-      <div class="kpi g"><div class="kl">Total Savings</div><div class="kv" style="font-size:17px;">${fv(savA)}</div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:15px;">
-      <div class="card"><div class="ch"><div class="ch-t">Aging Analysis</div></div><div class="cb"><div class="bchart">
-        <div class="bcg"><div class="bcv">${a03}</div><div class="bcb" style="height:${a03?60:5}%;background:linear-gradient(180deg,#43A858,var(--green));"></div><div class="bcl">0–3d<br><span style="color:var(--green)">OK</span></div></div>
-        <div class="bcg"><div class="bcv">${a37}</div><div class="bcb" style="height:${a37?60:5}%;background:linear-gradient(180deg,var(--gold),var(--amber));"></div><div class="bcl">3–7d<br><span style="color:var(--amber)">Watch</span></div></div>
-        <div class="bcg"><div class="bcv">${a7p}</div><div class="bcb" style="height:${a7p?40:5}%;background:linear-gradient(180deg,#EF5350,var(--red));"></div><div class="bcl">>7d<br><span style="color:var(--red)">Breach</span></div></div>
-      </div></div></div>
-      <div class="card"><div class="ch"><div class="ch-t">Stage Pipeline</div></div><div class="cb">
-        ${[['rm',2],['sod',3],['cfo',4],['ceo',5]].map(([s,_])=>{
-          const cnt=all().filter(n=>n.stage===s&&n.status==='review').length;
-          return `<div class="pr-row"><div class="pr-nm">${STAGE_LABELS[s]}</div><div class="pr-bar"><div class="pr-fill pf-b" style="width:${Math.min(100,cnt*20)}%"></div></div><div class="pr-val">${cnt}</div></div>`;
-        }).join('')}
-      </div></div>
-      <div class="card"><div class="ch"><div class="ch-t">Status Distribution</div></div><div class="cb">
-        ${['review','approved','rejected','sendback'].map(st=>{
-          const cnt=mine.filter(n=>n.status===st).length;
-          const pct=mine.length?Math.round(cnt/mine.length*100):0;
-          const cls={review:'pf-b',approved:'pf-g',rejected:'pf-r',sendback:'pf-a'}[st];
-          const lb={review:'In Review',approved:'Approved',rejected:'Rejected',sendback:'Sent Back'}[st];
-          return `<div class="pr-row"><div class="pr-nm">${lb}</div><div class="pr-bar"><div class="pr-fill ${cls}" style="width:${pct}%"></div></div><div class="pr-val">${cnt} (${pct}%)</div></div>`;
-        }).join('')}
-      </div></div>
-    </div>
-    <div class="card"><div class="ch"><div class="ch-t">My Active NFAs</div><button class="btn btn-g btn-sm" onclick="nav('listing')">View All →</button></div>${renderTable(mine.filter(n=>n.status!=='approved').slice(0,5),['id','desc','value','type','stage','age','status'])}</div>`;
+    renderBuyerDashboard(el, nfas, uu);
   }
+}
+
+/* ── APPROVER INTELLIGENCE DASHBOARD ── */
+function renderApproverDashboard(el, nfas, uu){
+  const pendingMe = nfas.filter(n=>n.status==='review'&&stageCurrentUser(n)===APP.user);
+  const approvedByMe = nfas.filter(n=>n.status==='approved'&&n.timeline.some(t=>t.user===APP.user&&t.status==='done'));
+  const rejectedByMe = nfas.filter(n=>n.status==='rejected'&&n.timeline.some(t=>t.user===APP.user&&t.status==='rejected'));
+  const sentbackByMe = nfas.filter(n=>n.status==='sendback'&&n.timeline.some(t=>t.user===APP.user&&t.status==='sendback'));
+  const slaBreach = pendingMe.filter(n=>n.age>getSla(n));
+  const slaWarn = pendingMe.filter(n=>n.age>=getSla(n)-1&&n.age<=getSla(n));
+  const valuePending = pendingMe.reduce((s,n)=>s+n.value,0);
+  const allReceived = [...pendingMe, ...approvedByMe, ...rejectedByMe, ...sentbackByMe];
+  const avgApprTime = approvedByMe.length ? (approvedByMe.reduce((s,n)=>s+(n.age||2),0)/approvedByMe.length).toFixed(1) : '—';
+  const rejRate = allReceived.length ? Math.round(rejectedByMe.length/allReceived.length*100) : 0;
+  const sbFreq = allReceived.length ? Math.round(sentbackByMe.length/allReceived.length*100) : 0;
+
+  // Priority buckets
+  const criticalNFAs = pendingMe.filter(n=>n.age>getSla(n)||n.flags.includes('l1-deviation')||n.modality==='single'||n.value>20000000);
+  const highNFAs = pendingMe.filter(n=>!criticalNFAs.includes(n)&&(n.age>=getSla(n)-1||n.flags.length>0));
+  const normalNFAs = pendingMe.filter(n=>!criticalNFAs.includes(n)&&!highNFAs.includes(n));
+
+  // Aging buckets
+  const age02 = pendingMe.filter(n=>n.age<=2);
+  const age35 = pendingMe.filter(n=>n.age>=3&&n.age<=5);
+  const age5p = pendingMe.filter(n=>n.age>5);
+
+  // Location split
+  const locations = {};
+  const depts = {};
+  pendingMe.forEach(n=>{
+    const loc = n.location.split('—')[0].trim();
+    locations[loc] = (locations[loc]||{count:0,value:0});
+    locations[loc].count++;
+    locations[loc].value += n.value;
+    depts[n.dept] = (depts[n.dept]||{count:0,value:0});
+    depts[n.dept].count++;
+    depts[n.dept].value += n.value;
+  });
+  const maxLocVal = Math.max(...Object.values(locations).map(v=>v.value),1);
+  const maxDeptVal = Math.max(...Object.values(depts).map(v=>v.value),1);
+
+  let h = `
+  <!-- Page Header -->
+  <div class="ph" style="margin-bottom:14px;">
+    <div>
+      <h1 style="font-size:20px;">Approver Dashboard</h1>
+      <p>${uu.name} · ${uu.title} · ${new Date().toLocaleDateString('en-IN',{weekday:'long',day:'2-digit',month:'long',year:'numeric'})}</p>
+    </div>
+    <div class="ph-right">
+      <button class="cmpbtn" onclick="toggleCompact()">⊟ Compact</button>
+      <button class="btn btn-g btn-sm" onclick="nav('approvals')">View Pending →</button>
+      <button class="btn btn-p btn-sm" onclick="exportReport()">⬇ Export Report</button>
+    </div>
+  </div>
+
+  <!-- WORKLOAD BANNER -->
+  <div class="wl-banner">
+    <div class="wl-av" style="background:${uu.color};">${uu.av}</div>
+    <div class="wl-text">
+      <div class="wl-name">Good ${getTimeGreeting()}, ${uu.name.split(' ')[0]}</div>
+      <div class="wl-sub">You have <strong style="color:#fff;">${pendingMe.length} NFA${pendingMe.length!==1?'s':''}</strong> pending your approval${slaBreach.length?` · <span style="color:#FF8A80;font-weight:700;">${slaBreach.length} SLA breached</span>`:''}</div>
+    </div>
+    <div class="wl-stats">
+      <div class="wl-stat"><div class="wl-stat-num">${pendingMe.length}</div><div class="wl-stat-lbl">Pending</div></div>
+      <div class="wl-stat"><div class="wl-stat-num">${approvedByMe.length}</div><div class="wl-stat-lbl">Approved</div></div>
+      <div class="wl-stat"><div class="wl-stat-num">${fv(valuePending)}</div><div class="wl-stat-lbl">Value at Stake</div></div>
+    </div>
+    ${slaBreach.length?`<div class="wl-crit">🔴 ${slaBreach.length} SLA BREACH</div>`:'<div style="padding:6px 14px;border-radius:20px;background:rgba(26,107,48,.4);color:#80E89A;font-size:12px;font-weight:700;">✓ No SLA Breach</div>'}
+  </div>
+
+  <!-- ROW 1: 8 KPI CARDS -->
+  <div class="ekpi-row g4" style="margin-bottom:14px;">
+    <div class="ekpi">
+      <div class="ekpi-accent b"></div>
+      <div class="ekpi-icon">📋</div>
+      <div class="ekpi-lbl">Total NFAs Received</div>
+      <div class="ekpi-num b">${allReceived.length}</div>
+      <div class="ekpi-sub">Current month</div>
+      <div class="ekpi-delta db">↑ +3 vs last month</div>
+    </div>
+    <div class="ekpi">
+      <div class="ekpi-accent ${pendingMe.length>3?'r':'a'}"></div>
+      <div class="ekpi-icon">⏳</div>
+      <div class="ekpi-lbl">Pending Approval</div>
+      <div class="ekpi-num ${pendingMe.length>3?'r':'a'}">${pendingMe.length}</div>
+      <div class="ekpi-sub">Awaiting your decision</div>
+      <div class="ekpi-delta ${pendingMe.length>0?'dr':'dg'}">${pendingMe.length>0?'Action required':'✓ Clear'}</div>
+    </div>
+    <div class="ekpi">
+      <div class="ekpi-accent g"></div>
+      <div class="ekpi-icon">✅</div>
+      <div class="ekpi-lbl">Approved</div>
+      <div class="ekpi-num g">${approvedByMe.length}</div>
+      <div class="ekpi-sub">Total approved by you</div>
+      <div class="ekpi-delta dg">↑ ${approvedByMe.length} this month</div>
+    </div>
+    <div class="ekpi">
+      <div class="ekpi-accent r"></div>
+      <div class="ekpi-icon">✗</div>
+      <div class="ekpi-lbl">Rejected</div>
+      <div class="ekpi-num ${rejectedByMe.length>0?'r':'t'}">${rejectedByMe.length}</div>
+      <div class="ekpi-sub">Rejection rate: ${rejRate}%</div>
+      <div class="ekpi-delta ${rejRate>20?'dr':'dg'}">${rejRate>20?'High rate':'Within range'}</div>
+    </div>
+  </div>
+  <div class="ekpi-row g4" style="margin-bottom:18px;">
+    <div class="ekpi">
+      <div class="ekpi-accent a"></div>
+      <div class="ekpi-icon">↩</div>
+      <div class="ekpi-lbl">Sent Back</div>
+      <div class="ekpi-num a">${sentbackByMe.length}</div>
+      <div class="ekpi-sub">Clarification requested</div>
+      <div class="ekpi-delta da">Freq: ${sbFreq}%</div>
+    </div>
+    <div class="ekpi">
+      <div class="ekpi-accent r"></div>
+      <div class="ekpi-icon">⚠</div>
+      <div class="ekpi-lbl">SLA Breached</div>
+      <div class="ekpi-num ${slaBreach.length>0?'r':'g'}">${slaBreach.length}</div>
+      <div class="ekpi-sub">Exceeded approved limit</div>
+      <div class="ekpi-delta ${slaBreach.length>0?'dr':'dg'}">${slaBreach.length>0?'🔴 Urgent':'✓ None'}</div>
+    </div>
+    <div class="ekpi">
+      <div class="ekpi-accent b"></div>
+      <div class="ekpi-icon">₹</div>
+      <div class="ekpi-lbl">Total Value Pending</div>
+      <div class="ekpi-num b" style="font-size:22px;">${fv(valuePending)}</div>
+      <div class="ekpi-sub">${pendingMe.length} active NFAs</div>
+      <div class="ekpi-delta db">Requires approval</div>
+    </div>
+    <div class="ekpi">
+      <div class="ekpi-accent t"></div>
+      <div class="ekpi-icon">⏱</div>
+      <div class="ekpi-lbl">Avg. Approval Time</div>
+      <div class="ekpi-num t">${avgApprTime}</div>
+      <div class="ekpi-sub">Days per NFA</div>
+      <div class="ekpi-delta ${avgApprTime!=='—'&&parseFloat(avgApprTime)<5?'dg':'da'}">Target: 5 days</div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Decision Funnel + Aging Analysis -->
+  <div class="dash-2col">
+    <div class="card">
+      <div class="ch"><div class="ch-t">Decision Funnel</div><div class="ch-s">Current month · All NFAs through your stage</div></div>
+      <div class="cb">
+        <div class="funnel-wrap">
+          <div class="funnel">
+            ${[
+              {lbl:'Received',cnt:allReceived.length,sub:'Total assigned',cls:'fb-received'},
+              {lbl:'Reviewed',cnt:approvedByMe.length+rejectedByMe.length+sentbackByMe.length,sub:'Action taken',cls:'fb-reviewed'},
+              {lbl:'Approved',cnt:approvedByMe.length,sub:'Moved forward',cls:'fb-approved'},
+              {lbl:'Rejected',cnt:rejectedByMe.length,sub:'Returned',cls:'fb-rejected'},
+              {lbl:'Sent Back',cnt:sentbackByMe.length,sub:'Clarification',cls:'fb-sendback'},
+            ].map((s,i,arr)=>{
+              const maxH = Math.max(allReceived.length,1);
+              const pct = Math.max(30, Math.round(s.cnt/maxH*100));
+              return `${i>0?'<div class="funnel-arrow">›</div>':''}<div class="funnel-step">
+                <div class="funnel-bar ${s.cls}" style="height:${pct}%;">${s.cnt}</div>
+                <div class="funnel-lbl">${s.lbl}</div>
+                <div class="funnel-cnt">${s.sub}</div>
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:10px;background:var(--bg);border-radius:var(--rsm);display:flex;gap:20px;flex-wrap:wrap;">
+          <div style="font-size:11.5px;color:var(--t2);"><strong style="color:var(--green);">Approval Rate:</strong> ${allReceived.length?Math.round(approvedByMe.length/allReceived.length*100):0}%</div>
+          <div style="font-size:11.5px;color:var(--t2);"><strong style="color:var(--red);">Rejection Rate:</strong> ${rejRate}%</div>
+          <div style="font-size:11.5px;color:var(--t2);"><strong style="color:var(--amber);">Clarification Rate:</strong> ${sbFreq}%</div>
+          <div style="font-size:11.5px;color:var(--t2);"><strong style="color:var(--blue);">Pending:</strong> ${pendingMe.length} NFAs</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="ch-t">Aging Analysis</div><div class="ch-s">Pending NFAs by days outstanding</div></div>
+      <div class="cb">
+        <div class="aging-grid">
+          <div class="aging-bucket ag-ok">
+            <div class="aging-label">0 – 2 Days</div>
+            <div class="aging-num">${age02.length}</div>
+            <div class="aging-nfas">${age02.length===0?'None pending':age02.map(n=>n.id.split('-').slice(-1)[0]).join(', ')}</div>
+          </div>
+          <div class="aging-bucket ag-warn">
+            <div class="aging-label">3 – 5 Days</div>
+            <div class="aging-num">${age35.length}</div>
+            <div class="aging-nfas">${age35.length===0?'None':age35.map(n=>n.id.split('-').slice(-1)[0]).join(', ')}</div>
+          </div>
+          <div class="aging-bucket ag-crit">
+            <div class="aging-label">&gt; 5 Days 🔴</div>
+            <div class="aging-num">${age5p.length}</div>
+            <div class="aging-nfas">${age5p.length===0?'None':age5p.map(n=>n.id.split('-').slice(-1)[0]).join(', ')}</div>
+          </div>
+        </div>
+        ${slaWarn.length>0?`<div style="margin-top:10px;padding:8px 11px;background:var(--alt);border-radius:var(--rsm);border-left:3px solid var(--amber);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--amber);">⚠ ${slaWarn.length} NFA${slaWarn.length>1?'s':''} approaching SLA limit</div>
+          <div style="font-size:11px;color:var(--t2);margin-top:2px;">${slaWarn.map(n=>`${n.id} (${n.age}d/${getSla(n)}d)`).join(' · ')}</div>
+        </div>`:''}
+        ${slaBreach.length>0?`<div style="margin-top:8px;padding:8px 11px;background:var(--rlt);border-radius:var(--rsm);border-left:3px solid var(--red);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--red);">🔴 ${slaBreach.length} SLA BREACHED — Escalation Triggered</div>
+          <div style="font-size:11px;color:var(--t2);margin-top:2px;">${slaBreach.map(n=>`${n.id} (+${n.age-getSla(n)}d over limit)`).join(' · ')}</div>
+        </div>`:''}
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Priority Queue + Location/Dept Split -->
+  <div class="dash-2col">
+    <div class="card">
+      <div class="ch">
+        <div>
+          <div class="ch-t">High Priority Approvals</div>
+          <div class="ch-s">SLA breach · High value · Deviation cases</div>
+        </div>
+        <span class="chip ${criticalNFAs.length>0?'c-red':'c-green'}">${criticalNFAs.length>0?criticalNFAs.length+' Critical':'All Clear'}</span>
+      </div>
+      <div class="cb" style="padding:12px 14px;">
+        ${criticalNFAs.length===0&&highNFAs.length===0&&normalNFAs.length===0?
+          '<div style="text-align:center;padding:20px;color:var(--t3);">✓ No pending approvals</div>':
+          [...criticalNFAs.map(n=>({n,priority:'critical',reason:getPriorityReason(n)})),
+           ...highNFAs.map(n=>({n,priority:'high',reason:getPriorityReason(n)})),
+           ...normalNFAs.map(n=>({n,priority:'normal',reason:getPriorityReason(n)}))
+          ].slice(0,6).map(({n,priority,reason})=>`
+          <div class="pq-item pq-${priority}" onclick="openNFA('${n.id}')">
+            <div class="pq-badge ${priority==='critical'?'r':priority==='high'?'a':'b'}">${priority==='critical'?'!':priority==='high'?'↑':'→'}</div>
+            <div class="pq-info">
+              <div class="pq-id">${n.id}</div>
+              <div class="pq-desc">${n.desc}</div>
+            </div>
+            <div style="text-align:right;flex-shrink:0;">
+              <div class="pq-val">${fv(n.value)}</div>
+              <div class="pq-age ${ageClass(n.age,getSla(n))}">${n.age>0?n.age+'d':'Today'}</div>
+              <div class="pq-reason">${reason}</div>
+            </div>
+            <button class="btn btn-ok btn-xs" style="flex-shrink:0;" onclick="qApprove('${n.id}',event)">Approve</button>
+          </div>`).join('')
+        }
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="ch-t">Distribution by Location &amp; Dept</div><div class="ch-s">Pending NFAs breakdown</div></div>
+      <div class="cb">
+        <div class="sec-hd" style="margin-bottom:8px;">📍 By Location</div>
+        ${Object.keys(locations).length===0?'<div style="color:var(--t3);font-size:12px;">No pending NFAs</div>':
+          Object.entries(locations).sort((a,b)=>b[1].value-a[1].value).map(([loc,data])=>`
+          <div class="dist-row">
+            <div class="dist-label">${loc}</div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:${Math.round(data.value/maxLocVal*100)}%;background:var(--blue);"></div></div>
+            <div class="dist-val">${fv(data.value)}</div>
+            <div class="dist-cnt">${data.count}</div>
+          </div>`).join('')
+        }
+        <div class="sdiv" style="margin:10px 0;"></div>
+        <div class="sec-hd" style="margin-bottom:8px;">🏭 By Department</div>
+        ${Object.keys(depts).length===0?'<div style="color:var(--t3);font-size:12px;">No pending NFAs</div>':
+          Object.entries(depts).sort((a,b)=>b[1].value-a[1].value).map(([dept,data])=>`
+          <div class="dist-row">
+            <div class="dist-label">${dept}</div>
+            <div class="dist-bar-wrap"><div class="dist-bar" style="width:${Math.round(data.value/maxDeptVal*100)}%;background:var(--teal);"></div></div>
+            <div class="dist-val">${fv(data.value)}</div>
+            <div class="dist-cnt">${data.count}</div>
+          </div>`).join('')
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 4: Decision Analytics -->
+  <div class="card" style="margin-bottom:16px;">
+    <div class="ch"><div class="ch-t">Decision Analytics</div><div class="ch-s">Your performance insights — current period</div></div>
+    <div class="cb">
+      <div class="danalytics-grid">
+        <div class="da-stat">
+          <div class="da-num" style="color:var(--blue);">${avgApprTime}<span style="font-size:14px;font-weight:400;">d</span></div>
+          <div class="da-lbl">Average Approval Time</div>
+          <div class="da-trend ${avgApprTime!=='—'&&parseFloat(avgApprTime)<4?'up':avgApprTime!=='—'&&parseFloat(avgApprTime)<6?'flat':'dn'}">${avgApprTime!=='—'&&parseFloat(avgApprTime)<4?'↓ Fast':'↔ On Target'}</div>
+        </div>
+        <div class="da-stat">
+          <div class="da-num" style="color:${rejRate>25?'var(--red)':'var(--green)'};">${rejRate}<span style="font-size:14px;font-weight:400;">%</span></div>
+          <div class="da-lbl">Rejection Rate</div>
+          <div class="da-trend ${rejRate<15?'up':rejRate<30?'flat':'dn'}">${rejRate<15?'Low — Good':'Within Range'}</div>
+        </div>
+        <div class="da-stat">
+          <div class="da-num" style="color:${sbFreq>30?'var(--amber)':'var(--teal)'};">${sbFreq}<span style="font-size:14px;font-weight:400;">%</span></div>
+          <div class="da-lbl">Clarification Frequency</div>
+          <div class="da-trend ${sbFreq<20?'up':'dn'}">${sbFreq<20?'Low — Efficient':'Review quality'}</div>
+        </div>
+        <div class="da-stat">
+          <div class="da-num" style="color:var(--green);">${approvedByMe.reduce((s,n)=>s+n.savings,0)?fv(approvedByMe.reduce((s,n)=>s+n.savings,0)):'₹0'}</div>
+          <div class="da-lbl">Total Savings Approved</div>
+          <div class="da-trend up">↑ Value delivered</div>
+        </div>
+        <div class="da-stat">
+          <div class="da-num" style="color:var(--blue);">${fv(approvedByMe.reduce((s,n)=>s+n.value,0)||0)}</div>
+          <div class="da-lbl">Value Approved (Total)</div>
+          <div class="da-trend flat">Current period</div>
+        </div>
+        <div class="da-stat">
+          <div class="da-num" style="color:${slaBreach.length>0?'var(--red)':'var(--green)'};">${slaBreach.length}</div>
+          <div class="da-lbl">Active SLA Breaches</div>
+          <div class="da-trend ${slaBreach.length===0?'up':'dn'}">${slaBreach.length===0?'✓ Clean':'🔴 Action needed'}</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
   el.innerHTML = h;
+}
+
+/* Helper: get priority reason label */
+function getPriorityReason(n){
+  if(n.age>getSla(n)) return `SLA +${n.age-getSla(n)}d over`;
+  if(n.flags.includes('l1-deviation')) return 'L1 deviation';
+  if(n.modality==='single') return 'Single vendor';
+  if(n.value>20000000) return 'High value';
+  if(n.age>=getSla(n)-1) return 'SLA warning';
+  if(n.flags.length>0) return flagLabel(n.flags[0]);
+  return 'Standard';
+}
+
+/* Helper: time greeting */
+function getTimeGreeting(){
+  const h = new Date().getHours();
+  return h<12?'Morning':h<17?'Afternoon':'Evening';
+}
+
+/* ── BUYER DASHBOARD (unchanged logic, improved presentation) ── */
+function renderBuyerDashboard(el, nfas, uu){
+  const mine = nfas.filter(n=>n.buyer===APP.user);
+  const pend = mine.filter(n=>n.status==='review').length;
+  const appr = mine.filter(n=>n.status==='approved').length;
+  const rej  = mine.filter(n=>['rejected','sendback'].includes(n.status)).length;
+  const valU = mine.filter(n=>n.status==='review').reduce((s,n)=>s+n.value,0);
+  const savA = mine.filter(n=>n.status==='approved').reduce((s,n)=>s+n.savings,0);
+  const breach = mine.filter(n=>n.status==='review'&&n.age>getSla(n)).length;
+  const a03=mine.filter(n=>n.status==='review'&&n.age<=3).length;
+  const a37=mine.filter(n=>n.status==='review'&&n.age>3&&n.age<=7).length;
+  const a7p=mine.filter(n=>n.status==='review'&&n.age>7).length;
+
+  el.innerHTML = `
+  <div class="ph" style="margin-bottom:14px;">
+    <div><h1>Initiator Dashboard</h1><p>${uu.name} · ${uu.title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</p></div>
+    <div class="ph-right">
+      <button class="cmpbtn" onclick="toggleCompact()">⊟ Compact</button>
+      <button class="btn btn-g btn-sm" onclick="nav('new-nfa')">➕ New NFA</button>
+      <button class="btn btn-p btn-sm" onclick="exportReport()">⬇ Export</button>
+    </div>
+  </div>
+  <div class="ekpi-row g4">
+    <div class="ekpi"><div class="ekpi-accent b"></div><div class="ekpi-icon">📋</div><div class="ekpi-lbl">Total NFAs</div><div class="ekpi-num b">${mine.length}</div><div class="ekpi-sub">All categories</div></div>
+    <div class="ekpi"><div class="ekpi-accent ${breach>0?'r':'a'}"></div><div class="ekpi-icon">⏳</div><div class="ekpi-lbl">Pending Approval</div><div class="ekpi-num ${breach>0?'r':'a'}">${pend}</div><div class="ekpi-sub">${breach} SLA breach${breach!==1?'es':''}</div>${breach?`<div class="ekpi-delta dr">⚠ ${breach} urgent</div>`:`<div class="ekpi-delta dg">✓ On track</div>`}</div>
+    <div class="ekpi"><div class="ekpi-accent g"></div><div class="ekpi-icon">✅</div><div class="ekpi-lbl">Approved</div><div class="ekpi-num g">${appr}</div><div class="ekpi-sub">${mine.length?Math.round(appr/mine.length*100):0}% rate</div></div>
+    <div class="ekpi"><div class="ekpi-accent r"></div><div class="ekpi-icon">↩</div><div class="ekpi-lbl">Rejected/Sent Back</div><div class="ekpi-num r">${rej}</div><div class="ekpi-sub">Needs revision</div></div>
+  </div>
+  <div class="ekpi-row g4" style="margin-bottom:18px;">
+    <div class="ekpi"><div class="ekpi-accent t"></div><div class="ekpi-icon">₹</div><div class="ekpi-lbl">Value Under Approval</div><div class="ekpi-num t" style="font-size:22px;">${fv(valU)}</div></div>
+    <div class="ekpi"><div class="ekpi-accent g"></div><div class="ekpi-icon">💰</div><div class="ekpi-lbl">Total Savings Achieved</div><div class="ekpi-num g" style="font-size:22px;">${fv(savA)}</div></div>
+    <div class="ekpi"><div class="ekpi-accent b"></div><div class="ekpi-icon">⏱</div><div class="ekpi-lbl">Avg. Approval Time</div><div class="ekpi-num b">4.2<span style="font-size:14px;">d</span></div><div class="ekpi-sub">Target: 5 days</div></div>
+    <div class="ekpi"><div class="ekpi-accent a"></div><div class="ekpi-icon">⚠</div><div class="ekpi-lbl">SLA Breaches</div><div class="ekpi-num ${breach>0?'r':'g'}">${breach}</div><div class="ekpi-sub">${breach>0?'Immediate action':'None — clean'}</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin-bottom:16px;">
+    <div class="card"><div class="ch"><div class="ch-t">Aging Analysis</div></div><div class="cb">
+      <div class="aging-grid">
+        <div class="aging-bucket ag-ok"><div class="aging-label">0–3d</div><div class="aging-num">${a03}</div><div class="aging-nfas">On Track</div></div>
+        <div class="aging-bucket ag-warn"><div class="aging-label">3–7d</div><div class="aging-num">${a37}</div><div class="aging-nfas">Watch</div></div>
+        <div class="aging-bucket ag-crit"><div class="aging-label">&gt;7d</div><div class="aging-num">${a7p}</div><div class="aging-nfas">Breach 🔴</div></div>
+      </div>
+    </div></div>
+    <div class="card"><div class="ch"><div class="ch-t">Stage Pipeline</div></div><div class="cb">
+      ${['rm','sod','cfo','ceo'].map(s=>{
+        const cnt=all().filter(n=>n.stage===s&&n.status==='review').length;
+        return `<div class="dist-row"><div class="dist-label">${STAGE_LABELS[s]}</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:${Math.min(100,cnt*20)}%;background:var(--blue);"></div></div><div class="dist-cnt">${cnt}</div></div>`;
+      }).join('')}
+    </div></div>
+    <div class="card"><div class="ch"><div class="ch-t">Status Split</div></div><div class="cb">
+      ${['review','approved','rejected','sendback'].map(st=>{
+        const cnt=mine.filter(n=>n.status===st).length;
+        const pct=mine.length?Math.round(cnt/mine.length*100):0;
+        const cls={review:'var(--blue)',approved:'var(--green)',rejected:'var(--red)',sendback:'var(--amber)'}[st];
+        const lb={review:'In Review',approved:'Approved',rejected:'Rejected',sendback:'Sent Back'}[st];
+        return `<div class="dist-row"><div class="dist-label">${lb}</div><div class="dist-bar-wrap"><div class="dist-bar" style="width:${pct}%;background:${cls};"></div></div><div class="dist-val">${cnt}</div></div>`;
+      }).join('')}
+    </div></div>
+  </div>
+  <div class="card"><div class="ch"><div class="ch-t">My Active NFAs</div><button class="btn btn-g btn-sm" onclick="nav('listing')">View All →</button></div>${renderTable(mine.filter(n=>n.status!=='approved').slice(0,5),['id','desc','value','type','stage','age','status'])}</div>`;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
