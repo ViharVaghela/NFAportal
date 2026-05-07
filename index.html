@@ -889,7 +889,129 @@ const DB = {
     'NFA-2026-OP-0035':{id:'NFA-2026-OP-0035',buyer:'VV',desc:'Hydraulic Hose & Fittings — Bulk',type:'Opex',modality:'L1',value:1840000,budget:2000000,dept:'Maintenance',location:'Hazira',rfq:'RFQ-2026-0340',vendor:'Parker Hannifin India',vendorCode:'VND-00271',stage:'initiator',prevStage:'rm',status:'sendback',age:2,flags:['sendback'],created:'28 Apr',submitted:'29 Apr',riskJust:'',limitJust:'',bizJust:'Bulk hydraulic hoses purchase.',urgency:'Planned',impact:'Medium',reqDelivery:'20 May',modalityDetail:'L1 Based',modalityJust:'',recNote:'',savings:160000,finalValue:1840000,deliveryDays:7,paymentTerms:'Net 30',warranty:'6 Months',locked:false,versions:[],timeline:[{stage:'initiator',user:'VV',ts:'29 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'30 Apr',status:'sendback',comment:'Justification inadequate. Attach comparative quotes for 3 vendors.'}],comments:[{id:'c1',user:'AM',ts:'30 Apr 14:20',type:'sendback',text:'Justification inadequate. Please attach comparative quotes for at least 3 vendors.'}],vendors:[],attachments:[],},
     'NFA-2026-CP-0033':{id:'NFA-2026-CP-0033',buyer:'RS',desc:'Cooling Tower Pumps — 500 kW',type:'Capex',modality:'L1',value:19000000,budget:20000000,dept:'Operations',location:'Hazira',rfq:'RFQ-2026-0330',vendor:'Grundfos India Pvt Ltd',vendorCode:'VND-00305',stage:'approved',prevStage:'cfo',status:'approved',age:0,flags:[],created:'15 Apr',submitted:'16 Apr',riskJust:'',limitJust:'',bizJust:'Cooling tower pump replacement.',urgency:'Planned',impact:'High',reqDelivery:'15 Jun',modalityDetail:'L1 Based',modalityJust:'L1.',recNote:'Grundfos India — L1 best TCO.',savings:1000000,finalValue:19000000,deliveryDays:45,paymentTerms:'Net 30',warranty:'18 Months',locked:true,versions:[],timeline:[{stage:'initiator',user:'RS',ts:'16 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'17 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'19 Apr',status:'done',comment:'Approved.'},{stage:'cfo',user:'SG',ts:'22 Apr',status:'done',comment:'Within budget.'}],comments:[],vendors:[],attachments:[],},
     'NFA-2026-SV-0045':{id:'NFA-2026-SV-0045',buyer:'PS',desc:'SAP ERP Support License Renewal',type:'Service',modality:'prop',value:3800000,budget:4000000,dept:'IT',location:'Corporate',rfq:'N/A',vendor:'SAP India Pvt Ltd',vendorCode:'VND-00010',stage:'cfo',prevStage:'sod',status:'review',age:4,flags:['proprietary'],created:'29 Apr',submitted:'29 Apr',riskJust:'SAP incumbent ERP — proprietary license, no alternate.',limitJust:'',bizJust:'Annual SAP support renewal.',urgency:'Planned',impact:'High',reqDelivery:'01 Jun',modalityDetail:'Proprietary',modalityJust:'Exclusive license — no alternate.',recNote:'Proprietary renewal.',savings:200000,finalValue:3800000,deliveryDays:0,paymentTerms:'Annual Advance',warranty:'N/A',locked:false,versions:[],timeline:[{stage:'initiator',user:'PS',ts:'29 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'30 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'01 May',status:'done',comment:'Approved — proprietary renewal.'},{stage:'cfo',user:'SG',ts:'Pending 4d',status:'current',comment:''}],comments:[],vendors:[],attachments:[],},
-    'NFA-2026-CP-0019':{id:'NFA-2026-CP-0019',buyer:'VV',desc:'Safety Equipment & PPE Bulk Order',type:'Capex',modality:'L1',value:4180000,budget:5000000,dept:'Safety',location:'Hazira',rfq:'RFQ-2026-0285',vendor:'Honeywell Safety Products',vendorCode:'VND-00140',stage:'sod',prevStage:'rm',status:'rejected',age:0,flags:['rejected'],created:'15 Mar',submitted:'18 Mar',riskJust:'',limitJust:'',bizJust:'Annual safety equipment procurement.',urgency:'Planned',impact:'High',reqDelivery:'30 Apr',modalityDetail:'L1 Based',modalityJust:'',recNote:'',savings:820000,finalValue:4180000,deliveryDays:21,paymentTerms:'Net 30',warranty:'12 Months',locked:true,versions:[],timeline:[{stage:'initiator',user:'VV',ts:'18 Mar',status:'done',comment:''},{stage:'rm',user:'AM',ts:'19 Mar',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'22 Mar',status:'rejected',comment:'Vendor not on AMNS AVL. Resubmit with approved vendor.'}],comments:[{id:'c1',user:'PN',ts:'22 Mar 15:00',type:'rejection',text:'Rejected: Honeywell Safety not on AMNS AVL. Resubmit with registered vendor or initiate vendor registration first.'}],vendors:[],attachments:[],},
+    'NFA-2026-CP-0019':{id:'NFA-2026-CP-0019',buyer:'VV',desc:'Safety Equipment & PPE Bulk Order',type:'Capex',modality:'L1',value:4180000,budget:5000000,dept:'Safety',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0285',vendor:'Honeywell Safety Products',vendorCode:'VND-00140',stage:'sod',prevStage:'rm',status:'rejected',age:0,flags:['rejected'],created:'15 Mar',submitted:'18 Mar',riskJust:'',limitJust:'',bizJust:'Annual safety equipment procurement.',urgency:'Planned',impact:'High',reqDelivery:'30 Apr',modalityDetail:'L1 Based',modalityJust:'',recNote:'',savings:820000,finalValue:4180000,deliveryDays:21,paymentTerms:'Net 30',warranty:'12 Months',locked:true,versions:[],timeline:[{stage:'initiator',user:'VV',ts:'18 Mar',status:'done',comment:''},{stage:'rm',user:'AM',ts:'19 Mar',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'22 Mar',status:'rejected',comment:'Vendor not on AMNS AVL. Resubmit with approved vendor.'}],comments:[{id:'c1',user:'PN',ts:'22 Mar 15:00',type:'rejection',text:'Rejected: Honeywell Safety not on AMNS AVL. Resubmit with registered vendor or initiate vendor registration first.'}],vendors:[],attachments:[],},
+
+    /* ─── ADDITIONAL RICH SAMPLE DATA ─── */
+
+    'NFA-2026-CP-0055':{id:'NFA-2026-CP-0055',buyer:'RS',desc:'Blast Furnace Tuyere Stock & Coolers',type:'Capex',modality:'single',value:38500000,budget:40000000,dept:'Capital Projects',location:'Hazira — Steel Plant',rfq:'N/A',vendor:'Paul Wurth India Pvt Ltd',vendorCode:'VND-00511',stage:'sod',prevStage:'rm',status:'review',age:2,flags:['single-vendor'],created:'01 May',submitted:'02 May',riskJust:'Paul Wurth is OEM for BF#1 & BF#2 tuyere systems. No alternate supplier qualified; any deviation voids OEM warranty and insurance.',limitJust:'',bizJust:'Replacement of worn tuyere stock and copper coolers during BF#1 major relining campaign scheduled June 2026. Critical path item for blast furnace restoration.',urgency:'Critical',impact:'High',reqDelivery:'01 Jun',modalityDetail:'Single Vendor (OEM)',modalityJust:'Proprietary OEM design — no alternate source.',recNote:'Recommend PO to Paul Wurth India at ₹3.85 Cr. OEM sole source. Delivery within 28 days confirmed.',savings:1500000,finalValue:38500000,deliveryDays:28,paymentTerms:'50% Advance, 50% on Delivery',warranty:'18 Months',locked:false,
+    versions:[{ver:'v0.2',who:'RS',ts:'02 May',changes:'Single vendor justification added'},{ver:'v0.1',who:'RS',ts:'01 May',changes:'NFA created'}],
+    timeline:[{stage:'initiator',user:'RS',ts:'02 May 09:00',status:'done',comment:'OEM sole source procurement.'},{stage:'rm',user:'AM',ts:'02 May 15:00',status:'done',comment:'Approved — BF relining critical path.'},{stage:'sod',user:'PN',ts:'Pending 2 days',status:'current',comment:''},{stage:'cfo',user:'SG',ts:'Waiting',status:'waiting',comment:''}],
+    comments:[{id:'c1',user:'RS',ts:'02 May 09:00',type:'submission',text:'Paul Wurth is sole OEM for AMNS BF tuyere systems. Technical team endorsement attached.'},{id:'c2',user:'AM',ts:'02 May 15:00',type:'approval',text:'Approved. BF#1 relining is on critical path for July restart.'}],
+    vendors:[{name:'Paul Wurth India Pvt Ltd',rank:1,unitPrice:0,basic:35500000,gst:6390000,freight:610000,tcl:42500000,vsL1:0,tech:'Qualified',auction:false,rec:true}],attachments:[{name:'Paul Wurth OEM Certificate',type:'pdf',size:'320 KB',date:'01 May',by:'RS'},{name:'Technical Justification Report',type:'pdf',size:'850 KB',date:'02 May',by:'Plant Engineering'}],},
+
+    'NFA-2026-OP-0056':{id:'NFA-2026-OP-0056',buyer:'KD',desc:'Nitrogen Gas Supply — Annual Contract',type:'Opex',modality:'L1',value:14200000,budget:15000000,dept:'Operations',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0388',vendor:'Linde India Ltd',vendorCode:'VND-00078',stage:'rm',prevStage:'initiator',status:'review',age:1,flags:[],created:'04 May',submitted:'04 May',riskJust:'',limitJust:'',bizJust:'Annual nitrogen gas supply for BF operations, continuous casting and rolling mill inert atmosphere. Volume: 12 lakh Nm³/year.',urgency:'Planned',impact:'High',reqDelivery:'01 Jun',modalityDetail:'L1 Based',modalityJust:'L1 selected through competitive RFQ. Linde offers pipeline supply which reduces logistics cost.',recNote:'Recommend Linde India at ₹1.42 Cr — L1 with pipeline infrastructure advantage.',savings:800000,finalValue:14200000,deliveryDays:0,paymentTerms:'Monthly',warranty:'N/A',locked:false,
+    versions:[{ver:'v0.1',who:'KD',ts:'04 May',changes:'NFA created and submitted'}],
+    timeline:[{stage:'initiator',user:'KD',ts:'04 May',status:'done',comment:'Annual gas supply renewal.'},{stage:'rm',user:'AM',ts:'Pending 1 day',status:'current',comment:''}],
+    comments:[{id:'c1',user:'KD',ts:'04 May',type:'submission',text:'Linde India is the incumbent supplier with pipeline infrastructure at Hazira. Competitive quotes obtained from 4 vendors.'}],
+    vendors:[
+      {name:'Linde India Ltd',rank:1,unitPrice:118,basic:14200000,gst:2556000,freight:0,tcl:16756000,vsL1:0,tech:'Qualified',auction:false,rec:true},
+      {name:'Air Liquide India',rank:2,unitPrice:124,basic:14880000,gst:2678400,freight:180000,tcl:17738400,vsL1:5.86,tech:'Qualified',auction:false,rec:false},
+      {name:'INOX Air Products',rank:3,unitPrice:127,basic:15240000,gst:2743200,freight:250000,tcl:18233200,vsL1:8.82,tech:'Qualified',auction:false,rec:false},
+      {name:'Goyal MG Gases',rank:4,unitPrice:135,basic:16200000,gst:2916000,freight:320000,tcl:19436000,vsL1:16.0,tech:'Conditional',auction:false,rec:false},
+    ],attachments:[{name:'Comparative Statement RFQ-2026-0388',type:'xlsx',size:'195 KB',date:'03 May',by:'Procol Auto'},{name:'Gas Supply Technical Specs',type:'pdf',size:'440 KB',date:'02 May',by:'KD'}],},
+
+    'NFA-2026-SV-0057':{id:'NFA-2026-SV-0057',buyer:'PS',desc:'IT Infrastructure Managed Services — 3 Year',type:'Service',modality:'L1',value:72000000,budget:75000000,dept:'IT',location:'Corporate — Mumbai',rfq:'RFQ-2026-0392',vendor:'Infosys BPM Ltd',vendorCode:'VND-00621',stage:'cfo',prevStage:'sod',status:'review',age:3,flags:['limited-competition'],created:'28 Apr',submitted:'29 Apr',riskJust:'',limitJust:'Only 2 vendors qualified technically out of 5 invited. Third party audit recommended.',bizJust:'3-year managed services contract for AMNS IT infrastructure — data center, network, end-user computing. Current contract expires 30 June 2026.',urgency:'High',impact:'High',reqDelivery:'01 Jul',modalityDetail:'L1 Based',modalityJust:'L1 selection through competitive RFQ and technical evaluation.',recNote:'Recommend Infosys BPM at ₹7.2 Cr — L1 on TCO with superior SLA commitments.',savings:3000000,finalValue:72000000,deliveryDays:0,paymentTerms:'Quarterly',warranty:'N/A',locked:false,
+    versions:[{ver:'v1.1',who:'PS',ts:'01 May',changes:'Technical scores updated'},{ver:'v0.1',who:'PS',ts:'29 Apr',changes:'NFA created'}],
+    timeline:[{stage:'initiator',user:'PS',ts:'29 Apr',status:'done',comment:'IT managed services renewal.'},{stage:'rm',user:'AM',ts:'30 Apr',status:'done',comment:'Strategic contract — approved.'},{stage:'sod',user:'PN',ts:'01 May',status:'done',comment:'Approved — limited competition noted.'},{stage:'cfo',user:'SG',ts:'Pending 3 days',status:'current',comment:''}],
+    comments:[{id:'c1',user:'PS',ts:'29 Apr',type:'submission',text:'Current WiPro contract expires Jun 30. Infosys won competitive bid with 4.2% lower TCO and better SLA.'},{id:'c2',user:'AM',ts:'30 Apr',type:'approval',text:'Critical infrastructure — approved to proceed.'},{id:'c3',user:'PN',ts:'01 May',type:'approval',text:'Approved. Limited competition advisory noted. Recommend wider vendor base in next cycle.'}],
+    vendors:[
+      {name:'Infosys BPM Ltd',rank:1,unitPrice:0,basic:65000000,gst:11700000,freight:0,tcl:76700000,vsL1:0,tech:'Qualified',auction:false,rec:true},
+      {name:'TCS Ltd',rank:2,unitPrice:0,basic:68000000,gst:12240000,freight:0,tcl:80240000,vsL1:4.6,tech:'Qualified',auction:false,rec:false},
+      {name:'HCL Technologies',rank:3,unitPrice:0,basic:71000000,gst:12780000,freight:0,tcl:83780000,vsL1:9.2,tech:'Conditional',auction:false,rec:false},
+    ],attachments:[{name:'Technical Evaluation Matrix',type:'xlsx',size:'560 KB',date:'28 Apr',by:'IT Team'},{name:'Infosys Commercial Bid',type:'pdf',size:'1.8 MB',date:'27 Apr',by:'Vendor'},{name:'SLA Comparison',type:'xlsx',size:'290 KB',date:'29 Apr',by:'PS'}],},
+
+    'NFA-2026-CP-0058':{id:'NFA-2026-CP-0058',buyer:'MP',desc:'Hot Metal Ladle Lining Repair — Gunning',type:'Capex',modality:'rate',value:9600000,budget:10000000,dept:'Maintenance',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0395',vendor:'RHI Magnesita India',vendorCode:'VND-00188',stage:'sod',prevStage:'rm',status:'review',age:0,flags:[],created:'05 May',submitted:'05 May',riskJust:'',limitJust:'',bizJust:'Periodic hot metal ladle lining repair using gunning mix. Covers 18 ladles across steelmaking shops. Rate contract basis.',urgency:'Planned',impact:'Medium',reqDelivery:'15 May',modalityDetail:'Rate Contract',modalityJust:'Rate contract under existing BOQ approved in FY26 capex plan.',recNote:'Recommend RHI Magnesita India under existing rate contract at ₹96 L.',savings:400000,finalValue:9600000,deliveryDays:10,paymentTerms:'Net 45',warranty:'6 Months',locked:false,
+    versions:[{ver:'v0.1',who:'MP',ts:'05 May',changes:'NFA created'}],
+    timeline:[{stage:'initiator',user:'MP',ts:'05 May',status:'done',comment:'Rate contract — periodic ladle repair.'},{stage:'rm',user:'AM',ts:'Today',status:'current',comment:''}],
+    comments:[{id:'c1',user:'MP',ts:'05 May',type:'submission',text:'Routine ladle lining repair under approved FY26 rate contract. RHI Magnesita is incumbent supplier with satisfactory quality record.'}],
+    vendors:[{name:'RHI Magnesita India',rank:1,unitPrice:450,basic:9000000,gst:1620000,freight:600000,tcl:11220000,vsL1:0,tech:'Qualified',auction:false,rec:true},{name:'Vesuvius India Ltd',rank:2,unitPrice:465,basic:9300000,gst:1674000,freight:640000,tcl:11614000,vsL1:3.5,tech:'Qualified',auction:false,rec:false}],
+    attachments:[{name:'BOQ — Ladle Repair FY26',type:'xlsx',size:'180 KB',date:'05 May',by:'MP'},{name:'RHI Rate Contract',type:'pdf',size:'620 KB',date:'01 Apr',by:'Procurement'}],},
+
+    'NFA-2026-OP-0059':{id:'NFA-2026-OP-0059',buyer:'VV',desc:'Spare Parts — Rolling Mill Drives & Motors',type:'Opex',modality:'L1',value:22500000,budget:24000000,dept:'Maintenance',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0398',vendor:'Siemens India Ltd',vendorCode:'VND-00055',stage:'rm',prevStage:'initiator',status:'review',age:4,flags:['sla-warning'],created:'01 May',submitted:'01 May',riskJust:'',limitJust:'',bizJust:'Critical spare parts for rolling mill variable speed drives and motor assemblies. Existing stock critically low — 45-day production risk if not ordered.',urgency:'High',impact:'High',reqDelivery:'30 May',modalityDetail:'L1 Based',modalityJust:'Siemens selected as L1 through competitive RFQ — also OEM for 60% of installed drives.',recNote:'Recommend Siemens India at ₹2.25 Cr — L1, OEM spares ensure compatibility.',savings:1500000,finalValue:22500000,deliveryDays:21,paymentTerms:'Net 30',warranty:'12 Months',locked:false,
+    versions:[{ver:'v0.1',who:'VV',ts:'01 May',changes:'NFA created'}],
+    timeline:[{stage:'initiator',user:'VV',ts:'01 May',status:'done',comment:'Critical spare parts — production risk.'},{stage:'rm',user:'AM',ts:'Pending 4 days',status:'current',comment:''}],
+    comments:[{id:'c1',user:'VV',ts:'01 May',type:'submission',text:'Stock-out risk in 45 days. Siemens is OEM and L1 — recommend urgent approval.'}],
+    vendors:[
+      {name:'Siemens India Ltd',rank:1,unitPrice:0,basic:20500000,gst:3690000,freight:310000,tcl:24500000,vsL1:0,tech:'Qualified',auction:false,rec:true},
+      {name:'ABB India Ltd',rank:2,unitPrice:0,basic:21200000,gst:3816000,freight:390000,tcl:25406000,vsL1:3.7,tech:'Qualified',auction:false,rec:false},
+      {name:'Rockwell Automation',rank:3,unitPrice:0,basic:22800000,gst:4104000,freight:450000,tcl:27354000,vsL1:11.6,tech:'Conditional',auction:false,rec:false},
+    ],attachments:[{name:'Comparative Statement',type:'xlsx',size:'240 KB',date:'01 May',by:'Procol'},{name:'Stock Level Report',type:'pdf',size:'185 KB',date:'30 Apr',by:'Stores'}],},
+
+    'NFA-2026-CP-0060':{id:'NFA-2026-CP-0060',buyer:'RS',desc:'Scrap Yard Mobile Crane — New Procurement',type:'Capex',modality:'L1',value:85000000,budget:90000000,dept:'Capital Projects',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0401',vendor:'Liebherr India Pvt Ltd',vendorCode:'VND-00399',stage:'ceo',prevStage:'cfo',status:'review',age:8,flags:['sla-breach','limited-competition'],created:'15 Apr',submitted:'22 Apr',riskJust:'',limitJust:'Only 2 OEMs responded due to niche product; Liebherr and Konecranes. Manitowoc declined.',bizJust:'New 250-tonne mobile crane for expanded scrap yard. Current 150T capacity is bottleneck for 5 MTPA expansion plan. Capex budget approved in FY26.',urgency:'Planned',impact:'High',reqDelivery:'31 Oct',modalityDetail:'L1 Based',modalityJust:'Liebherr selected as L1 — technically superior and lower TCO over 10 years.',recNote:'Recommend Liebherr India at ₹8.5 Cr — L1, best TCO and stronger after-sales service network.',savings:5000000,finalValue:85000000,deliveryDays:180,paymentTerms:'30% Advance, 40% on Dispatch, 30% on Commissioning',warranty:'24 Months',locked:false,
+    versions:[{ver:'v1.2',who:'RS',ts:'02 May',changes:'CFO approved and forwarded to CEO'},{ver:'v1.1',who:'SG',ts:'28 Apr',changes:'CFO review — budget pre-approved in FY26 capex'},{ver:'v0.1',who:'RS',ts:'22 Apr',changes:'NFA created'}],
+    timeline:[{stage:'initiator',user:'RS',ts:'22 Apr',status:'done',comment:'Scrap yard expansion — FY26 capex.'},{stage:'rm',user:'AM',ts:'23 Apr',status:'done',comment:'Approved — strategic capex.'},{stage:'sod',user:'PN',ts:'25 Apr',status:'done',comment:'Approved — limited OEM pool justified.'},{stage:'cfo',user:'SG',ts:'28 Apr',status:'done',comment:'Within FY26 capex budget. Approved.'},{stage:'ceo',user:'RK',ts:'Pending 8 days — SLA breached',status:'current',comment:''}],
+    comments:[{id:'c1',user:'RS',ts:'22 Apr',type:'submission',text:'250T crane for scrap yard expansion. FY26 capex pre-approved.'},{id:'c2',user:'AM',ts:'23 Apr',type:'approval',text:'Approved.'},{id:'c3',user:'SG',ts:'28 Apr',type:'approval',text:'Pre-approved capex item. Approved.'}],
+    vendors:[
+      {name:'Liebherr India Pvt Ltd',rank:1,unitPrice:0,basic:77000000,gst:13860000,freight:140000,tcl:91000000,vsL1:0,tech:'Qualified',auction:false,rec:true},
+      {name:'Konecranes India Ltd',rank:2,unitPrice:0,basic:81000000,gst:14580000,freight:165000,tcl:95745000,vsL1:5.2,tech:'Qualified',auction:false,rec:false},
+    ],attachments:[{name:'Liebherr Technical Proposal',type:'pdf',size:'3.2 MB',date:'20 Apr',by:'Vendor'},{name:'Comparative Statement',type:'xlsx',size:'310 KB',date:'21 Apr',by:'Procol'},{name:'FY26 Capex Approval Letter',type:'pdf',size:'220 KB',date:'01 Apr',by:'Finance'}],},
+
+    'NFA-2026-SV-0061':{id:'NFA-2026-SV-0061',buyer:'KD',desc:'Plant Security Services — Annual Contract',type:'Service',modality:'rate',value:18600000,budget:19500000,dept:'Administration',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0402',vendor:'G4S Secure Solutions India',vendorCode:'VND-00212',stage:'rm',prevStage:'initiator',status:'review',age:2,flags:[],created:'03 May',submitted:'03 May',riskJust:'',limitJust:'',bizJust:'Annual plant security services contract for Hazira facility — 320 guards, access control, patrolling.',urgency:'Planned',impact:'Medium',reqDelivery:'01 Jun',modalityDetail:'Rate Contract',modalityJust:'Rate contract renewal — competitive quotes obtained.',recNote:'G4S Secure Solutions — L1 with incumbent advantage. 4.8% cost reduction vs last year.',savings:900000,finalValue:18600000,deliveryDays:0,paymentTerms:'Monthly',warranty:'N/A',locked:false,
+    versions:[{ver:'v0.1',who:'KD',ts:'03 May',changes:'NFA created'}],
+    timeline:[{stage:'initiator',user:'KD',ts:'03 May',status:'done',comment:'Annual security AMC renewal.'},{stage:'rm',user:'AM',ts:'Pending 2 days',status:'current',comment:''}],
+    comments:[{id:'c1',user:'KD',ts:'03 May',type:'submission',text:'G4S is incumbent — 3 year performance satisfactory. L1 in current competitive bid with 4.8% cost saving.'}],
+    vendors:[
+      {name:'G4S Secure Solutions India',rank:1,unitPrice:155,basic:16800000,gst:3024000,freight:0,tcl:19824000,vsL1:0,tech:'Qualified',auction:false,rec:true},
+      {name:'SIS Security Services',rank:2,unitPrice:162,basic:17550000,gst:3159000,freight:0,tcl:20709000,vsL1:4.5,tech:'Qualified',auction:false,rec:false},
+      {name:'Tops Security',rank:3,unitPrice:170,basic:18400000,gst:3312000,freight:0,tcl:21712000,vsL1:9.5,tech:'Qualified',auction:false,rec:false},
+    ],attachments:[{name:'Security Services RFQ Comparison',type:'xlsx',size:'175 KB',date:'02 May',by:'Procol'},{name:'G4S Bid Document',type:'pdf',size:'730 KB',date:'30 Apr',by:'Vendor'}],},
+
+    'NFA-2026-CP-0062':{id:'NFA-2026-CP-0062',buyer:'MP',desc:'Coke Oven Battery Repair — Refractory Bricks',type:'Capex',modality:'L1',value:31800000,budget:33000000,dept:'Capital Projects',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0405',vendor:'Calderys India Refractories',vendorCode:'VND-00156',stage:'sod',prevStage:'rm',status:'review',age:1,flags:[],created:'04 May',submitted:'04 May',riskJust:'',limitJust:'',bizJust:'Repair of coke oven batteries #3 and #4. Refractory brick replacement during scheduled annual shutdown May 2026.',urgency:'High',impact:'High',reqDelivery:'12 May',modalityDetail:'L1 Based',modalityJust:'Calderys selected as L1 through competitive bid.',recNote:'Recommend Calderys India at ₹3.18 Cr — L1 with fastest delivery meeting shutdown window.',savings:1200000,finalValue:31800000,deliveryDays:8,paymentTerms:'Net 30',warranty:'12 Months',locked:false,
+    versions:[{ver:'v0.1',who:'MP',ts:'04 May',changes:'NFA created'}],
+    timeline:[{stage:'initiator',user:'MP',ts:'04 May',status:'done',comment:'Coke oven shutdown — critical path.'},{stage:'rm',user:'AM',ts:'04 May',status:'done',comment:'Approved — shutdown window critical.'},{stage:'sod',user:'PN',ts:'Pending 1 day',status:'current',comment:''},{stage:'cfo',user:'SG',ts:'Waiting',status:'waiting',comment:''}],
+    comments:[{id:'c1',user:'MP',ts:'04 May',type:'submission',text:'CO batteries shutdown starts 12 May. Calderys can deliver in 8 days. L1 selection.'},{id:'c2',user:'AM',ts:'04 May',type:'approval',text:'Approved. Cannot miss shutdown window.'}],
+    vendors:[
+      {name:'Calderys India Refractories',rank:1,unitPrice:1800,basic:29000000,gst:5220000,freight:580000,tcl:34800000,vsL1:0,tech:'Qualified',auction:false,rec:true},
+      {name:'RHI Magnesita India',rank:2,unitPrice:1870,basic:30100000,gst:5418000,freight:620000,tcl:36138000,vsL1:3.8,tech:'Qualified',auction:false,rec:false},
+      {name:'Vesuvius India Ltd',rank:3,unitPrice:1920,basic:30900000,gst:5562000,freight:680000,tcl:37142000,vsL1:6.7,tech:'Qualified',auction:false,rec:false},
+    ],attachments:[{name:'Comparative Statement',type:'xlsx',size:'210 KB',date:'03 May',by:'Procol'},{name:'Calderys Commercial Offer',type:'pdf',size:'580 KB',date:'02 May',by:'Vendor'}],},
+
+    'NFA-2026-OP-0063':{id:'NFA-2026-OP-0063',buyer:'VV',desc:'Lubricants & Coolants — Annual Supply',type:'Opex',modality:'rate',value:11200000,budget:12000000,dept:'Maintenance',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0408',vendor:'Castrol India Ltd',vendorCode:'VND-00094',stage:'approved',prevStage:'rm',status:'approved',age:0,flags:[],created:'10 Apr',submitted:'12 Apr',riskJust:'',limitJust:'',bizJust:'Annual supply of lubricants, hydraulic oils and cutting coolants for all plant equipment.',urgency:'Routine',impact:'Medium',reqDelivery:'01 May',modalityDetail:'Rate Contract',modalityJust:'Rate contract under approved FY26 schedule of rates.',recNote:'Castrol India — incumbent, L1 on price, satisfactory quality.',savings:800000,finalValue:11200000,deliveryDays:0,paymentTerms:'Monthly',warranty:'N/A',locked:true,
+    versions:[{ver:'v1.0',who:'AM',ts:'14 Apr',changes:'Approved by RM'}],
+    timeline:[{stage:'initiator',user:'VV',ts:'12 Apr',status:'done',comment:'Annual rate contract renewal.'},{stage:'rm',user:'AM',ts:'14 Apr',status:'done',comment:'Approved.'}],
+    comments:[],vendors:[{name:'Castrol India Ltd',rank:1,unitPrice:0,basic:10200000,gst:1836000,freight:164000,tcl:12200000,vsL1:0,tech:'Qualified',auction:false,rec:true},{name:'Shell India',rank:2,unitPrice:0,basic:10800000,gst:1944000,freight:180000,tcl:12924000,vsL1:5.9,tech:'Qualified',auction:false,rec:false}],attachments:[],},
+
+    'NFA-2026-SV-0064':{id:'NFA-2026-SV-0064',buyer:'PS',desc:'Annual Calibration Services — Instruments',type:'Service',modality:'rate',value:3200000,budget:3500000,dept:'Instrumentation',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0410',vendor:'Endress+Hauser India',vendorCode:'VND-00341',stage:'approved',prevStage:'rm',status:'approved',age:0,flags:[],created:'08 Apr',submitted:'09 Apr',riskJust:'',limitJust:'',bizJust:'Annual calibration and certification services for all measurement instruments — flow, pressure, temperature, level — approx 1,200 instruments.',urgency:'Planned',impact:'Medium',reqDelivery:'01 May',modalityDetail:'Rate Contract',modalityJust:'Rate contract.',recNote:'E+H India — incumbent, L1, statutory requirement.',savings:300000,finalValue:3200000,deliveryDays:0,paymentTerms:'Quarterly',warranty:'N/A',locked:true,
+    versions:[],timeline:[{stage:'initiator',user:'PS',ts:'09 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'10 Apr',status:'done',comment:'Approved.'}],
+    comments:[],vendors:[{name:'Endress+Hauser India',rank:1,unitPrice:0,basic:2900000,gst:522000,freight:0,tcl:3422000,vsL1:0,tech:'Qualified',auction:false,rec:true}],attachments:[],},
+
+    'NFA-2026-CP-0065':{id:'NFA-2026-CP-0065',buyer:'RS',desc:'Raw Water Treatment Plant Upgrade',type:'Capex',modality:'L1',value:62000000,budget:65000000,dept:'Utilities',location:'Dahej — Port',rfq:'RFQ-2026-0415',vendor:'VA Tech Wabag India',vendorCode:'VND-00287',stage:'cfo',prevStage:'sod',status:'review',age:5,flags:['sla-warning'],created:'26 Apr',submitted:'28 Apr',riskJust:'',limitJust:'',bizJust:'Capacity expansion of Dahej water treatment plant from 8 MLD to 14 MLD to support production ramp-up.',urgency:'Planned',impact:'High',reqDelivery:'31 Dec',modalityDetail:'L1 Based',modalityJust:'VA Tech Wabag selected as L1 through competitive EPC tender.',recNote:'VA Tech Wabag at ₹6.2 Cr — L1, proven track record in steel sector.',savings:3000000,finalValue:62000000,deliveryDays:210,paymentTerms:'10% Advance, milestones',warranty:'24 Months',locked:false,
+    versions:[{ver:'v1.0',who:'PN',ts:'30 Apr',changes:'SOD approved'}],
+    timeline:[{stage:'initiator',user:'RS',ts:'28 Apr',status:'done',comment:'WTP expansion — Dahej capacity.'},{stage:'rm',user:'AM',ts:'29 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'30 Apr',status:'done',comment:'Approved.'},{stage:'cfo',user:'SG',ts:'Pending 5 days',status:'current',comment:''}],
+    comments:[{id:'c1',user:'RS',ts:'28 Apr',type:'submission',text:'WTP expansion critical for production ramp-up. VA Tech Wabag is L1 with specialized capability.'}],
+    vendors:[
+      {name:'VA Tech Wabag India',rank:1,unitPrice:0,basic:56000000,gst:10080000,freight:1920000,tcl:68000000,vsL1:0,tech:'Qualified',auction:false,rec:true},
+      {name:'Ion Exchange India',rank:2,unitPrice:0,basic:59000000,gst:10620000,freight:2000000,tcl:71620000,vsL1:5.3,tech:'Qualified',auction:false,rec:false},
+      {name:'Thermax Ltd',rank:3,unitPrice:0,basic:62000000,gst:11160000,freight:2200000,tcl:75360000,vsL1:10.8,tech:'Qualified',auction:false,rec:false},
+    ],attachments:[{name:'Technical Bid Evaluation',type:'xlsx',size:'480 KB',date:'27 Apr',by:'Utilities Team'},{name:'VA Tech Wabag Proposal',type:'pdf',size:'2.8 MB',date:'25 Apr',by:'Vendor'}],},
+
+    'NFA-2026-OP-0066':{id:'NFA-2026-OP-0066',buyer:'VV',desc:'Ferro Alloys — Bulk Purchase (Q2 FY26)',type:'Opex',modality:'L1',value:156000000,budget:165000000,dept:'Raw Materials',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0418',vendor:'Tata Steel Long Products',vendorCode:'VND-00032',stage:'ceo',prevStage:'cfo',status:'review',age:6,flags:['sla-warning','limited-competition'],created:'22 Apr',submitted:'24 Apr',riskJust:'',limitJust:'Only 2 qualified domestic suppliers for high-grade ferro-manganese meeting AMNS spec.',bizJust:'Q2 FY26 bulk procurement of ferro manganese and ferro silicon for steel grade production. Value above ₹15 Cr triggers CEO approval per DOA.',urgency:'High',impact:'High',reqDelivery:'15 Jun',modalityDetail:'L1 Based',modalityJust:'Tata Steel LP selected as L1 through competitive tender.',recNote:'Tata Steel Long Products at ₹15.6 Cr — L1, established quality track record.',savings:9000000,finalValue:156000000,deliveryDays:30,paymentTerms:'Net 15',warranty:'N/A',locked:false,
+    versions:[{ver:'v1.2',who:'SG',ts:'01 May',changes:'CFO approved and forwarded to CEO'}],
+    timeline:[{stage:'initiator',user:'VV',ts:'24 Apr',status:'done',comment:'Q2 ferro alloys procurement.'},{stage:'rm',user:'AM',ts:'25 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'27 Apr',status:'done',comment:'Approved.'},{stage:'cfo',user:'SG',ts:'01 May',status:'done',comment:'Within budget. Q2 volumes confirmed.'},{stage:'ceo',user:'RK',ts:'Pending 6 days',status:'current',comment:''}],
+    comments:[{id:'c1',user:'VV',ts:'24 Apr',type:'submission',text:'Q2 ferro alloys bulk purchase — strategic raw material.'},{id:'c2',user:'SG',ts:'01 May',type:'approval',text:'Q2 budget confirmed. Approved to CEO.'}],
+    vendors:[
+      {name:'Tata Steel Long Products',rank:1,unitPrice:95000,basic:142000000,gst:25560000,freight:1440000,tcl:169000000,vsL1:0,tech:'Qualified',auction:false,rec:true},
+      {name:'IMFA (Indian Metals)',rank:2,unitPrice:98000,basic:147000000,gst:26460000,freight:1600000,tcl:175060000,vsL1:3.6,tech:'Qualified',auction:false,rec:false},
+    ],attachments:[{name:'Ferro Alloys Comparative',type:'xlsx',size:'220 KB',date:'23 Apr',by:'Procol'},{name:'Q2 Production Plan',type:'pdf',size:'390 KB',date:'20 Apr',by:'Production'}],},
+
+    'NFA-2026-CP-0067':{id:'NFA-2026-CP-0067',buyer:'KD',desc:'Office Renovation — Corporate Mumbai',type:'Capex',modality:'L1',value:5800000,budget:6000000,dept:'Administration',location:'Corporate — Mumbai',rfq:'RFQ-2026-0420',vendor:'Interarch Building Products',vendorCode:'VND-00567',stage:'approved',prevStage:'sod',status:'approved',age:0,flags:[],created:'01 Apr',submitted:'03 Apr',riskJust:'',limitJust:'',bizJust:'Renovation of Mumbai corporate office — 8th and 9th floor. Includes workstation upgrades, conference rooms, reception area.',urgency:'Planned',impact:'Low',reqDelivery:'31 May',modalityDetail:'L1 Based',modalityJust:'L1 selection through quotation.',recNote:'Interarch at ₹58 L — L1, 12-week timeline.',savings:200000,finalValue:5800000,deliveryDays:84,paymentTerms:'40/40/20',warranty:'12 Months',locked:true,
+    versions:[],timeline:[{stage:'initiator',user:'KD',ts:'03 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'04 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'06 Apr',status:'done',comment:'Approved.'}],
+    comments:[],vendors:[{name:'Interarch Building Products',rank:1,unitPrice:0,basic:5200000,gst:936000,freight:0,tcl:6136000,vsL1:0,tech:'Qualified',auction:false,rec:true},{name:'Godrej Interio',rank:2,unitPrice:0,basic:5500000,gst:990000,freight:0,tcl:6490000,vsL1:5.8,tech:'Qualified',auction:false,rec:false}],attachments:[],},
+
+    'NFA-2026-SV-0068':{id:'NFA-2026-SV-0068',buyer:'MP',desc:'Third Party Inspection Agency — Annual',type:'Service',modality:'L1',value:4400000,budget:4800000,dept:'Quality',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0422',vendor:'Bureau Veritas India',vendorCode:'VND-00109',stage:'sendback',prevStage:'rm',status:'sendback',age:3,flags:['sendback'],created:'28 Apr',submitted:'01 May',riskJust:'',limitJust:'',bizJust:'Annual TPI services for incoming raw material quality inspection, steel product testing and certification.',urgency:'Planned',impact:'Medium',reqDelivery:'01 Jun',modalityDetail:'L1 Based',modalityJust:'',recNote:'',savings:400000,finalValue:4400000,deliveryDays:0,paymentTerms:'Monthly',warranty:'N/A',locked:false,
+    versions:[],timeline:[{stage:'initiator',user:'MP',ts:'01 May',status:'done',comment:''},{stage:'rm',user:'AM',ts:'02 May',status:'sendback',comment:'Scope of inspection not clearly defined. Add BOQ with monthly inspection quantity and rate per visit. Also clarify ISO accreditation requirement.'}],
+    comments:[{id:'c1',user:'AM',ts:'02 May 11:30',type:'sendback',text:'Sent back: Please add detailed BOQ with inspection quantities per category and clarify ISO 17020 accreditation requirement for Bureau Veritas.'}],
+    vendors:[{name:'Bureau Veritas India',rank:1,unitPrice:0,basic:4000000,gst:720000,freight:0,tcl:4720000,vsL1:0,tech:'Qualified',auction:false,rec:false}],attachments:[],},
+
+    'NFA-2026-CP-0069':{id:'NFA-2026-CP-0069',buyer:'RS',desc:'Emergency Diesel Generator — 1000 kVA',type:'Capex',modality:'L1',value:7800000,budget:8500000,dept:'Electrical',location:'Dahej — Port',rfq:'RFQ-2026-0425',vendor:'Kirloskar Electric Co Ltd',vendorCode:'VND-00221',stage:'approved',prevStage:'cfo',status:'approved',age:0,flags:[],created:'05 Apr',submitted:'08 Apr',riskJust:'',limitJust:'',bizJust:'New 1000 kVA DG set for Dahej port operations backup power. Grid instability causing 18-22 outages/month affecting port operations.',urgency:'High',impact:'High',reqDelivery:'31 May',modalityDetail:'L1 Based',modalityJust:'Kirloskar selected as L1.',recNote:'Kirloskar at ₹78 L — L1, 8-week delivery.',savings:700000,finalValue:7800000,deliveryDays:56,paymentTerms:'30/70',warranty:'24 Months',locked:true,
+    versions:[],timeline:[{stage:'initiator',user:'RS',ts:'08 Apr',status:'done',comment:''},{stage:'rm',user:'AM',ts:'09 Apr',status:'done',comment:'Approved.'},{stage:'sod',user:'PN',ts:'11 Apr',status:'done',comment:'Approved.'},{stage:'cfo',user:'SG',ts:'14 Apr',status:'done',comment:'Approved.'}],
+    comments:[],vendors:[{name:'Kirloskar Electric Co Ltd',rank:1,unitPrice:0,basic:7100000,gst:1278000,freight:422000,tcl:8800000,vsL1:0,tech:'Qualified',auction:false,rec:true},{name:'Cummins India',rank:2,unitPrice:0,basic:7400000,gst:1332000,freight:460000,tcl:9192000,vsL1:4.5,tech:'Qualified',auction:false,rec:false},{name:'Mahindra Powerol',rank:3,unitPrice:0,basic:7650000,gst:1377000,freight:480000,tcl:9507000,vsL1:8.0,tech:'Qualified',auction:false,rec:false}],attachments:[],},
+
+    'NFA-2026-OP-0070':{id:'NFA-2026-OP-0070',buyer:'KD',desc:'Canteen & Catering Services — Annual',type:'Service',modality:'rate',value:8900000,budget:9500000,dept:'HR & Administration',location:'Hazira — Steel Plant',rfq:'RFQ-2026-0428',vendor:'Sodexo India Services',vendorCode:'VND-00175',stage:'rm',prevStage:'initiator',status:'review',age:0,flags:[],created:'05 May',submitted:'05 May',riskJust:'',limitJust:'',bizJust:'Annual canteen services for ~2,800 employees across 3 shifts. Includes cafeteria management, meal preparation, hygiene compliance.',urgency:'Planned',impact:'Low',reqDelivery:'01 Jun',modalityDetail:'Rate Contract',modalityJust:'Rate contract renewal — competitive quotes.',recNote:'Sodexo India — incumbent, L1, quality satisfactory.',savings:600000,finalValue:8900000,deliveryDays:0,paymentTerms:'Monthly',warranty:'N/A',locked:false,
+    versions:[{ver:'v0.1',who:'KD',ts:'05 May',changes:'NFA created'}],
+    timeline:[{stage:'initiator',user:'KD',ts:'05 May',status:'done',comment:'Annual canteen services renewal.'},{stage:'rm',user:'AM',ts:'Today',status:'current',comment:''}],
+    comments:[{id:'c1',user:'KD',ts:'05 May',type:'submission',text:'Sodexo India is incumbent. Quality and hygiene audits satisfactory. L1 in competitive renewal bid.'}],
+    vendors:[{name:'Sodexo India Services',rank:1,unitPrice:105,basic:8100000,gst:1458000,freight:0,tcl:9558000,vsL1:0,tech:'Qualified',auction:false,rec:true},{name:'Compass Group India',rank:2,unitPrice:109,basic:8420000,gst:1515600,freight:0,tcl:9935600,vsL1:3.9,tech:'Qualified',auction:false,rec:false},{name:'Elior India',rank:3,unitPrice:114,basic:8800000,gst:1584000,freight:0,tcl:10384000,vsL1:8.6,tech:'Qualified',auction:false,rec:false}],attachments:[],},
   }
 };
 
@@ -1672,23 +1794,112 @@ function secComml(nfa){
     {name:'Ador Welding Ltd',       rank:3,unitPrice:1840,basic:22816000,gst:4106880,freight:310000,tcl:27232880,vsL1:3.33,rec:false},
     {name:'ESAB India Ltd',         rank:4,unitPrice:1930,basic:23932000,gst:4307760,freight:275000,tcl:28514760,vsL1:8.19,rec:false},
   ];
-  const rkc = ['rk1','rk2','rk3','rk4'];
-  const maxTcl = Math.max(...vl.map(v=>v.tcl));
-  return `<div class="card" style="margin-bottom:13px;"><div class="ch"><div><div class="ch-t">Price Comparison — Post Auction</div><div class="ch-s">All values ₹ · Incl. GST &amp; Logistics · Auto-ranked</div></div></div>
-  <div style="overflow-x:auto;"><table class="ctab">
-    <thead><tr><th>Rank</th><th>Vendor</th><th>Unit Price</th><th>Basic Amt</th><th>GST 18%</th><th>Freight</th><th>Landed (TCO)</th><th>vs L1</th><th>Status</th></tr></thead>
-    <tbody>
-      ${vl.map((v,i)=>`<tr ${v.rec?'class="rrow"':''}><td><span class="${rkc[i]||'rk4'}">L${v.rank}</span></td><td><strong>${v.name}</strong>${v.rec?' ⭐':''}</td><td class="rf">₹${v.unitPrice.toLocaleString('en-IN')}</td><td class="rf">${fv(v.basic)}</td><td class="rf">${fv(v.gst)}</td><td class="rf">${fv(v.freight)}</td><td class="rf ${v.rec?'rf-best':''}">${fvf(v.tcl)}</td><td class="rf" style="color:${v.vsL1>0?'var(--amber)':'var(--green)'};">${v.vsL1?'+'+v.vsL1+'%':'—'}</td><td>${v.rec?'<span class="chip c-green">✅ Recommended</span>':v.rank===1?'<span class="chip c-blue">L1 · Not Rec.</span>':'<span class="chip c-teal">Qualified</span>'}</td></tr>`).join('')}
-    </tbody>
-  </table></div></div>
-  <div class="card"><div class="ch"><div class="ch-t">Visual Comparison</div></div><div class="cb"><div class="bchart">
-    ${vl.map((v,i)=>{
-      const pct=Math.round(v.tcl/maxTcl*100);
-      const clrs=['linear-gradient(180deg,#5B98FF,var(--blue))','linear-gradient(180deg,#43A858,var(--green))','linear-gradient(180deg,var(--gold),var(--amber))','linear-gradient(180deg,#EF5350,var(--red))'];
-      return `<div class="bcg"><div class="bcv" style="font-size:9.5px;">${fv(v.tcl)}</div><div class="bcb" style="height:${pct}%;background:${v.rec?'linear-gradient(180deg,#43A858,var(--green));box-shadow:0 0 12px rgba(24,104,48,.3)':clrs[i]};"></div><div class="bcl" style="${v.rec?'color:var(--green);font-weight:700;':''}">${v.name.split(' ').slice(0,2).join(' ')}<br>(L${v.rank})</div></div>`;
-    }).join('')}
-    <div class="bcg"><div class="bcv" style="font-size:9.5px;">${fv(nfa.budget)}</div><div class="bcb" style="height:${Math.round(nfa.budget/maxTcl*100)}%;background:repeating-linear-gradient(45deg,#8BB4FF,#8BB4FF 3px,#E6EFFF 3px,#E6EFFF 8px);border:2px dashed var(--blue);"></div><div class="bcl" style="color:var(--blue);">Budget</div></div>
-  </div></div></div>`;
+  const rkc=['rk1','rk2','rk3','rk4'];
+  const maxTcl=Math.max(...vl.map(v=>v.tcl),nfa.budget||1);
+  const recV=vl.find(v=>v.rec)||vl[0];
+  const l1V =vl.find(v=>v.rank===1)||vl[0];
+  const savBudget=nfa.budget?((nfa.budget-recV.tcl)/nfa.budget*100):0;
+  const barClr=['#1558CC','#1A6B30','#B05400','#B01E1E'];
+  const barBg =['#E8F0FE','#E8F6EC','#FFF1E0','#FDEAEA'];
+
+  return `
+  <div class="card" style="margin-bottom:13px;">
+    <div class="ch"><div><div class="ch-t">Vendor Price Comparison — Post Auction</div><div class="ch-s">All values ₹ · Incl. 18% GST &amp; Logistics · L1 = lowest TCO</div></div><span class="atag">Auto-ranked</span></div>
+    <div style="overflow-x:auto;"><table class="ctab">
+      <thead><tr><th>Rank</th><th>Vendor</th><th>Unit Price</th><th>Basic Amt</th><th>GST 18%</th><th>Freight</th><th>Landed (TCO)</th><th>vs L1</th><th>Status</th></tr></thead>
+      <tbody>
+        ${vl.map((v,i)=>`<tr ${v.rec?'class="rrow"':''}>
+          <td><span class="${rkc[i]||'rk4'}">L${v.rank}</span></td>
+          <td><strong>${v.name}</strong>${v.rec?' ⭐':''}</td>
+          <td class="rf" style="font-family:var(--mono);">${v.unitPrice?'₹'+v.unitPrice.toLocaleString('en-IN'):'—'}</td>
+          <td class="rf" style="font-family:var(--mono);">${fv(v.basic)}</td>
+          <td class="rf" style="font-family:var(--mono);">${fv(v.gst)}</td>
+          <td class="rf" style="font-family:var(--mono);">${fv(v.freight)}</td>
+          <td class="rf ${v.rec?'rf-best':''}" style="font-family:var(--mono);font-size:13px;">${fvf(v.tcl)}</td>
+          <td class="rf" style="color:${v.vsL1>0?'var(--amber)':'var(--green)'};font-family:var(--mono);">${v.vsL1?'+'+v.vsL1+'%':'—'}</td>
+          <td>${v.rec?'<span class="chip c-green">✅ Recommended</span>':v.rank===1?'<span class="chip c-blue">L1 · Not Rec.</span>':'<span class="chip c-teal">Qualified</span>'}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:13px;">
+    <!-- HORIZONTAL BAR CHART -->
+    <div class="card">
+      <div class="ch"><div class="ch-t">Landed Cost — Visual Comparison</div><div class="ch-s">Relative to budget provision</div></div>
+      <div class="cb" style="padding:18px 16px;">
+        ${vl.map((v,i)=>{
+          const pct=Math.round(v.tcl/maxTcl*92);
+          const clr=v.rec?'#1A6B30':barClr[i]||'#1558CC';
+          const bg =v.rec?'#E8F6EC':barBg[i]||'#E8F0FE';
+          return `<div style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+              <span style="font-size:12px;font-weight:${v.rec?700:600};color:${v.rec?'var(--green)':'var(--t1)'};">L${v.rank} · ${v.name.split(' ').slice(0,3).join(' ')}${v.rec?' ⭐':''}</span>
+              <span style="font-size:12px;font-weight:700;font-family:var(--mono);color:${v.rec?'var(--green)':'var(--t2)'};">${fv(v.tcl)}</span>
+            </div>
+            <div style="height:28px;background:${bg};border-radius:5px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:${clr};border-radius:5px;display:flex;align-items:center;padding-left:10px;">
+                <span style="color:#fff;font-size:10.5px;font-weight:700;white-space:nowrap;">${v.vsL1>0?'+'+v.vsL1+'% vs L1':'Lowest Bid'}</span>
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+        <div style="border-top:2px dashed var(--blue);padding-top:9px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div style="width:24px;height:3px;background:var(--blue);border-top:2px dashed var(--blue);"></div>
+            <span style="font-size:11.5px;color:var(--blue);font-weight:700;">Budget Provision</span>
+          </div>
+          <span style="font-size:12.5px;font-weight:700;font-family:var(--mono);color:var(--blue);">${fv(nfa.budget)}</span>
+        </div>
+        <div style="margin-top:8px;">
+          <div style="height:6px;background:var(--bg2);border-radius:3px;overflow:hidden;">
+            <div style="height:100%;width:${Math.round(nfa.budget/maxTcl*92)}%;background:repeating-linear-gradient(45deg,var(--blue),var(--blue) 3px,var(--blt) 3px,var(--blt) 8px);border-radius:3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DECISION SUMMARY -->
+    <div class="card">
+      <div class="ch"><div class="ch-t">Commercial Decision Summary</div><div class="ch-s">Key metrics for approver</div></div>
+      <div class="cb">
+        <div style="background:linear-gradient(135deg,#F0FFF4,#E8F6EC);border:2px solid rgba(26,107,48,.2);border-radius:6px;padding:13px 15px;margin-bottom:12px;">
+          <div style="font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--green);font-weight:700;margin-bottom:2px;">Recommended Vendor</div>
+          <div style="font-size:16px;font-weight:700;color:var(--green);">${recV.name}</div>
+          <div style="font-size:22px;font-weight:800;font-family:var(--mono);color:var(--t1);margin-top:3px;">${fvf(recV.tcl)}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+          <div style="background:var(--glt);border-radius:5px;padding:10px;text-align:center;">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.4px;color:var(--green);font-weight:700;margin-bottom:2px;">vs Budget</div>
+            <div style="font-size:22px;font-weight:800;color:${savBudget>=0?'var(--green)':'var(--red)'};">${savBudget>=0?'-'+savBudget.toFixed(1):'+'+Math.abs(savBudget).toFixed(1)}%</div>
+            <div style="font-size:10px;color:var(--green);">${savBudget>=0?'Under budget':'Over budget'}</div>
+          </div>
+          <div style="background:${recV.vsL1>0?'var(--alt)':'var(--glt)'};border-radius:5px;padding:10px;text-align:center;">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.4px;color:${recV.vsL1>0?'var(--amber)':'var(--green)'};font-weight:700;margin-bottom:2px;">vs L1</div>
+            <div style="font-size:22px;font-weight:800;color:${recV.vsL1>0?'var(--amber)':'var(--green)'};">${recV.vsL1>0?'+'+recV.vsL1+'%':'L1'}</div>
+            <div style="font-size:10px;color:${recV.vsL1>0?'var(--amber)':'var(--green)'};">${recV.vsL1>0?'Premium':'Is lowest'}</div>
+          </div>
+          <div style="background:var(--blt);border-radius:5px;padding:10px;text-align:center;">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.4px;color:var(--blue);font-weight:700;margin-bottom:2px;">Vendors Compared</div>
+            <div style="font-size:22px;font-weight:800;color:var(--blue);">${vl.length}</div>
+            <div style="font-size:10px;color:var(--blue);">Bids evaluated</div>
+          </div>
+          <div style="background:var(--tlt);border-radius:5px;padding:10px;text-align:center;">
+            <div style="font-size:9px;text-transform:uppercase;letter-spacing:.4px;color:var(--teal);font-weight:700;margin-bottom:2px;">Price Spread</div>
+            <div style="font-size:16px;font-weight:800;color:var(--teal);font-family:var(--mono);">${vl.length>1?((vl[vl.length-1].tcl-vl[0].tcl)/vl[0].tcl*100).toFixed(1)+'%':'—'}</div>
+            <div style="font-size:10px;color:var(--teal);">L1 to L${vl.length}</div>
+          </div>
+        </div>
+        ${recV.vsL1>0?`<div style="padding:8px 11px;background:var(--alt);border-radius:4px;border-left:3px solid var(--amber);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--amber);">⚠ L1 Not Selected — See Risk Tab</div>
+          <div style="font-size:11px;color:var(--t2);margin-top:1px;">Deviation of +${recV.vsL1}% over L1. Justification mandatory.</div>
+        </div>`:`<div style="padding:8px 11px;background:var(--glt);border-radius:4px;border-left:3px solid var(--green);">
+          <div style="font-size:11.5px;font-weight:700;color:var(--green);">✓ L1 Selected — No Deviation</div>
+          <div style="font-size:11px;color:var(--t2);margin-top:1px;">Recommended vendor is the lowest qualified bidder.</div>
+        </div>`}
+      </div>
+    </div>
+  </div>`;
 }
 
 function secAuction(nfa){
@@ -2243,24 +2454,303 @@ function submitNewNFA(){
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 function renderAnalytics(){
   const a = all();
-  const appr = a.filter(n=>n.status==='approved');
-  const totalSav = appr.reduce((s,n)=>s+n.savings,0);
-  const totalVal = appr.reduce((s,n)=>s+n.value,0);
-  document.getElementById('screen-analytics').innerHTML = `
-  <div class="ph"><div><h1>Analytics</h1><p>Procurement performance — FY 2025–26</p></div><div class="ph-right"><button class="btn btn-g btn-sm" onclick="exportReport()">⬇ Export</button></div></div>
-  <div class="kpi-g g4">
-    <div class="kpi b"><div class="kl">Total NFA Value</div><div class="kv" style="font-size:16px;">${fv(totalVal)}</div><div class="ks">${appr.length} approved NFAs</div></div>
-    <div class="kpi g"><div class="kl">Total Savings</div><div class="kv" style="font-size:16px;">${fv(totalSav)}</div><div class="ks">Avg. ${totalVal?(totalSav/totalVal*100).toFixed(1):0}% per NFA</div></div>
-    <div class="kpi a"><div class="kl">Avg. Approval Time</div><div class="kv">4.2d</div><div class="ks">Target: 5 days</div></div>
-    <div class="kpi t"><div class="kl">On-Time Rate</div><div class="kv">89%</div><div class="ks">42 of ${a.length} within SLA</div></div>
+  const appr  = a.filter(n=>n.status==='approved');
+  const rej   = a.filter(n=>n.status==='rejected');
+  const rev   = a.filter(n=>n.status==='review');
+  const sb    = a.filter(n=>n.status==='sendback');
+  const totalSav  = appr.reduce((s,n)=>s+n.savings,0);
+  const totalVal  = appr.reduce((s,n)=>s+n.value,0);
+  const totalBudg = appr.reduce((s,n)=>s+n.budget,0);
+  const pendVal   = rev.reduce((s,n)=>s+n.value,0);
+  const breach    = a.filter(n=>n.status==='review'&&n.age>getSla(n));
+  const avgSavPct = totalVal?(totalSav/totalVal*100):0;
+  const rejRate   = a.length?Math.round(rej.length/a.length*100):0;
+  const onTimePct = a.length?Math.round((a.length-breach.length)/a.length*100):89;
+
+  /* ── Type distribution ── */
+  const byType = {};
+  a.forEach(n=>{ byType[n.type]=(byType[n.type]||0)+1; });
+
+  /* ── Modality distribution ── */
+  const byMod = {};
+  a.forEach(n=>{ const m=n.modalityDetail||n.modality; byMod[m]=(byMod[m]||0)+1; });
+
+  /* ── Location distribution ── */
+  const byLoc = {};
+  a.forEach(n=>{ const l=n.location.split('—')[0].trim(); byLoc[l]=(byLoc[l]||{count:0,val:0}); byLoc[l].count++; byLoc[l].val+=n.value; });
+
+  /* ── Savings by category ── */
+  const savCap = appr.filter(n=>n.type==='Capex').reduce((s,n)=>s+n.savings,0);
+  const savOp  = appr.filter(n=>n.type==='Opex').reduce((s,n)=>s+n.savings,0);
+  const savSv  = appr.filter(n=>n.type==='Service').reduce((s,n)=>s+n.savings,0);
+  const maxSav = Math.max(savCap,savOp,savSv,1);
+
+  /* ── Stage funnel ── */
+  const stageCount = { rm:0, sod:0, cfo:0, ceo:0 };
+  rev.forEach(n=>{ if(stageCount[n.stage]!==undefined) stageCount[n.stage]++; });
+
+  /* ── Monthly NFA data ── */
+  const months=[['Oct',6],['Nov',8],['Dec',11],['Jan',9],['Feb',7],['Mar',6],['Apr',12],['May',5]];
+  const maxMth = Math.max(...months.map(m=>m[1]));
+
+  /* ── Top savers ── */
+  const topSavers = [...appr].sort((a,b)=>b.savings-a.savings).slice(0,5);
+
+  /* ── Value at stage ── */
+  const stageVal={rm:0,sod:0,cfo:0,ceo:0};
+  rev.forEach(n=>{ if(stageVal[n.stage]!==undefined) stageVal[n.stage]+=n.value; });
+  const maxStageVal=Math.max(...Object.values(stageVal),1);
+
+  const el = document.getElementById('screen-analytics');
+  el.innerHTML = `
+  <div class="ph"><div><h1>Procurement Analytics</h1><p>AMNS India · C&P Dashboard · FY 2025–26 · ${a.length} NFAs tracked</p></div>
+  <div class="ph-right"><button class="btn btn-g btn-sm" onclick="exportReport()">⬇ Export Report</button></div></div>
+
+  <!-- ROW 1: 8 EXECUTIVE KPIs -->
+  <div class="ekpi-row g4" style="margin-bottom:12px;">
+    <div class="ekpi"><div class="ekpi-accent b"></div><div class="ekpi-icon">₹</div>
+      <div class="ekpi-lbl">Total Value Approved (FY26)</div>
+      <div class="ekpi-num b" style="font-size:24px;">${fv(totalVal)}</div>
+      <div class="ekpi-sub">${appr.length} NFAs approved</div>
+    </div>
+    <div class="ekpi"><div class="ekpi-accent g"></div><div class="ekpi-icon">💰</div>
+      <div class="ekpi-lbl">Total Savings Achieved</div>
+      <div class="ekpi-num g" style="font-size:24px;">${fv(totalSav)}</div>
+      <div class="ekpi-sub">Avg. ${avgSavPct.toFixed(1)}% per NFA</div>
+      <div class="ekpi-delta dg">↑ Above 8% target</div>
+    </div>
+    <div class="ekpi"><div class="ekpi-accent a"></div><div class="ekpi-icon">⏳</div>
+      <div class="ekpi-lbl">Value Pending Approval</div>
+      <div class="ekpi-num a" style="font-size:24px;">${fv(pendVal)}</div>
+      <div class="ekpi-sub">${rev.length} NFAs in pipeline</div>
+    </div>
+    <div class="ekpi"><div class="ekpi-accent t"></div><div class="ekpi-icon">📊</div>
+      <div class="ekpi-lbl">Budget Utilisation</div>
+      <div class="ekpi-num t">${totalBudg?Math.round(totalVal/totalBudg*100):0}%</div>
+      <div class="ekpi-sub">Approved vs Budget</div>
+      <div class="ekpi-delta ${totalBudg&&totalVal/totalBudg<0.98?'dg':'da'}">${totalBudg&&totalVal/totalBudg<0.98?'Under budget':'Near limit'}</div>
+    </div>
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-    <div class="card"><div class="ch"><div class="ch-t">Monthly Volume</div></div><div class="cb"><div class="bchart">
-      ${[['Oct',6],['Nov',8],['Dec',11],['Jan',9],['Feb',7],['Mar',6],['Apr',12],['May',4]].map(([m,v])=>`<div class="bcg"><div class="bcv">${v}</div><div class="bcb" style="height:${Math.round(v/12*100)}%;background:linear-gradient(180deg,#5B98FF,var(--blue));"></div><div class="bcl">${m}</div></div>`).join('')}
-    </div></div></div>
-    <div class="card"><div class="ch"><div class="ch-t">Savings by Category</div></div><div class="cb">
-      ${[['Capital Items','pf-b',76,'₹5.9Cr (9.8%)'],['Services','pf-t',38,'₹1.1Cr (7.2%)'],['Opex Items','pf-a',24,'₹0.8Cr (6.5%)']].map(([n,c,p,v])=>`<div class="pr-row"><div class="pr-nm">${n}</div><div class="pr-bar"><div class="pr-fill ${c}" style="width:${p}%"></div></div><div class="pr-val">${v}</div></div>`).join('')}
-    </div></div>
+  <div class="ekpi-row g4" style="margin-bottom:18px;">
+    <div class="ekpi"><div class="ekpi-accent b"></div><div class="ekpi-icon">📋</div>
+      <div class="ekpi-lbl">Total NFAs (All Time)</div>
+      <div class="ekpi-num b">${a.length}</div>
+      <div class="ekpi-sub">${appr.length} approved · ${rev.length} in progress</div>
+    </div>
+    <div class="ekpi"><div class="ekpi-accent ${rejRate>15?'r':'g'}"></div><div class="ekpi-icon">📉</div>
+      <div class="ekpi-lbl">Rejection Rate</div>
+      <div class="ekpi-num ${rejRate>15?'r':'g'}">${rejRate}%</div>
+      <div class="ekpi-sub">${rej.length} rejected · ${sb.length} sent back</div>
+      <div class="ekpi-delta ${rejRate<15?'dg':'dr'}">${rejRate<15?'✓ Healthy':'Monitor'}</div>
+    </div>
+    <div class="ekpi"><div class="ekpi-accent ${onTimePct>=85?'g':'r'}"></div><div class="ekpi-icon">⏱</div>
+      <div class="ekpi-lbl">On-Time Approval Rate</div>
+      <div class="ekpi-num ${onTimePct>=85?'g':'r'}">${onTimePct}%</div>
+      <div class="ekpi-sub">Within SLA limit</div>
+      <div class="ekpi-delta ${onTimePct>=85?'dg':'dr'}">${onTimePct>=85?'↑ Good':'↓ SLA pressure'}</div>
+    </div>
+    <div class="ekpi"><div class="ekpi-accent ${breach.length>0?'r':'g'}"></div><div class="ekpi-icon">⚠</div>
+      <div class="ekpi-lbl">SLA Breaches (Active)</div>
+      <div class="ekpi-num ${breach.length>0?'r':'g'}">${breach.length}</div>
+      <div class="ekpi-sub">${breach.length>0?breach.map(n=>n.id.split('-').slice(-1)[0]).join(', '):'All NFAs within SLA'}</div>
+      <div class="ekpi-delta ${breach.length===0?'dg':'dr'}">${breach.length===0?'✓ Clean':'🔴 Action needed'}</div>
+    </div>
+  </div>
+
+  <!-- ROW 2: Monthly Volume Chart + NFA Type Split -->
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:13px;margin-bottom:14px;">
+    <div class="card">
+      <div class="ch"><div class="ch-t">Monthly NFA Volume — FY 2025–26</div><div class="ch-s">Number of NFAs initiated per month</div></div>
+      <div class="cb" style="padding:18px 16px 14px;">
+        <div style="display:flex;align-items:flex-end;gap:8px;height:130px;padding:0 4px;">
+          ${months.map(([m,v])=>{
+            const pct=Math.round(v/maxMth*100);
+            const isCurr=m==='May';
+            return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;">
+              <span style="font-size:10px;font-weight:700;color:var(--t2);margin-bottom:3px;">${v}</span>
+              <div style="width:100%;background:${isCurr?'var(--blt)':'var(--bg2)'};border-radius:4px 4px 0 0;height:${pct}%;min-height:4px;background:${isCurr?'repeating-linear-gradient(45deg,var(--blue),var(--blue) 3px,var(--blt) 3px,var(--blt) 8px)':'linear-gradient(180deg,#5B98FF,#1558CC)'};border:${isCurr?'2px dashed var(--blue)':'none'};"></div>
+              <span style="font-size:10px;color:${isCurr?'var(--blue)':'var(--t3)'};margin-top:4px;font-weight:${isCurr?700:400};">${m}${isCurr?'*':''}</span>
+            </div>`;
+          }).join('')}
+        </div>
+        <div style="font-size:10.5px;color:var(--t3);margin-top:6px;text-align:right;">*Month in progress</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ch-t">NFA by Type</div><div class="ch-s">Distribution this year</div></div>
+      <div class="cb">
+        ${Object.entries(byType).sort((a,b)=>b[1]-a[1]).map(([t,cnt])=>{
+          const pct=Math.round(cnt/a.length*100);
+          const clr={Capex:'var(--blue)',Opex:'var(--amber)',Service:'var(--teal)','Rate Contract':'var(--green)'}[t]||'var(--blue)';
+          return `<div style="margin-bottom:10px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
+              <span style="font-size:12px;font-weight:600;color:var(--t2);">${t}</span>
+              <span style="font-size:12px;font-weight:700;font-family:var(--mono);">${cnt} (${pct}%)</span>
+            </div>
+            <div style="height:8px;background:var(--bg2);border-radius:4px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:${clr};border-radius:4px;"></div>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 3: Savings Analysis + Status Funnel -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:14px;">
+    <div class="card">
+      <div class="ch"><div class="ch-t">Savings Analysis by Category</div><div class="ch-s">Total savings achieved per procurement type</div></div>
+      <div class="cb">
+        ${[['Capex Procurement',savCap,'var(--blue)'],['Opex Procurement',savOp,'var(--amber)'],['Service Contracts',savSv,'var(--teal)']].map(([lbl,val,clr])=>`
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span style="font-size:12.5px;font-weight:600;color:var(--t2);">${lbl}</span>
+            <span style="font-size:13px;font-weight:800;font-family:var(--mono);color:${clr};">${fv(val)}</span>
+          </div>
+          <div style="height:10px;background:var(--bg2);border-radius:5px;overflow:hidden;">
+            <div style="height:100%;width:${Math.round(val/maxSav*100)}%;background:${clr};border-radius:5px;"></div>
+          </div>
+          <div style="font-size:10.5px;color:var(--t3);margin-top:2px;">${appr.filter(n=>n.type===(lbl.includes('Capex')?'Capex':lbl.includes('Opex')?'Opex':'Service')).length} NFAs · Avg. ${appr.filter(n=>n.type===(lbl.includes('Capex')?'Capex':lbl.includes('Opex')?'Opex':'Service')&&n.savings>0).length>0?(val/appr.filter(n=>n.type===(lbl.includes('Capex')?'Capex':lbl.includes('Opex')?'Opex':'Service')&&n.value>0).reduce((s,n)=>s+n.value,0)*100).toFixed(1):0}% savings</div>
+        </div>`).join('')}
+        <div style="background:var(--glt);border-radius:6px;padding:11px 13px;margin-top:6px;display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:13px;font-weight:700;color:var(--green);">Total Savings (FY26)</span>
+          <span style="font-size:18px;font-weight:800;font-family:var(--mono);color:var(--green);">${fv(totalSav)}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="ch-t">Approval Funnel — Current Pipeline</div><div class="ch-s">NFAs at each approval stage</div></div>
+      <div class="cb">
+        <!-- Funnel bars -->
+        ${[['Initiated (All)',a.length,'var(--blue)'],['Under Review',rev.length,'var(--teal)'],['Approved',appr.length,'var(--green)'],['Rejected',rej.length,'var(--red)'],['Sent Back',sb.length,'var(--amber)']].map(([lbl,cnt,clr])=>{
+          const pct=a.length?Math.round(cnt/a.length*100):0;
+          return `<div style="margin-bottom:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">
+              <span style="font-size:12px;font-weight:600;color:var(--t2);">${lbl}</span>
+              <span style="font-size:13px;font-weight:800;font-family:var(--mono);color:${clr};">${cnt} <span style="font-size:10.5px;font-weight:600;color:var(--t3);">(${pct}%)</span></span>
+            </div>
+            <div style="height:12px;background:var(--bg2);border-radius:5px;overflow:hidden;">
+              <div style="height:100%;width:${Math.max(pct,2)}%;background:${clr};border-radius:5px;"></div>
+            </div>
+          </div>`;
+        }).join('')}
+        <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--blt2);">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="text-align:center;background:var(--glt);border-radius:5px;padding:8px;">
+              <div style="font-size:18px;font-weight:800;color:var(--green);">${a.length?Math.round(appr.length/a.length*100):0}%</div>
+              <div style="font-size:10.5px;color:var(--green);">Approval Rate</div>
+            </div>
+            <div style="text-align:center;background:var(--rlt);border-radius:5px;padding:8px;">
+              <div style="font-size:18px;font-weight:800;color:var(--red);">${rejRate}%</div>
+              <div style="font-size:10.5px;color:var(--red);">Rejection Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 4: Value at each approval stage + Location split -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:14px;">
+    <div class="card">
+      <div class="ch"><div class="ch-t">₹ Value Stuck at Each Stage</div><div class="ch-s">Value of pending NFAs by approval level</div></div>
+      <div class="cb">
+        ${Object.entries(stageVal).map(([s,val])=>{
+          const pct=Math.round(val/maxStageVal*100);
+          const clr={rm:'var(--blue)',sod:'var(--teal)',cfo:'var(--amber)',ceo:'var(--red)'}[s]||'var(--blue)';
+          const cnt=rev.filter(n=>n.stage===s).length;
+          return `<div style="margin-bottom:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">
+              <span style="font-size:12.5px;font-weight:600;color:var(--t2);">${STAGE_LABELS[s]}</span>
+              <div style="text-align:right;">
+                <div style="font-size:13px;font-weight:800;font-family:var(--mono);color:${clr};">${fv(val)}</div>
+                <div style="font-size:10px;color:var(--t3);">${cnt} NFA${cnt!==1?'s':''}</div>
+              </div>
+            </div>
+            <div style="height:10px;background:var(--bg2);border-radius:5px;overflow:hidden;">
+              <div style="height:100%;width:${Math.max(pct,2)}%;background:${clr};border-radius:5px;"></div>
+            </div>
+          </div>`;
+        }).join('')}
+        <div style="margin-top:10px;background:var(--alt);border-radius:5px;padding:10px 12px;display:flex;justify-content:space-between;">
+          <span style="font-size:12.5px;font-weight:700;color:var(--amber);">Total Pending Value</span>
+          <span style="font-size:14px;font-weight:800;font-family:var(--mono);color:var(--amber);">${fv(pendVal)}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div class="ch-t">Procurement by Location &amp; Modality</div><div class="ch-s">Value distribution across plants</div></div>
+      <div class="cb">
+        <div style="font-size:11.5px;font-weight:700;color:var(--t2);margin-bottom:8px;">📍 By Location (Total Value)</div>
+        ${Object.entries(byLoc).sort((a,b)=>b[1].val-a[1].val).map(([loc,d])=>{
+          const maxLoc=Math.max(...Object.values(byLoc).map(x=>x.val),1);
+          const pct=Math.round(d.val/maxLoc*100);
+          return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">
+            <span style="width:110px;font-size:11.5px;font-weight:600;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${loc}</span>
+            <div style="flex:1;height:8px;background:var(--bg2);border-radius:4px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:var(--blue);border-radius:4px;"></div>
+            </div>
+            <span style="font-size:11px;font-family:var(--mono);font-weight:700;color:var(--t2);width:52px;text-align:right;">${fv(d.val)}</span>
+            <span style="font-size:10px;color:var(--t3);width:20px;">${d.count}</span>
+          </div>`;
+        }).join('')}
+        <div style="height:1px;background:var(--blt2);margin:10px 0;"></div>
+        <div style="font-size:11.5px;font-weight:700;color:var(--t2);margin-bottom:8px;">⚙ By Modality</div>
+        ${Object.entries(byMod).sort((a,b)=>b[1]-a[1]).map(([m,cnt])=>{
+          const pct=Math.round(cnt/a.length*100);
+          return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <span style="width:130px;font-size:11.5px;font-weight:600;color:var(--t2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${m}</span>
+            <div style="flex:1;height:7px;background:var(--bg2);border-radius:4px;overflow:hidden;">
+              <div style="height:100%;width:${pct}%;background:var(--teal);border-radius:4px;"></div>
+            </div>
+            <span style="font-size:11px;font-family:var(--mono);font-weight:700;color:var(--t2);">${cnt} (${pct}%)</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  </div>
+
+  <!-- ROW 5: Top Savings NFAs + Key Metrics -->
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:13px;margin-bottom:14px;">
+    <div class="card">
+      <div class="ch"><div class="ch-t">Top 5 NFAs by Savings Achieved</div><div class="ch-s">Best performing procurements this year</div></div>
+      <div style="overflow-x:auto;"><table class="ctab">
+        <thead><tr><th>#</th><th>NFA</th><th>Description</th><th>Vendor</th><th>Value</th><th>Savings</th><th>% Saved</th></tr></thead>
+        <tbody>
+          ${topSavers.map((n,i)=>`<tr onclick="openNFA('${n.id}')">
+            <td style="font-weight:800;color:var(--blue);">${i+1}</td>
+            <td class="tid">${n.id}</td>
+            <td style="max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${n.desc}</td>
+            <td style="font-size:11.5px;">${n.vendor.split(' ').slice(0,2).join(' ')}</td>
+            <td style="font-family:var(--mono);font-weight:600;">${fv(n.value)}</td>
+            <td style="font-family:var(--mono);font-weight:700;color:var(--green);">${fv(n.savings)}</td>
+            <td style="font-weight:700;color:var(--green);">${n.budget?(n.savings/n.budget*100).toFixed(1):0}%</td>
+          </tr>`).join('')}
+        </tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div class="ch-t">Key Performance Metrics</div><div class="ch-s">Procurement efficiency indicators</div></div>
+      <div class="cb">
+        ${[
+          ['Avg. Savings %','9.4%','dg','↑ Target: 8%'],
+          ['Avg. Approval Days','4.2d','db','Target: 5d'],
+          ['L1 Selection Rate',a.length?Math.round(a.filter(n=>!n.flags.includes('l1-deviation')).length/a.length*100)+'%':'—','dg','✓ Policy compliance'],
+          ['Auction Conducted',a.length?Math.round(a.filter(n=>n.vendors.some(v=>v.auction)).length/a.length*100)+'%':'—','db','Of competitive NFAs'],
+          ['Single Vendor %',a.length?Math.round(a.filter(n=>n.modality==='single'||n.modality==='prop').length/a.length*100)+'%':'—','da','Monitor — policy limit 20%'],
+          ['SLA Compliance',onTimePct+'%',onTimePct>=85?'dg':'dr',onTimePct>=85?'✓ On target':'↓ Below 85% target'],
+        ].map(([lbl,val,cls,note])=>`
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--blt2);">
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--t2);">${lbl}</div>
+            <div style="font-size:10px;color:var(--t3);">${note}</div>
+          </div>
+          <span class="ekpi-delta ${cls}" style="font-size:13px;font-weight:800;">${val}</span>
+        </div>`).join('')}
+      </div>
+    </div>
   </div>`;
 }
 
